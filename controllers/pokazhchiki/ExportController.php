@@ -76,7 +76,7 @@ class ExportController extends \yii\web\Controller
 			
 			print_r ($webfiles);
 
-			
+			return ($webfiles);
 		//	return $this->render('index',['filelist' => $webfiles]);
 
     }
