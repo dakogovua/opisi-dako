@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>pokazhchiki</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script>
+        var papka = 'pokazhiki\\Kiev\\Tematychnyy_pokazhchyk_m_Kyiv_T_2';
+    //    var papka = null;
+        var ajaxdata;
+        $.ajax({
+            // url: URL,
+            url: 'http://localhost/index.php?r=pokazhchiki/list-files/',
+           // url: 'http://arsenal.genuine.community/get-rate',
+            type: 'GET',
+            data: { folder: papka},
+            dataType: "json",
+            crossDomain: true,
+            async: false,
+            success: function(respText) {
+                console.log(' respTextajax ', respText)
+                ajaxdata = respText;
+
+                $.getScript("/dist/build.js", function(){
+
+                    console.log("vue added");
+
+                });
+            },
+            error: function(respText){
+                //theResponse = 'error'
+                console.log('error', respText)
+
+            },
+            /*complete: function(){
+                console.log('DONEDONEDONEDONEDONE')
+                //post('http://localhost/get-rate/post', {name: 'Johnny Bravo'});
+                //     post('http://localhost/get-rate/post', saveDocAPI);
+            } */
+        });
+    </script>
+    <!-- <script src="/dist/build.js"></script> -->
+  </body>
+</html>

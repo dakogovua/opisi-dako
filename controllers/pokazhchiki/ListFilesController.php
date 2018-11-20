@@ -4,22 +4,44 @@ namespace app\controllers\pokazhchiki;
 
 class ListFilesController extends \yii\web\Controller
 {
-    public function actionIndex($folder,$subfolder,$params = null)
+    /**
+     * @param null $folder
+     * @param null $params
+     * @return string
+     * @throws \yii\web\HttpException
+     */
+    public function actionIndex($folder = null, $params = null)
     {
-		$this->layout = 'main2';
-		$dir = '/home/admin/public_html/opisi.dako.gov.ua/web/scans/'.$folder.'/'.$subfolder;
+        //echo '$folder '.$folder;
+
+       $basedir = getcwd();
+
+		$this->layout = false;
+
+		if ($folder == null){
+            $dir = $basedir.'\scans\pokazhiki\Kiev\Tematychnyy_pokazhchyk_m_Kyiv_T_1';
+        }
+        else {
+            $dir = $basedir.'/scans/'.$folder;
+        }
+
+
+        //echo '$dir '.$dir;
+
 		//$files=\yii\helpers\FileHelper::findFiles($dir);
 		if (!is_dir($dir)) { // item does not exist
-			throw new \yii\web\HttpException(404, 'Ошибка в БД или названии папки с файлами. Передайте эту информацию для решения проблемы --> '.$folder.'/'.$subfolder.'');
+			throw new \yii\web\HttpException(404, 'Ошибка в БД или названии папки с файлами. Передайте эту информацию для решения проблемы --> '.$folder.' '.$dir.'');
 		}
 		
 			$files=scandir($dir);
 
 			if (count($files) < 3) { // item does not exist
-			throw new \yii\web\HttpException(404, 'Передайте эту ошибку администратору. В папке нет файлов '.$folder.'/'.$subfolder.'');
+			throw new \yii\web\HttpException(404, 'Передайте эту ошибку администратору. В папке нет файлов '.$folder.'/'.$dir.'');
 		}
 			
 			$dlina = strlen(count($files));
+
+        $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
 			
 			foreach ($files as $file){
 				
@@ -69,14 +91,14 @@ class ListFilesController extends \yii\web\Controller
 				else {
 					$file = $dir.'/'.$file;
 				}
-					$file = str_replace("/home/admin/public_html/opisi.dako.gov.ua","",$file);
-					$webfiles[] = $file;
+					$file = str_replace($basedir,"/web",$file);
+					$webfiles[] = $actual_link.$file;
 					}
 			}
 			
 			
-			
-			return $this->render('index',['filelist' => $webfiles]);
+	//	print_r($webfiles);
+			return $this->render('ajax',['filelist' => $webfiles, 'dir' => $dir]);
 
     }
 	
