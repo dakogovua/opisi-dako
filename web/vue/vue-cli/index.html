@@ -1,47 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>pokazhchiki</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script>
-        var papka = 'pokazhiki\\Kiev\\Tematychnyy_pokazhchyk_m_Kyiv_T_2';
-    //    var papka = null;
-        var ajaxdata;
-        $.ajax({
-            // url: URL,
-            url: 'http://localhost/index.php?r=pokazhchiki/list-files/',
-           // url: 'http://arsenal.genuine.community/get-rate',
-            type: 'GET',
-            data: { folder: papka},
-            dataType: "json",
-            crossDomain: true,
-            async: false,
-            success: function(respText) {
-                console.log(' respTextajax ', respText)
-                ajaxdata = respText;
+<head>
+  <meta charset="utf-8">
+  <title>pokazhchiki</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+<div id="app"></div>
+<script>
+    var papka = 'pokazhiki/Kiev/Tematychnyy_pokazhchyk_m.Kyiv_T.2';
+    //   var papka = null;
+    var ajaxdata;
+    $.ajax({
+        // url: URL,
+        url: 'http://opisi.dako.gov.ua/index.php?r=pokazhchiki/list-files/',
 
-                $.getScript("/dist/build.js", function(){
+        type: 'GET',
+        data: { folder: papka},
+        dataType: "json",
+        crossDomain: true,
+        async: false,
+        success: function(respText) {
+            console.log(' respTextajax ', respText)
+            ajaxdata = respText;
 
-                    console.log("vue added");
+            $.getScript("/web/vue/vue-cli/dist/build.js", function(){
 
-                });
-            },
-            error: function(respText){
-                //theResponse = 'error'
-                console.log('error', respText)
+                console.log("vue added");
 
-            },
-            /*complete: function(){
-                console.log('DONEDONEDONEDONEDONE')
-                //post('http://localhost/get-rate/post', {name: 'Johnny Bravo'});
-                //     post('http://localhost/get-rate/post', saveDocAPI);
-            } */
-        });
-    </script>
-    <!-- <script src="/dist/build.js"></script> -->
-  </body>
+            });
+        },
+        error: function(respText){
+            //theResponse = 'error'
+            console.log('error', respText)
+            document.getElementById("app").innerHTML = '<div class="alert alert-danger"><strong>Ошибка!</strong> Нет связи с DAKO.cloud.</div>';
+
+        },
+        /*complete: function(){
+            console.log('DONEDONEDONEDONEDONE')
+            //post('http://localhost/get-rate/post', {name: 'Johnny Bravo'});
+            //     post('http://localhost/get-rate/post', saveDocAPI);
+        } */
+    });
+</script>
+
+</body>
 </html>
