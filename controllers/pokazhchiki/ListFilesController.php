@@ -10,6 +10,38 @@ class ListFilesController extends \yii\web\Controller
      * @return string
      * @throws \yii\web\HttpException
      */
+
+    public function beforeAction($action) {
+        $this->enableCsrfValidation = false;
+        return parent::beforeAction($action);
+    }
+
+    public static function allowedDomains() {
+        return [
+            '*',                        // star allows all domains
+            //       'http://test1.example.com',
+            //       'http://test2.example.com',
+        ];
+    }
+
+    public function behaviors() {
+        return array_merge(parent::behaviors(), [
+
+            // For cross-domain AJAX request
+            'corsFilter'  => [
+                'class' => \yii\filters\Cors::className(),
+                'cors'  => [
+                    // restrict access to domains:
+                    'Origin'                           => static::allowedDomains(),
+                    'Access-Control-Request-Method'    => ['POST'],
+                    'Access-Control-Allow-Credentials' => true,
+                    'Access-Control-Max-Age'           => 3600,                 // Cache (seconds)
+                ],
+            ],
+
+        ]);
+    }
+
     public function actionIndex($folder = null, $params = null)
     {
         //echo '$folder '.$folder;
@@ -19,7 +51,7 @@ class ListFilesController extends \yii\web\Controller
         $this->layout = false;
 
         if ($folder == null){
-            $dir = $basedir.'/scans/pokazhiki/Kiev/Tematychnyy_pokazhchyk_m_Kyiv_T_1';
+            $dir = $basedir.'/scans/pokazhiki/koss/error';
         }
         else {
             $dir = $basedir.'/scans/'.$folder;

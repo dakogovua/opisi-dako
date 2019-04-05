@@ -8,7 +8,8 @@
 <body>
 <div id="app"></div>
 <script>
-    var papka = 'pokazhiki/Kiev/Tematychnyy_pokazhchyk_m.Kyiv_T.2';
+   // var papka = 'pokazhiki/Kiev/Tematychnyy_pokazhchyk_m.Kyiv_T.2';
+    var papka = 'pokazhiki/pokazhchiki_doradyanskogo_perIodu/Dovidkovyy_aparat_do_opysiv_F-183';
     //   var papka = null;
     var ajaxdata;
     $.ajax({
@@ -24,7 +25,7 @@
             console.log(' respTextajax ', respText)
             ajaxdata = respText;
 
-            $.getScript("/web/vue/vue-cli/dist/build.js", function(){
+            $.getScript("http://opisi.dako.gov.ua/web/vue/vue-cli/dist/build.js", function(){
 
                 console.log("vue added");
 
