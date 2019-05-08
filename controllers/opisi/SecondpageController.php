@@ -79,7 +79,7 @@ class SecondpageController extends Controller
                $sectablename = 'radsecondpage';
                break;
            default:
-               $sectablename = secondpage;
+               $sectablename = 'secondpage';
        }
 
        // echo $sectablename;
