@@ -115,8 +115,9 @@ $script = <<< JS
      
      $('#kossbtn').on('click',function() {
          link = $("select[name=cat]").val();
-         console.log('link',link);
-         window.location = "/web/index.php?r=opisi/firstpage&nametable="+link;        
+         fondtext = $("select[name=cat] option:selected").text();
+         //console.log('opt',opt);
+         window.location = "/web/index.php?r=opisi/firstpage&nametable="+link+"&fondtext=" + fondtext;        
      })
      
 });

@@ -60,7 +60,7 @@ class FirstpageController extends Controller
      * Lists all Firstpage models.
      * @return mixed
      */
-    public function actionIndex($nametable = null)
+    public function actionIndex($nametable = null,$fondtext = null)
     {
         if(!$nametable){
             $nametable = 'firstpage';
@@ -85,6 +85,7 @@ class FirstpageController extends Controller
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'fondtext'  => $fondtext,
          //   'secnametable' => $secnametable,
 		//	'name_fondz' => $name_fondz,
 		
