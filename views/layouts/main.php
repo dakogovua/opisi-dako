@@ -42,7 +42,18 @@ $this->title = Yii::$app->name;
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
             ['label' => 'Головна', 'url' => ['/site/index']],
-            ['label' => 'Фонди', 'url' => ['opisi/firstpage']],
+
+            ['label' => 'Фонди',
+                'url' => ['#'],
+                // 'template' => '<a href="{url}" >{label}<i class="fa fa-angle-left pull-right"></i></a>',
+                'items' => [
+                    ['label' => 'До 1917 року', 'url' => '/web/index.php?r=opisi/firstpage'],
+                    ['label' => 'Радянський перiод', 'url' => '/web/index.php?r=opisi/firstpage&nametable=radfirstpage'],
+                    //['label' => 'Something else here', 'url' => '#'],
+                ],
+            ],
+
+        //    ['label' => 'Фонди', 'url' => ['opisi/firstpage']],
         //    ['label' => 'Про сервіс', 'url' => ['/site/about']],
             ['label' => 'Контакти', 'url' => ['/site/contact']],
             Yii::$app->user->isGuest ? (
@@ -56,7 +67,9 @@ $this->title = Yii::$app->name;
                 )
                 . Html::endForm()
                 . '</li>'
-            )
+            ),
+
+
         ],
     ]);
     NavBar::end();

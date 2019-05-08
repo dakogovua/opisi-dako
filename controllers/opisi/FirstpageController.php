@@ -60,11 +60,14 @@ class FirstpageController extends Controller
      * Lists all Firstpage models.
      * @return mixed
      */
-    public function actionIndex()
+    public function actionIndex($nametable = null)
     {
+        if(!$nametable){
+            $nametable = 'firstpage';
+        }
         $searchModel = new FirstpageSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-		
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams, $nametable);
+
 		////////////////
 	/*	$name_fonds = Firstpage::find()
             ->select(['name_fond'])->distinct()
@@ -78,9 +81,11 @@ class FirstpageController extends Controller
 	*/
 		/////////////
 
+
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+         //   'secnametable' => $secnametable,
 		//	'name_fondz' => $name_fondz,
 		
         ]);
@@ -114,6 +119,7 @@ class FirstpageController extends Controller
 
         return $this->render('create', [
             'model' => $model,
+
         ]);
     }
 

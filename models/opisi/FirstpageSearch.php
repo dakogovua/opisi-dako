@@ -39,10 +39,10 @@ class FirstpageSearch extends Firstpage
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search($params, $tablename)
     {
-        $query = Firstpage::find();
-
+        $query = Firstpage::useTable($tablename);//::find();
+        $query=$query->find();
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([

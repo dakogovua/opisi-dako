@@ -17,13 +17,27 @@ use Yii;
  */
 class Firstpage extends \yii\db\ActiveRecord
 {
+
+
+    protected static $table;
+
+    public static function useTable($table) {
+        static::$table = $table;
+
+        return new static();
+    }
+
+    public static function tableName() {
+        return static::$table;
+    }
+
     /**
      * @inheritdoc
      */
-    public static function tableName()
-    {
-        return 'firstpage';
-    }
+ //   public static function tableName()
+ //   {
+ //       return 'firstpage';
+ //   }
 
     /**
      * @inheritdoc

@@ -21,9 +21,21 @@ class Secondpage extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
-    public static function tableName()
-    {
-        return 'secondpage';
+   // public static function tableName()
+   // {
+   //     return 'secondpage';
+   // }
+
+    protected static $table;
+
+    public static function useTable($table) {
+        static::$table = $table;
+
+        return new static();
+    }
+
+    public static function tableName() {
+        return static::$table;
     }
 
     /**

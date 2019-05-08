@@ -59,14 +59,37 @@ class SecondpageController extends Controller
      * Lists all Secondpage models.
      * @return mixed
      */
-    public function actionIndex($message = null)
+    public function actionIndex($message = null, $sectablename = null)
     {
+
+     //   echo $sectablename;
+
+        if(!$sectablename){
+            $sectablename = 'secondpage';
+        }
+
+       switch ($sectablename) {
+           case "null":
+               $sectablename = secondpage;
+               break;
+           case "firstpage":
+               $sectablename = 'secondpage';
+               break;
+           case "radfirstpage":
+               $sectablename = 'radsecondpage';
+               break;
+           default:
+               $sectablename = secondpage;
+       }
+
+       // echo $sectablename;
+
         $searchModel = new SecondpageSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams, $sectablename);
 		
 		if (isset ($message))
 			{
-				$dataProvider->query->andWhere(['secondpage.papka' => $message]);
+				$dataProvider->query->andWhere([$sectablename.'.papka' => $message]);
 			}
 
         return $this->render('index', [

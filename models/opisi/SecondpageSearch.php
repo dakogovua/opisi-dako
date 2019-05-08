@@ -39,10 +39,10 @@ class SecondpageSearch extends Secondpage
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search($params, $tablename)
     {
-        $query = Secondpage::find();
-
+        $query = Secondpage::useTable($tablename);//::find();
+        $query = $query -> find();
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([

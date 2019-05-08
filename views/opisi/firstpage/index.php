@@ -12,11 +12,13 @@ use yii\helpers\Url;
 
 $this->title = 'Фонди';
 $this->params['breadcrumbs'][] = $this->title;
+
 ?>
 <div class="firstpage-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+
+
 
     <p>
 <?php	
@@ -70,7 +72,8 @@ $this->params['breadcrumbs'][] = $this->title;
 				'attribute' => 'name_fond',
                 'value' => function($data)
                     {
-                       return Html::a($data->name_fond, ('/web/index.php?r=opisi/secondpage/index&message='.$data->papka));
+                       //return Html::a($data->name_fond, ('/web/index.php?r=opisi/secondpage/index&message='.$data->papka.'&sectablename='.$secnametable));
+                       return Html::a($data->name_fond, ['opisi/secondpage', 'message' => $data->papka, 'sectablename' => $_GET['nametable']], ['class' => 'profile-link']);
 					  // return $data->name_fond;
                     },
                 'format' => 'raw',
