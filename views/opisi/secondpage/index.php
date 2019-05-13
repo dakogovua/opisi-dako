@@ -3,6 +3,8 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 
+use yii\helpers\Url;
+
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\opisi\SecondpageSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -90,9 +92,17 @@ $this->params['breadcrumbs'][] = $this->title;
             'count_opisis',
             'years:ntext',
 
-            ['class' => 'yii\grid\ActionColumn',
+            /*['class' => 'yii\grid\ActionColumn',
 			 'visible' => !Yii::$app->user->isGuest, 
-			],
+			],*/
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'visible' => !Yii::$app->user->isGuest,
+                'options' => [ 'id' => 'serial-column' ],
+                'urlCreator' => function ($action, $model, $key, $index) {
+                    return Url::to([$action, 'id' => $model->id, 'sectablename' => $_GET['sectablename'] ]);
+                }
+            ],
         ],
     ]); ?>
 </div>

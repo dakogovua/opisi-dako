@@ -12,6 +12,8 @@ use app\models\opisi\Firstpage;
  */
 class FirstpageSearch extends Firstpage
 {
+
+
     /**
      * @inheritdoc
      */
@@ -43,6 +45,8 @@ class FirstpageSearch extends Firstpage
     {
         $query = Firstpage::useTable($tablename);//::find();
         $query=$query->find();
+
+
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
@@ -70,6 +74,9 @@ class FirstpageSearch extends Firstpage
             ->andFilterWhere(['like', 'name_fond', $this->name_fond])
             ->andFilterWhere(['like', 'dates', $this->dates]);
 
+
+
         return $dataProvider;
+
     }
 }

@@ -8,9 +8,14 @@ use yii\widgets\ActiveForm;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
+
+
+
 <div class="firstpage-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+
+    <?php  $form = ActiveForm::begin(); ?>
+
 
     <?= $form->field($model, 'papka')->textInput(['maxlength' => true]) ?>
 

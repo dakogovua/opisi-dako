@@ -11,9 +11,13 @@ use yii\helpers\Url;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Фонди';
+
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
+
+
+
 <div class="firstpage-index">
 
     <h1><?= Html::encode($this->title).' '.$fondtext ?></h1>
@@ -34,9 +38,12 @@ $this->params['breadcrumbs'][] = $this->title;
 
     </p>
 
+
+
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
@@ -89,17 +96,20 @@ $this->params['breadcrumbs'][] = $this->title;
 				'attribute' => 'dates',
 					'value' => function($tada)
 						{
-						return $tada->dates;
+						    return $tada->dates;
 						},				
 				],
 				
 				
-				
+
 
             [
 				'class' => 'yii\grid\ActionColumn',
-					 'visible' => !Yii::$app->user->isGuest, 
+				'visible' => !Yii::$app->user->isGuest,
 				 'options' => [ 'id' => 'serial-column' ],
+                'urlCreator' => function ($action, $model, $key, $index) {
+                    return Url::to([$action, 'id' => $model->id, 'nametable' => $_GET['nametable'] ]);
+                }
 			],
         ],
     ]); 
@@ -108,4 +118,7 @@ $this->params['breadcrumbs'][] = $this->title;
 	
 	?>
 </div>
+
+
+
 <p>* Назва фонду представлена мовою оригіналу</p>

@@ -159,7 +159,7 @@ color: #4F81BD;
 }
 
 #container {
-    width: 500px;
+    max-width: 500px;
     margin: 20px auto 0 auto;
     background-color: #3a87ad;
     background-color: rgba(255,255,255,0.5);

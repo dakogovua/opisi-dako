@@ -19,8 +19,8 @@ class Firstpage extends \yii\db\ActiveRecord
 {
 
 
-    protected static $table;
 
+    protected static $table;
     public static function useTable($table) {
         static::$table = $table;
 
@@ -50,6 +50,7 @@ class Firstpage extends \yii\db\ActiveRecord
             [['count_items', 'count_opisi'], 'integer'],
             [['papka'], 'string', 'max' => 20],
             [['nomer_fonda'], 'string', 'max' => 10],
+
         ];
     }
 

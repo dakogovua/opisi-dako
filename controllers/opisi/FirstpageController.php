@@ -20,6 +20,9 @@ class FirstpageController extends Controller
     /**
      * @inheritdoc
      */
+
+
+
     public function behaviors()
     {
         return [
@@ -60,13 +63,22 @@ class FirstpageController extends Controller
      * Lists all Firstpage models.
      * @return mixed
      */
+
+
     public function actionIndex($nametable = null,$fondtext = null)
     {
+
+
+
         if(!$nametable){
             $nametable = 'firstpage';
         }
+
+
         $searchModel = new FirstpageSearch();
+       // $searchModel->nametable = $nametable;
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams, $nametable);
+
 
 		////////////////
 	/*	$name_fonds = Firstpage::find()
@@ -86,9 +98,6 @@ class FirstpageController extends Controller
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
             'fondtext'  => $fondtext,
-         //   'secnametable' => $secnametable,
-		//	'name_fondz' => $name_fondz,
-		
         ]);
     }
 
@@ -98,10 +107,15 @@ class FirstpageController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($id)
+    public function actionView($id, $nametable = null)
     {
+
+        if(!$nametable){
+            $nametable = 'firstpage';
+        }
+
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $this->findModel($id, $nametable),
         ]);
     }
 
@@ -131,12 +145,18 @@ class FirstpageController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($id)
+    public function actionUpdate($id, $nametable = null)
     {
-        $model = $this->findModel($id);
+      //  print_r($_GET);
+
+        if(!$nametable){
+            $nametable = 'firstpage';
+        }
+
+        $model = $this->findModel($id, $nametable);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['view', 'id' => $model->id, 'nametable' => $nametable  ]);
         }
 
         return $this->render('update', [
@@ -151,9 +171,14 @@ class FirstpageController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($id)
+    public function actionDelete($id, $nametable = null)
     {
-        $this->findModel($id)->delete();
+        if(!$nametable){
+            $nametable = 'firstpage';
+        }
+
+
+        $this->findModel($id, $nametable)->delete();
 
         return $this->redirect(['index']);
     }
@@ -165,9 +190,10 @@ class FirstpageController extends Controller
      * @return Firstpage the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
+    protected function findModel($id, $nametable)
     {
-        if (($model = Firstpage::findOne($id)) !== null) {
+        $model = Firstpage::useTable($nametable);
+        if (($model = $model -> findOne($id)) !== null) {
             return $model;
         }
 
