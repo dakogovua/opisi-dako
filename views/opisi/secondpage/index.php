@@ -11,7 +11,7 @@ use yii\helpers\Url;
 
 $this->title = 'Описи';
 //
-$this->params['breadcrumbs'][] = ['label' => 'Фонды', 'url' => ['/opisi/firstpage']];
+$this->params['breadcrumbs'][] = ['label' => 'Фонды', 'url' => ['/opisi/firstpage', 'nametable' => $_GET['sectablename']]];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="secondpage-index">

@@ -64,13 +64,10 @@ class SecondpageController extends Controller
 
      //   echo $sectablename;
 
-        if(!$sectablename){
-            $sectablename = 'secondpage';
-        }
 
        switch ($sectablename) {
            case "null":
-               $sectablename = secondpage;
+               $sectablename = 'secondpage';
                break;
            case "firstpage":
                $sectablename = 'secondpage';
@@ -105,10 +102,11 @@ class SecondpageController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($id)
+    public function actionView($id, $sectablename = null)
     {
+
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $this->findModel($id, $sectablename),
         ]);
     }
 
@@ -137,12 +135,35 @@ class SecondpageController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($id)
+    public function actionUpdate($id,  $sectablename = null)
     {
-        $model = $this->findModel($id);
+        if(!$sectablename){
+            $sectablename = 'secondpage';
+        }
+
+        switch ($sectablename) {
+            case "null":
+                $sectablename = secondpage;
+                break;
+            case "firstpage":
+                $sectablename = 'secondpage';
+                break;
+            case "radfirstpage":
+                $sectablename = 'radsecondpage';
+                break;
+            case "radsecondpage":
+                //$sectablename = 'radsecondpage';
+                break;
+            default:
+                $sectablename = 'secondpage';
+        }
+
+        // echo $sectablename;
+
+        $model = $this->findModel($id, $sectablename);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['view', 'id' => $model->id, 'sectablename' => $sectablename]);
         }
 
         return $this->render('update', [
@@ -157,9 +178,9 @@ class SecondpageController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($id)
+    public function actionDelete($id, $sectablename)
     {
-        $this->findModel($id)->delete();
+        $this->findModel($id, $sectablename)->delete();
 
         return $this->redirect(['index']);
     }
@@ -171,9 +192,10 @@ class SecondpageController extends Controller
      * @return Secondpage the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
+    protected function findModel($id, $sectablename)
     {
-        if (($model = Secondpage::findOne($id)) !== null) {
+        $model = Secondpage::useTable($sectablename);
+        if (($model = $model -> findOne($id)) !== null) {
             return $model;
         }
 
