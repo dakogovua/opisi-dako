@@ -39,7 +39,7 @@ class FirstpageController extends Controller
                             // allow authenticated users
 							[
                                 'allow' => true,
-								'actions' => ['index','create','update','view'],
+								'actions' => ['index','create','update','view','delete'],
                                 'roles' => ['@'],
                             ],
 							[
@@ -180,7 +180,7 @@ class FirstpageController extends Controller
 
         $this->findModel($id, $nametable)->delete();
 
-        return $this->redirect(['index']);
+        return $this->redirect(['index', 'nametable' => $nametable]);
     }
 
     /**

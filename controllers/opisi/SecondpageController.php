@@ -178,11 +178,32 @@ class SecondpageController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($id, $sectablename)
+    public function actionDelete($id, $sectablename = null)
     {
+        if(!$sectablename){
+            $sectablename = 'secondpage';
+        }
+
+        switch ($sectablename) {
+            case "null":
+                $sectablename = secondpage;
+                break;
+            case "firstpage":
+                $sectablename = 'secondpage';
+                break;
+            case "radfirstpage":
+                $sectablename = 'radsecondpage';
+                break;
+            case "radsecondpage":
+                //$sectablename = 'radsecondpage';
+                break;
+            default:
+                $sectablename = 'secondpage';
+        }
+
         $this->findModel($id, $sectablename)->delete();
 
-        return $this->redirect(['index']);
+        return $this->redirect(['index', 'sectablename' => $sectablename ]);
     }
 
     /**
