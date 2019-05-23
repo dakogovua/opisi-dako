@@ -29,7 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
 	 echo Yii::$app->user->isGuest ? (
                 "Користувач Гість"
             ) : (
-               Html::a('Додати Фонд', ['create'], ['class' => 'btn btn-success'])
+               Html::a('Додати Фонд', ['create', 'nametable' => $_GET['nametable']], ['class' => 'btn btn-success'])
                 );
                 
 	

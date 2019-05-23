@@ -124,12 +124,13 @@ class FirstpageController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate($nametable = null)
     {
-        $model = new Firstpage();
+        //MyTableModel::useTable('tableName2');
+        $model = Firstpage::useTable($nametable);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['view', 'id' => $model->id, 'nametable' => $nametable]);
         }
 
         return $this->render('create', [

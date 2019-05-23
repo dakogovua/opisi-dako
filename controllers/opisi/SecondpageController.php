@@ -115,9 +115,23 @@ class SecondpageController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate($sectablename = null)
     {
-        $model = new Secondpage();
+        switch ($sectablename) {
+            case "null":
+                $sectablename = 'secondpage';
+                break;
+            case "firstpage":
+                $sectablename = 'secondpage';
+                break;
+            case "radfirstpage":
+                $sectablename = 'radsecondpage';
+                break;
+            default:
+                $sectablename = 'secondpage';
+        }
+        //$model = new Secondpage();
+        $model = Secondpage::useTable($sectablename);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);

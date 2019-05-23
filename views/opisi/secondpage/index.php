@@ -24,7 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
 	echo Yii::$app->user->isGuest ? (
                 "Користувач Гість"
             ) : (
-               Html::a('Додати опис', ['create'], ['class' => 'btn btn-success'])
+               Html::a('Додати опис', ['create', 'sectablename' => $_GET['sectablename']], ['class' => 'btn btn-success'])
                 );
         ?>
     </p>
