@@ -134,7 +134,7 @@ class SecondpageController extends Controller
         $model = Secondpage::useTable($sectablename);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['view', 'id' => $model->id, 'sectablename' => $sectablename] );
         }
 
         return $this->render('create', [
