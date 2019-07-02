@@ -6,7 +6,10 @@ class ListFilesController extends \yii\web\Controller
 {
     public function actionIndex($folder,$subfolder,$params = null)
     {
-		$dir = '/home/soft/public_html/web/scans/'.$folder.'/'.$subfolder;
+		// $dir = '/home/soft/public_html/web/scans/'.$folder.'/'.$subfolder;
+		$dir = \Yii::$app->basePath.'web/scans/'.$folder.'/'.$subfolder;
+		//$dir = 'C:\OSPanel\domains\localhost\web\scans\Fond_F-1\opys_1';
+		//echo $dir;
 		//$files=\yii\helpers\FileHelper::findFiles($dir);
 		if (!is_dir($dir)) { // item does not exist
 			throw new \yii\web\HttpException(404, 'Ошибка в БД или названии папки с файлами. Передайте эту информацию для решения проблемы --> '.$folder.'/'.$subfolder.'');
