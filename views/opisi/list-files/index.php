@@ -77,7 +77,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'value' => function($data)
             {
                 //return Html::a($data->podpapka, ('/web/index.php?r=opisi/secondpage/index&message='.$data->podpapka));
-                return Html::a($data->title, ('/web/index.php?r=opisi/list-files/index&folder='.$data->papka_fond.'&subfolder='.$data->papka_opis.'&delofolder='.$data->papka_delo));
+               // return Html::a($data->title, ('/web/index.php?r=opisi/list-files/index&folder='.$data->papka_fond.'&subfolder='.$data->papka_opis.'&delofolder='.$data->papka_delo));
+                return Html::submitButton(Html::a($data->title, ('/web/index.php?r=opisi/list-files/index&folder='.$data->papka_fond.'&subfolder='.$data->papka_opis.'&delofolder='.$data->papka_delo)), ['class' => 'submit']);
             },
             'format' => 'raw',
             'filter' => Html::input('text', $searchModel->formName() . '[title]', $searchModel->title,['class' => 'form-control']),
