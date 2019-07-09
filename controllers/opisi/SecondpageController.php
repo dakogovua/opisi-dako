@@ -86,7 +86,7 @@ class SecondpageController extends Controller
 		
 		if (isset ($message))
 			{
-				$dataProvider->query->andWhere([$sectablename.'.papka' => $message]);
+				$dataProvider->query->andWhere(['papka' => $message]);
 			}
 
         return $this->render('index', [

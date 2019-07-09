@@ -71,7 +71,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             'nomer_opisi',
             //'name_opisi:ntext',
-            'name_opisi:ntext'=> [
+            'name_opisi:ntext' => [
 
                 'label' => 'Анотація складу документів опису справ',
                 'attribute' => 'name_opisi',

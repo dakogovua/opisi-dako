@@ -5,6 +5,8 @@ use kartik\spinner\Spinner;
 use yii\imagine\Image;
 use himiklab\colorbox\Colorbox;
 
+use yii\grid\GridView;
+
 $this->title = 'Скани';
 
 
@@ -24,6 +26,69 @@ $this->params['breadcrumbs'][] = $this->title;
  'color' => 'blue',
 ]) ?>
 </div>
+
+<?php if($dataProvider): ?>
+
+<?= GridView::widget([
+    'dataProvider' => $dataProvider,
+    'filterModel' => $searchModel,
+    'columns' => [
+        ['class' => 'yii\grid\SerialColumn'],
+
+        'id'=>[
+            'label' => 'ID',
+            'value' => function($data)
+            {
+                return ($data->id);
+            },
+            'format' => 'html',
+            'filter' => Html::input('text', $searchModel->formName() . '[id]', $searchModel->id,['class' => 'form-control']),
+            'visible' => !Yii::$app->user->isGuest,
+        ],
+        'nomer_fonda',
+        'opisi_num',
+        'delo_num',
+        'papka_fond' =>[
+            'label' => 'Папка Фонда',
+            'value' => function($data)
+            {
+                return ($data->papka_fond);
+            },
+            'format' => 'html',
+            'filter' => Html::input('text', $searchModel->formName() . '[papka_fond]', $searchModel->papka_fond,['class' => 'form-control']),
+            'visible' => !Yii::$app->user->isGuest,
+        ],
+        'papka_opis' => [
+
+            'label' => 'Подпапка описи',
+            'value' => function($data)
+            {
+                return ($data->papka_opis);
+            },
+            'format' => 'raw',
+            'filter' => Html::input('text', $searchModel->formName() . '[papka_opis]', $searchModel->papka_opis,['class' => 'form-control']),
+            'visible' => !Yii::$app->user->isGuest,
+        ],
+        'papka_delo',
+        'title:ntext' => [
+
+            'label' => 'Заголовок',
+            'attribute' => 'title',
+            'value' => function($data)
+            {
+                //return Html::a($data->podpapka, ('/web/index.php?r=opisi/secondpage/index&message='.$data->podpapka));
+                return Html::a($data->title, ('/web/index.php?r=opisi/list-files/index&folder='.$data->papka_fond.'&subfolder='.$data->papka_opis.'&delofolder='.$data->papka_delo));
+            },
+            'format' => 'raw',
+            'filter' => Html::input('text', $searchModel->formName() . '[title]', $searchModel->title,['class' => 'form-control']),
+
+        ],
+
+        ['class' => 'yii\grid\ActionColumn'],
+    ],
+]); ?>
+
+<?php endif; ?>
 
 
 <div id = "gallery_1">

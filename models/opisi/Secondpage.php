@@ -69,4 +69,6 @@ class Secondpage extends \yii\db\ActiveRecord
             'years' => 'Крайні дати',
         ];
     }
+
+
 }
