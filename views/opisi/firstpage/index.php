@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 
-use yii\jui\AutoComplete;
+
 use yii\helpers\Url;
 
 /* @var $this yii\web\View */
@@ -99,9 +99,6 @@ $this->params['breadcrumbs'][] = $this->title;
 						    return $tada->dates;
 						},				
 				],
-				
-				
-
 
             [
 				'class' => 'yii\grid\ActionColumn',

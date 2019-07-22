@@ -43,9 +43,8 @@ class ListFilesController extends \yii\web\Controller
 
 
 		// $dir = '/home/soft/public_html/web/scans/'.$folder.'/'.$subfolder;
-		//uncomment!!
-        $dir = \Yii::$app->basePath.'/web/scans/'.$folder.'/'.$subfolder.'/'.$delofolder;
-		// $dir = 'C:\OSPanel\domains\localhost\web\scans\Fond_F-280\opys_2';
+		//uncomment!! $dir = \Yii::$app->basePath.'/web/scans/'.$folder.'/'.$subfolder.'/'.$delofolder;
+		$dir = 'C:\OSPanel\domains\localhost\web\scans\Fond_F-280\opys_2';
 		//echo $dir;
 		//$files=\yii\helpers\FileHelper::findFiles($dir);
 		if (!is_dir($dir)) { // item does not exist
@@ -109,7 +108,9 @@ class ListFilesController extends \yii\web\Controller
 					$file = $dir.'/'.$file;
 				}
 					$file = str_replace("/home/soft/public_html/web/","",$file);
-					$webfiles[] = $file;
+                        if (!is_dir($file)){
+					        $webfiles[] = $file;
+                        }
 					}
 			}
 
@@ -155,6 +156,8 @@ class ListFilesController extends \yii\web\Controller
 
     public function actionUpdate($id)
     {
+
+
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -168,6 +171,8 @@ class ListFilesController extends \yii\web\Controller
 
     public function actionDelete($id)
     {
+
+
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
@@ -175,6 +180,10 @@ class ListFilesController extends \yii\web\Controller
 
     protected function findModel($id)
     {
+        if (Yii::$app->user->isGuest){
+            throw new \yii\web\HttpException(404, 'Вы гость');
+        }
+
         if (($model = Dela::findOne($id)) !== null) {
             return $model;
         }

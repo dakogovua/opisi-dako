@@ -5,6 +5,8 @@ use kartik\spinner\Spinner;
 use yii\imagine\Image;
 use himiklab\colorbox\Colorbox;
 
+use yii\helpers\Url;
+
 use yii\grid\GridView;
 
 $this->title = 'Скани';
@@ -95,14 +97,22 @@ $this->params['breadcrumbs'][] = $this->title;
             {
                 //return Html::a($data->podpapka, ('/web/index.php?r=opisi/secondpage/index&message='.$data->podpapka));
                // return Html::a($data->title, ('/web/index.php?r=opisi/list-files/index&folder='.$data->papka_fond.'&subfolder='.$data->papka_opis.'&delofolder='.$data->papka_delo));
-                return Html::submitButton(Html::a($data->title, ('/web/index.php?r=opisi/list-files/index&folder='.$data->papka_fond.'&subfolder='.$data->papka_opis.'&delofolder='.$data->papka_delo)), ['class' => 'submit']);
+                return Html::a($data->title, ('/web/index.php?r=opisi/list-files/index&folder='.$data->papka_fond.'&subfolder='.$data->papka_opis.'&delofolder='.$data->papka_delo));
             },
             'format' => 'raw',
             'filter' => Html::input('text', $searchModel->formName() . '[title]', $searchModel->title,['class' => 'form-control']),
 
         ],
 
-        ['class' => 'yii\grid\ActionColumn'],
+       // ['class' => 'yii\grid\ActionColumn'],
+        [
+            'class' => 'yii\grid\ActionColumn',
+            'visible' => !Yii::$app->user->isGuest,
+            'options' => [ 'id' => 'serial-column' ],
+            'urlCreator' => function ($action, $model, $key, $index) {
+                return Url::to([$action, 'id' => $model->id, 'nametable' => $_GET['nametable'] ]);
+            }
+        ],
     ],
 ]); ?>
 

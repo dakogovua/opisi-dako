@@ -229,6 +229,11 @@ class SecondpageController extends Controller
      */
     protected function findModel($id, $sectablename)
     {
+
+        if (Yii::$app->user->isGuest){
+            throw new \yii\web\HttpException(404, 'Вы гость');
+        }
+
         $model = Secondpage::useTable($sectablename);
         if (($model = $model -> findOne($id)) !== null) {
             return $model;
