@@ -44,8 +44,8 @@ class ListFilesController extends \yii\web\Controller
 
 		// $dir = '/home/soft/public_html/web/scans/'.$folder.'/'.$subfolder;
 		//uncomment!!
-        //$dir = \Yii::$app->basePath.'/web/scans/'.$folder.'/'.$subfolder.'/'.$delofolder;
-		$dir = 'C:\OSPanel\domains\localhost\web\scans\Fond_F-280\opys_2';
+        $dir = \Yii::$app->basePath.'/web/scans/'.$folder.'/'.$subfolder.'/'.$delofolder;
+		//$dir = 'C:\OSPanel\domains\localhost\web\scans\Fond_F-280\opys_2';
 		//echo $dir;
 		//$files=\yii\helpers\FileHelper::findFiles($dir);
 		if (!is_dir($dir)) { // item does not exist
