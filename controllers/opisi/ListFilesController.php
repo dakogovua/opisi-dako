@@ -49,7 +49,7 @@ class ListFilesController extends \yii\web\Controller
 		//echo $dir;
 		//$files=\yii\helpers\FileHelper::findFiles($dir);
 		if (!is_dir($dir)) { // item does not exist
-			throw new \yii\web\HttpException(404, 'Ошибка в БД или названии папки с файлами. Передайте эту информацию для решения проблемы --> '.$folder.'/'.$subfolder.'');
+			throw new \yii\web\HttpException(404, 'Ошибка в БД или названии папки с файлами. Передайте эту информацию для решения проблемы --> '.$folder.'/'.$subfolder.'/'.$delofolder.'');
 		}
 		
 			$files=scandir($dir);
