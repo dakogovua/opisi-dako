@@ -91,7 +91,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'papka_delo',
         'title:ntext' => [
 
-            'label' => 'Назва справи',
+            'label' => 'Заголовок справи (подано мовою оригіналу).',
             'attribute' => 'title',
             'value' => function($data)
             {

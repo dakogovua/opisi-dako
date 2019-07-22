@@ -47,13 +47,13 @@ class Dela extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'nomer_fonda' => 'Nomer Fonda',
-            'opisi_num' => 'Opisi Num',
-            'delo_num' => 'Delo Num',
+            'nomer_fonda' => '№ фонду',
+            'opisi_num' => '№ опису ',
+            'delo_num' => '№ справи',
             'papka_fond' => 'Papka Fond',
             'papka_opis' => 'Papka Opis',
             'papka_delo' => 'Papka Delo',
-            'title' => 'Title',
+            'title' => 'Заголовок справи (подано мовою оригіналу)',
         ];
     }
 
