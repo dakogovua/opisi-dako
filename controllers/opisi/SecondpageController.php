@@ -59,7 +59,7 @@ class SecondpageController extends Controller
      * Lists all Secondpage models.
      * @return mixed
      */
-    public function actionIndex($message = null, $sectablename = null)
+    public function actionIndex($message = null, $sectablename = null, $fond = null)
     {
 
      //   echo $sectablename;
@@ -92,7 +92,8 @@ class SecondpageController extends Controller
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-			'message' => $message
+			'message' => $message,
+            'fond' => $fond,
         ]);
     }
 

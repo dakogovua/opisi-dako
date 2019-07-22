@@ -28,6 +28,17 @@ $this->params['breadcrumbs'][] = $this->title;
 <?= Yii::$app->request->get('params') ?>
 
 <p>
+    <?php
+
+
+    echo Yii::$app->user->isGuest ? (
+    "Користувач Гість"
+    ) : (
+    Html::a('Додати СПРАВУ', ['create', 'nomer_fonda' => $fond, 'opisi_num' => $opis, 'folder' => $_GET['folder'], 'subfolder' => $_GET['subfolder']], ['class' => 'btn btn-success'])
+    );
+
+    ?>
+
 <div class="well">
 <?= Spinner::widget([
  'preset' => Spinner::LARGE,
@@ -38,15 +49,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <?php if($dataProvider->totalCount > 0): ?>
 
-    <?php $mod = $dataProvider->getModels();
 
-    echo Yii::$app->user->isGuest ? (
-    "Користувач Гість"
-    ) : (
-    Html::a('Додати СПРАВУ', ['create', 'nomer_fonda' => $mod[0] ->nomer_fonda, 'opisi_num' => $mod[0] ->opisi_num, 'folder' => $_GET['folder'], 'subfolder' => $_GET['subfolder']], ['class' => 'btn btn-success'])
-    );
-
-    ?>
 
 <?= GridView::widget([
     'dataProvider' => $dataProvider,

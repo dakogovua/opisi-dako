@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="secondpage-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+
 
     <p>
    	<?php	 
@@ -78,7 +78,8 @@ $this->params['breadcrumbs'][] = $this->title;
 				'value' => function($data)
                     {
                        //return Html::a($data->podpapka, ('/web/index.php?r=opisi/secondpage/index&message='.$data->podpapka));
-                       return Html::a($data->name_opisi, ('/web/index.php?r=opisi/list-files/index&folder='.$data->papka.'&subfolder='.$data->podpapka.'&params='.$data->name_opisi));
+                       //return Html::a($data->name_opisi, ('/web/index.php?r=opisi/list-files/index&folder='..'&subfolder='..'&='.$data->name_opisi));
+                        return  Html::a($data->name_opisi, ['opisi/list-files/index', 'folder' => $data->papka, 'subfolder' => $data->podpapka, 'params' => $data->name_opisi, 'fond'=> $_GET['fond'],'opis' => $data->nomer_opisi], ['class' => '']);
                     },
                 'format' => 'raw',
 				'filter' => Html::input('text', $searchModel->formName() . '[name_opisi]', $searchModel->name_opisi,['class' => 'form-control']),
