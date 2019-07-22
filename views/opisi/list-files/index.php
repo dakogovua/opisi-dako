@@ -88,7 +88,18 @@ $this->params['breadcrumbs'][] = $this->title;
             'filter' => Html::input('text', $searchModel->formName() . '[papka_opis]', $searchModel->papka_opis,['class' => 'form-control']),
             'visible' => !Yii::$app->user->isGuest,
         ],
-        'papka_delo',
+       // 'papka_delo',
+        'papka_delo' => [
+
+            'label' => 'Папка дела',
+            'value' => function($data)
+            {
+                return ($data->papka_opis);
+            },
+            'format' => 'raw',
+            'filter' => Html::input('text', $searchModel->formName() . '[papka_opis]', $searchModel->papka_opis,['class' => 'form-control']),
+            'visible' => !Yii::$app->user->isGuest,
+        ],
         'title:ntext' => [
 
             'label' => 'Заголовок справи (подано мовою оригіналу).',
