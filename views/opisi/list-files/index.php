@@ -16,7 +16,13 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 
 
-<h1><?= $this->title.", папка ".Yii::$app->request->get('folder')."/".Yii::$app->request->get('subfolder')  ?></h1>
+
+
+<h1><?= $this->title.", папка ".Yii::$app->request->get('folder')."/".Yii::$app->request->get('subfolder')."/".Yii::$app->request->get('delofolder')  ?></h1>
+
+
+
+
 <?= Yii::$app->request->get('params') ?>
 
 <p>
@@ -27,7 +33,18 @@ $this->params['breadcrumbs'][] = $this->title;
 ]) ?>
 </div>
 
-<?php if($dataProvider): ?>
+
+<?php if($dataProvider->totalCount > 0): ?>
+
+    <?php $mod = $dataProvider->getModels();
+
+    echo Yii::$app->user->isGuest ? (
+    "Користувач Гість"
+    ) : (
+    Html::a('Додати СПРАВУ', ['create', 'nomer_fonda' => $mod[0] ->nomer_fonda, 'opisi_num' => $mod[0] ->opisi_num, 'folder' => $_GET['folder'], 'subfolder' => $_GET['subfolder']], ['class' => 'btn btn-success'])
+    );
+
+    ?>
 
 <?= GridView::widget([
     'dataProvider' => $dataProvider,
@@ -72,7 +89,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'papka_delo',
         'title:ntext' => [
 
-            'label' => 'Заголовок',
+            'label' => 'Назва справи',
             'attribute' => 'title',
             'value' => function($data)
             {

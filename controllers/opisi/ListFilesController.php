@@ -7,27 +7,45 @@ use Yii;
 use app\models\opisi\Dela;
 use app\models\opisi\DelaSearch;
 
+use yii\filters\VerbFilter;
+
 class ListFilesController extends \yii\web\Controller
 {
+
+    public function behaviors()
+    {
+        return [
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'delete' => ['POST'],
+                ],
+            ],
+        ];
+    }
+
     public function actionIndex($folder,$subfolder,$delofolder = null)
     {
 
         if(!$delofolder){
             $searchModel = new DelaSearch();
-            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
 
             $dataProvider->query->andWhere([
                 'papka_fond' => $folder,
                 'papka_opis' => $subfolder
             ]);
+
+
         }
 
 
 		// $dir = '/home/soft/public_html/web/scans/'.$folder.'/'.$subfolder;
-		$dir = \Yii::$app->basePath.'/web/scans/'.$folder.'/'.$subfolder.'/'.$delofolder;
-		//$dir = 'C:\OSPanel\domains\localhost\web\scans\Fond_F-280\opys_2';
+		//uncomment!!
+        $dir = \Yii::$app->basePath.'/web/scans/'.$folder.'/'.$subfolder.'/'.$delofolder;
+		// $dir = 'C:\OSPanel\domains\localhost\web\scans\Fond_F-280\opys_2';
 		//echo $dir;
 		//$files=\yii\helpers\FileHelper::findFiles($dir);
 		if (!is_dir($dir)) { // item does not exist
@@ -37,7 +55,7 @@ class ListFilesController extends \yii\web\Controller
 			$files=scandir($dir);
 
 			if (count($files) < 3) { // item does not exist
-			throw new \yii\web\HttpException(404, 'Передайте эту ошибку администратору. В папке нет файлов '.$folder.'/'.$subfolder.'');
+			throw new \yii\web\HttpException(404, 'Передайте эту ошибку администратору. В папке нет файлов '.$folder.'/'.$subfolder.'/'.$delofolder.'');
 		}
 			
 			$dlina = strlen(count($files));
@@ -106,6 +124,62 @@ class ListFilesController extends \yii\web\Controller
             ]);
 
     }
-	
+
+    public function actionCreate($folder, $subfolder, $nomer_fonda = null, $opisi_num = null)
+    {
+        $model = new Dela();
+
+
+        $model->papka_fond = $folder;
+        $model->papka_opis = $subfolder;
+
+        $model->nomer_fonda = $nomer_fonda;
+        $model->opisi_num = $opisi_num;
+
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
+        }
+
+        return $this->render('create', [
+            'model' => $model,
+        ]);
+    }
+
+    public function actionView($id)
+    {
+        return $this->render('view', [
+            'model' => $this->findModel($id),
+        ]);
+    }
+
+    public function actionUpdate($id)
+    {
+        $model = $this->findModel($id);
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
+        }
+
+        return $this->render('update', [
+            'model' => $model,
+        ]);
+    }
+
+    public function actionDelete($id)
+    {
+        $this->findModel($id)->delete();
+
+        return $this->redirect(['index']);
+    }
+
+    protected function findModel($id)
+    {
+        if (($model = Dela::findOne($id)) !== null) {
+            return $model;
+        }
+
+        throw new NotFoundHttpException('The requested page does not exist.');
+    }
 	
 }
