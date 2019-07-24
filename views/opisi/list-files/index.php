@@ -49,7 +49,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <?php if($dataProvider->totalCount > 0): ?>
 
-
+<h2>Справи</h2>
 
 <?= GridView::widget([
     'dataProvider' => $dataProvider,
