@@ -97,6 +97,17 @@ $this->params['breadcrumbs'][] = $this->title;
 			 'visible' => !Yii::$app->user->isGuest, 
 			],*/
             [
+
+                'label' => 'ЦФК',
+
+                'value' => function($model){
+
+                    return $model->delo;
+
+                },
+
+            ],
+            [
                 'class' => 'yii\grid\ActionColumn',
                 'visible' => !Yii::$app->user->isGuest,
                 'options' => [ 'id' => 'serial-column' ],

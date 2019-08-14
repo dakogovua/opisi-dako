@@ -4,6 +4,8 @@ namespace app\models\opisi;
 
 use Yii;
 
+
+
 /**
  * This is the model class for table "secondpage".
  *
@@ -68,6 +70,18 @@ class Secondpage extends \yii\db\ActiveRecord
             'count_opisis' => 'Кількість од.зб.',
             'years' => 'Крайні дати',
         ];
+    }
+
+    public function getDelo(){
+        return $this->hasOne(Dela::className(), [
+            'papka_fond' => 'papka'
+        ])
+            ->andWhere([
+                'and',
+                ['papka_opis' => $this->podpapka],
+                //['recipient_id' => $this->id],
+            ])
+            ->count();
     }
 
 

@@ -47,6 +47,7 @@ class DelaSearch extends Dela
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'pagination' => array('pageSize' => 30),
         ]);
 
         $this->load($params);
