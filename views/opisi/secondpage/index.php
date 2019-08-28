@@ -100,11 +100,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 'label' => 'ЦФК',
 
-                'value' => function($model){
-
-                    return $model->delo;
+                'value' => function($data){
+                    return  Html::a($data->delo, ['opisi/list-files/index', 'folder' => $data->papka, 'subfolder' => $data->podpapka, 'params' => $data->name_opisi, 'fond'=> $_GET['fond'],'opis' => $data->nomer_opisi], ['class' => '']);
 
                 },
+                'format' => 'raw',
 
             ],
             [
