@@ -82,6 +82,18 @@ $this->title = Yii::$app->name;
         <?= Alert::widget() ?>
         <?= $content ?>
     </div>
+
+    <div class="badge_1">
+        <a href="https://www.facebook.com/%D0%94%D0%B5%D1%80%D0%B6%D0%B0%D0%B2%D0%BD%D0%B8%D0%B9-%D0%B0%D1%80%D1%85%D1%96%D0%B2-%D0%9A%D0%B8%D1%97%D0%B2%D1%81%D1%8C%D0%BA%D0%BE%D1%97-%D0%BE%D0%B1%D0%BB%D0%B0%D1%81%D1%82%D1%96-373819276287048/">
+            <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="40px" height="40px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" viewBox="0 0 30 30" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+  <path class="logo_fb" d="M6 2l18 0c2,0 4,2 4,4l0 18c0,2 -2,4 -4,4l-18 0c-2,0 -4,-2 -4,-4l0 -18c0,-2 2,-4 4,-4zm14 7c0,-3 3,-1 5,-2l0 -4c-1,0 -3,0 -4,0 -5,0 -6,2 -6,6l0 2 -2 0 0 4 2 0 0 12 5 0 0 -12 4 0 1 -4 -5 0 0 -2z"></path>
+
+</svg></a>
+
+
+    </div>
+
 </div>
 
 <footer class="footer">
