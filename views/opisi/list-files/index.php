@@ -8,6 +8,7 @@ use himiklab\colorbox\Colorbox;
 use yii\helpers\Url;
 
 use yii\grid\GridView;
+use yii\widgets\ActiveForm;
 
 $this->title = 'Скани';
 
@@ -38,6 +39,24 @@ $this->params['breadcrumbs'][] = $this->title;
     );
 
     ?>
+
+<?php if(!Yii::$app->user->isGuest):?>
+
+    <div class="alert alert-danger alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Внимание!</strong> Нажатие на красный крестик приведет к удвлению файла на сервере. До перезагрузки страницы у вас еще будет возможность посмотреть, что вы удалили (оно помечено красным). Но учтите, что открыв файл, после закрытия страничка перезагрузится!
+    </div>
+
+    <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]) ?>
+
+    <?= $form->field($model, 'imageFiles[]')->fileInput(['multiple' => true, 'accept' => 'image/*']) ?>
+
+    <button>Submit</button>
+
+    <?php ActiveForm::end() ?>
+
+<?php endif; ?>
+
 
 <div class="well">
 <?= Spinner::widget([
@@ -97,10 +116,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'label' => 'Папка дела',
             'value' => function($data)
             {
-                return ($data->papka_opis);
+                return ($data->papka_delo);
             },
             'format' => 'raw',
-            'filter' => Html::input('text', $searchModel->formName() . '[papka_opis]', $searchModel->papka_opis,['class' => 'form-control']),
+            'filter' => Html::input('text', $searchModel->formName() . '[papka_delo]', $searchModel->papka_delo,['class' => 'form-control']),
             'visible' => !Yii::$app->user->isGuest,
         ],
         'title:ntext' => [
@@ -143,6 +162,15 @@ $this->params['breadcrumbs'][] = $this->title;
 <br>
 <b>
 <?= $i++ ?>
+
+
+    <?php if(!Yii::$app->user->isGuest):?>
+
+        <button type="button" class="btn btn-warning"
+                data-delfile = '<?= $file ?>'
+                data-ii = '<?= $i ?>'
+        >&#x274C;</button>
+    <?php endif; ?>
 </b>
 </div>
 
@@ -222,5 +250,10 @@ JS;
     
    
 	$this->registerJs($script, yii\web\View::POS_LOAD);
+    $this->registerJsFile(
+    '@web/js/koss.js'
+    );
+
+
     
 ?>
