@@ -108,6 +108,23 @@ $this->params['breadcrumbs'][] = $this->title;
                     return Url::to([$action, 'id' => $model->id, 'nametable' => $_GET['nametable'] ]);
                 }
 			],
+
+            [
+
+                'label' => 'ЦФК',
+                'attribute' => 'dela',
+                'value' => function($data){
+                   // return  Html::a($data->opisi($_GET['nametable']));//, ['opisi/list-files/index', 'folder' => $data->papka, 'subfolder' => $data->podpapka, 'params' => $data->name_opisi, 'fond'=> $_GET['fond'],'opis' => $data->nomer_opisi], ['class' => '']);
+                    return  Html::a($data->delacount);//, ['opisi/list-files/index', 'folder' => $data->papka, 'subfolder' => $data->podpapka, 'params' => $data->name_opisi, 'fond'=> $_GET['fond'],'opis' => $data->nomer_opisi], ['class' => '']);
+
+                },
+                'format' => 'raw',
+
+
+            ],
+
+
+
         ],
     ]); 
 	

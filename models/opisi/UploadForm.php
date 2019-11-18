@@ -24,14 +24,17 @@ class UploadForm extends Model
     public function rules()
     {
         return [
-            [['imageFiles'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg', 'maxFiles' => 4],
+            [['imageFiles'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg', 'maxFiles' => 100],
         ];
     }
 
-    public function upload()
+    public function upload($folder)
     {
         if ($this->validate()) {
             $uploadDir = Yii::getAlias('@webroot/scans/');
+            $uploadDir .= $folder;
+            //echo $uploadDir;
+            //exit;
             foreach ($this->imageFiles as $file) {
                 $file->saveAs($uploadDir . $file->baseName . '.' . $file->extension);
             }

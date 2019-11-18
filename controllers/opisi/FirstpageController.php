@@ -65,7 +65,7 @@ class FirstpageController extends Controller
      */
 
 
-    public function actionIndex($nametable = null,$fondtext = null)
+    public function actionIndex($nametable = null,$fondtext = null, $cfk = null)
     {
 
 
@@ -77,7 +77,7 @@ class FirstpageController extends Controller
 
         $searchModel = new FirstpageSearch();
        // $searchModel->nametable = $nametable;
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams, $nametable);
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams, $nametable, $cfk);
 
 
 		////////////////

@@ -89,6 +89,8 @@ class SecondpageController extends Controller
 				$dataProvider->query->andWhere(['papka' => $message]);
 			}
 
+
+
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,

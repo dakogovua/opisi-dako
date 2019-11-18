@@ -12,7 +12,7 @@ use app\models\opisi\Firstpage;
  */
 class FirstpageSearch extends Firstpage
 {
-
+    public $dela;
 
     /**
      * @inheritdoc
@@ -21,7 +21,7 @@ class FirstpageSearch extends Firstpage
     {
         return [
             [['id', 'count_items', 'count_opisi'], 'integer'],
-            [['papka', 'nomer_fonda', 'name_fond', 'dates'], 'safe'],
+            [['papka', 'nomer_fonda', 'name_fond', 'dates', 'dela'], 'safe'],
         ];
     }
 
@@ -41,11 +41,18 @@ class FirstpageSearch extends Firstpage
      *
      * @return ActiveDataProvider
      */
-    public function search($params, $tablename)
+    public function search($params, $tablename, $cfk)
     {
         $query = Firstpage::useTable($tablename);//::find();
-        $query=$query->find();
+        $query = $query->find();
 
+        if($cfk){
+            $query->innerjoinWith('dela')->groupBy($tablename.'.papka');
+        }
+
+
+       // print_r($query);
+       // exit();
 
         // add conditions that should always apply here
 
@@ -53,6 +60,13 @@ class FirstpageSearch extends Firstpage
             'query' => $query,
 			'pagination' => array('pageSize' => 50),
         ]);
+
+        $dataProvider->sort->attributes['dela'] = [
+            // The tables are the ones our relation are configured to
+            // in my case they are prefixed with "tbl_"
+            'asc' => ['dela.id' => SORT_ASC],
+            'desc' => ['dela.id' => SORT_DESC],
+        ];
 
         $this->load($params);
 
@@ -72,7 +86,8 @@ class FirstpageSearch extends Firstpage
         $query->andFilterWhere(['like', 'papka', $this->papka])
             ->andFilterWhere(['like', 'nomer_fonda', $this->nomer_fonda])
             ->andFilterWhere(['like', 'name_fond', $this->name_fond])
-            ->andFilterWhere(['like', 'dates', $this->dates]);
+            ->andFilterWhere(['like', 'dates', $this->dates])
+            ->andFilterWhere(['like', 'dela.id', $this->dela]);
 
 
 

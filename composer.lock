@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "740542f2891a998aa5706e969f357c99",
+    "content-hash": "fa33432cdb9ca168c99dcdce392f83ce",
     "packages": [
         {
             "name": "2amigos/yii2-gallery-widget",
@@ -118,6 +118,46 @@
             "time": "2018-03-26T11:07:12+00:00"
         },
         {
+            "name": "aki/yii2-bot-telegram",
+            "version": "1.5.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/akbarjoudi/yii2-bot-telegram.git",
+                "reference": "85d0590429c532658b91505c73a564fe33be6bc3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/akbarjoudi/yii2-bot-telegram/zipball/85d0590429c532658b91505c73a564fe33be6bc3",
+                "reference": "85d0590429c532658b91505c73a564fe33be6bc3",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "aki\\telegram\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-3.0+"
+            ],
+            "authors": [
+                {
+                    "name": "akbarjoudi",
+                    "email": "akbar.joody@gmail.ocm"
+                }
+            ],
+            "description": "bot telegram",
+            "keywords": [
+                "extension",
+                "yii2"
+            ],
+            "time": "2017-10-21T19:10:41+00:00"
+        },
+        {
             "name": "anmaslov/yii2-autocomplete-widget",
             "version": "v1.1",
             "source": {
@@ -191,7 +231,7 @@
             "version": "v3.3.7",
             "source": {
                 "type": "git",
-                "url": "https://github.com/twbs/bootstrap.git",
+                "url": "git@github.com:twbs/bootstrap.git",
                 "reference": "0b9c4a4007c44201dce9a6cc1a38407005c26c86"
             },
             "dist": {
@@ -213,7 +253,7 @@
             "version": "v1.4.9",
             "source": {
                 "type": "git",
-                "url": "https://github.com/devbridge/jQuery-Autocomplete.git",
+                "url": "git@github.com:devbridge/jQuery-Autocomplete.git",
                 "reference": "ca78cd68918b86177f197880f8eb852c6ac3b3a5"
             },
             "dist": {
@@ -276,7 +316,7 @@
             "version": "1.6.4",
             "source": {
                 "type": "git",
-                "url": "https://github.com/jackmoore/colorbox.git",
+                "url": "git@github.com:jackmoore/colorbox.git",
                 "reference": "bac78120c6ca9e63370cc317ab6f400129cd6608"
             },
             "dist": {
@@ -314,7 +354,7 @@
             "version": "1.12.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/components/jqueryui.git",
+                "url": "git@github.com:components/jqueryui.git",
                 "reference": "44ecf3794cc56b65954cc19737234a3119d036cc"
             },
             "dist": {

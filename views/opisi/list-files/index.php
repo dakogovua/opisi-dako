@@ -65,7 +65,6 @@ $this->params['breadcrumbs'][] = $this->title;
 ]) ?>
 </div>
 
-
 <?php if($dataProvider->totalCount > 0): ?>
 
 <h2>Справи</h2>

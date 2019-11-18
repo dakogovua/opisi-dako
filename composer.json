@@ -28,7 +28,8 @@
         "sjaakp/yii2-cycle2": "*",
         "kraksoft/colorbox": "^1.5",
         "yiisoft/yii2-jui": "^2.0",
-        "anmaslov/yii2-autocomplete-widget": "*"
+        "anmaslov/yii2-autocomplete-widget": "*",
+        "aki/yii2-bot-telegram": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

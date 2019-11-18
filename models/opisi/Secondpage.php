@@ -73,7 +73,7 @@ class Secondpage extends \yii\db\ActiveRecord
     }
 
     public function getDelo(){
-        return $this->hasOne(Dela::className(), [
+        return $this->hasMany(Dela::className(), [
             'papka_fond' => 'papka'
         ])
             ->andWhere([

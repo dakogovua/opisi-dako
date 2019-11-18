@@ -69,4 +69,22 @@ class Firstpage extends \yii\db\ActiveRecord
             'dates' => 'Крайні дати',
         ];
     }
+    public static function opisi($tblname) {
+        return $tblname;
+
+    }
+
+    public function getDela(){
+        return $this->hasMany(Dela::className(), [
+            'papka_fond' => 'papka'
+        ]);
+           // ->count();
+    }
+
+    public function getDelacount(){
+        return $this->hasMany(Dela::className(), [
+            'papka_fond' => 'papka'
+        ])->count();
+    }
+
 }
