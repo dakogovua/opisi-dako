@@ -84,5 +84,13 @@ class Secondpage extends \yii\db\ActiveRecord
             ->count();
     }
 
+    public function getFond()
+    {
+        return $this->hasOne(Firstpage::className(), [
+            'papka' => 'papka'
+        ]);
+    }
+
+
 
 }

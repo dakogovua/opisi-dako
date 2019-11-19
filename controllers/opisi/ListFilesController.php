@@ -31,8 +31,9 @@ class ListFilesController extends \yii\web\Controller
         ];
     }
 
-    public function actionIndex($folder,$subfolder,$delofolder = null, $fond = null, $opis = null)
+    public function actionIndex($folder,$subfolder = null,$delofolder = null, $fond = null, $opis = null)
     {
+
 
         if(!$delofolder){
             $searchModel = new DelaSearch();
@@ -49,43 +50,44 @@ class ListFilesController extends \yii\web\Controller
         }
 
         $wwebfiles = new ListFiles();
-        $webfiles = $wwebfiles ->getFiles($folder,$subfolder,$delofolder = null, $fond = null, $opis = null);
+
+        $webfiles = $wwebfiles ->getFiles($folder,$subfolder,$delofolder, $fond, $opis);
 
 
 
-            $model = new UploadForm();
+        $model = new UploadForm();
 
-            if (Yii::$app->request->isPost) {
+        if (Yii::$app->request->isPost) {
 
-                //print_r(Yii::$app->request->post());
-                //$get = Yii::$app->request->get();
-                $uploadFolder=Yii::$app->request->get('folder').'/'.Yii::$app->request->get('subfolder').'/'.Yii::$app->request->get(delofolder);
+            //print_r(Yii::$app->request->post());
+            //$get = Yii::$app->request->get();
+            $uploadFolder=Yii::$app->request->get('folder').'/'.Yii::$app->request->get('subfolder').'/'.Yii::$app->request->get(delofolder);
 
-                if(Yii::$app->request->get(delofolder)){
-                    $uploadFolder.= '/';
-                }
-
-                //print_r($uploadFolder);
-                //exit;
-
-                $model->imageFiles = UploadedFile::getInstances($model, 'imageFiles');
-                if ($model->upload($uploadFolder)) {
-                // file is uploaded successfully
-                $this->refresh();
-                    // return;
-                }
+            if(Yii::$app->request->get(delofolder)){
+                $uploadFolder.= '/';
             }
 
-			
-			return $this->render('index',[
-                'searchModel' => $searchModel,
-                'dataProvider' => $dataProvider,
-			    'filelist' => $webfiles,
+            //print_r($uploadFolder);
+            //exit;
 
-                'fond' => $fond,
-                'opis' => $opis,
-                'model' => $model
-            ]);
+            $model->imageFiles = UploadedFile::getInstances($model, 'imageFiles');
+            if ($model->upload($uploadFolder)) {
+                // file is uploaded successfully
+                $this->refresh();
+                // return;
+            }
+        }
+
+
+        return $this->render('index',[
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+            'filelist' => $webfiles,
+
+            'fond' => $fond,
+            'opis' => $opis,
+            'model' => $model
+        ]);
 
     }
 
@@ -153,5 +155,5 @@ class ListFilesController extends \yii\web\Controller
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
-	
+
 }
