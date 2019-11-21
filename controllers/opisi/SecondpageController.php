@@ -59,7 +59,7 @@ class SecondpageController extends Controller
      * Lists all Secondpage models.
      * @return mixed
      */
-    public function actionIndex($message = null, $sectablename = null, $fond = null)
+    public function actionIndex($message = null, $sectablename = null, $fond = null, $cfk = null)
     {
 
      //   echo $sectablename;
@@ -82,7 +82,7 @@ class SecondpageController extends Controller
        // echo $sectablename;
 
         $searchModel = new SecondpageSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams, $sectablename);
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams, $sectablename, $cfk);
 		
 		if (isset ($message))
 			{

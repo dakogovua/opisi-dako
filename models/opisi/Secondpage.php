@@ -84,11 +84,15 @@ class Secondpage extends \yii\db\ActiveRecord
             ->count();
     }
 
-    public function getFond()
-    {
-        return $this->hasOne(Firstpage::className(), [
-            'papka' => 'papka'
+    public function getDela(){
+        return $this->hasMany(Dela::className(), [
+            'papka_fond' => 'papka'
+        ])->andWhere([
+            'and',
+            ['papka_opis' => $this->podpapka],
+            //['recipient_id' => $this->id],
         ]);
+        // ->count();
     }
 
 

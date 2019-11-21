@@ -39,10 +39,16 @@ class SecondpageSearch extends Secondpage
      *
      * @return ActiveDataProvider
      */
-    public function search($params, $tablename)
+    public function search($params, $tablename, $cfk)
     {
         $query = Secondpage::useTable($tablename);//::find();
         $query = $query -> find();
+
+        if($cfk){
+            $query->innerjoinWith('dela')->groupBy($tablename.'.papka');
+            echo $query->createCommand()->getRawSql();
+
+        }
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([

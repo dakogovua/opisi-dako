@@ -11,27 +11,52 @@ use yii\helpers\Html;
     <div class="site-index">
 
         <div class="jumbotron">
-            <h2>База даних оцифрованих описів справ Державного архіву Київської області періоду:</h2>
+            <h2 class="koss-red">Цифровий фонд користування (ЦФК) справ Державного архіву Київської області періоду:</h2>
 
 
 
 
 
-            <section id="container">
+            <section id="container" class="cfk-container">
                 <p>Оберіть період</p>
 
-            <div class="row" >
+                <div class="row" >
 
                     <?php
-                        echo Html::dropDownList('cat',null, array('firstpage'=>'До 1917', 'radfirstpage'=>'1917 - 1991'),
-                        array('empty'=>'Select Category', 'class' => 'form-control form-control-lg'));
+                    /* echo Html::dropDownList('cat',null,
+                        array('firstpage'=>'До 1917', 'radfirstpage'=>'1917 - 1991'),
+                        array('empty'=>'Select Category', 'class' => 'form-control form-control-lg')
+                    ); */
+
+                    $items = [
+                        'firstpage' => 'До 1917',
+                        'radfirstpage' => '1917 - 1991',
+
+                    ];
+                    $params = [
+                        'prompt' => '- Сделайте выбор -',
+                        'class' => 'form-control form-control-lg',
+                        'options' => [
+                            'firstpage' => [
+                                'Selected' => true,
+                                'data-cfk' => 'cfk',
+                            ],
+                            'radfirstpage' => [
+                                'data-cfk' => 'cfk',
+                            ],
+
+                        ],
+                    ];
+
+                    echo Html::dropDownList('cat', '10', $items, $params);
+
                     ?>
 
 
-            </div>
-            <br>
+                </div>
+                <br>
 
-                    <p><a id="kossbtn" class="btn btn-lg btn-success" >Розпочнемо!</a></p>
+                <p><a id="kossbtn" class="btn btn-lg btn-success" >До ЦФК!</a></p>
 
             </section>
         </div>
@@ -39,8 +64,7 @@ use yii\helpers\Html;
 
 
         <div class="body-content">
-            <p class="lead">Інструкція для користування Базою даних
-                оцифрованих описів справ
+            <p class="lead">Інструкція для користування Цифровим фондом користування оцифрованих описів справ
             </p>
             <div class="row">
                 <div class="col-lg-4 koss-blue">
@@ -117,9 +141,11 @@ $script = <<< JS
      
      $('#kossbtn').on('click',function() {
          link = $("select[name=cat]").val();
+         //cfk = $("select[name=cat] option:selected").data('cfk');
+         //console.log('cfk', cfk);
          fondtext = $("select[name=cat] option:selected").text();
          //console.log('opt',opt);
-         window.location = "/web/index.php?r=opisi/firstpage&nametable="+link+"&fondtext=" + fondtext;        
+         window.location = "/web/index.php?r=opisi/firstpage&nametable="+link+"&fondtext=" + fondtext+"&cfk=true";        
      })
      
 });

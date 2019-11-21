@@ -61,7 +61,7 @@ class ListFilesController extends \yii\web\Controller
 
             //print_r(Yii::$app->request->post());
             //$get = Yii::$app->request->get();
-            $uploadFolder=Yii::$app->request->get('folder').'/'.Yii::$app->request->get('subfolder').'/'.Yii::$app->request->get(delofolder);
+            $uploadFolder=Yii::$app->request->get('folder').'/'.Yii::$app->request->get('subfolder').'/'.Yii::$app->request->get('delofolder');
 
             if(Yii::$app->request->get(delofolder)){
                 $uploadFolder.= '/';
