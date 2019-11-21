@@ -115,6 +115,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     return Url::to([$action, 'id' => $model->id, 'sectablename' => $_GET['sectablename'] ]);
                 }
             ],
+
         ],
     ]); ?>
 </div>
