@@ -105,4 +105,11 @@ class ListFiles
         }
         return $webfiles;
     }
+
+    public function getFond()
+    {
+        return $this->hasMany(Dela::className(), [
+            'papka_fond' => 'papka'
+        ]);
+    }
 }

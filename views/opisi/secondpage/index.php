@@ -11,16 +11,25 @@ use yii\helpers\Url;
 
 $this->title = 'Описи';
 //
-$this->params['breadcrumbs'][] = ['label' => 'Фонды', 'url' => ['/opisi/firstpage', 'nametable' => $_GET['sectablename']]];
+$this->params['breadcrumbs'][] = ['label' => 'Фонды', 'url' => [
+        '/opisi/firstpage',
+        'nametable' => $_GET['nametable'],
+        'sectablename' => $_GET['sectablename']
+        ]
+    ];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="secondpage-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
+    <?= $namefond ?>
 
     <p>
-   	<?php	 
+
+
+
+   	<?php
 	echo Yii::$app->user->isGuest ? (
                 "Користувач Гість"
             ) : (
@@ -63,7 +72,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => function($data)
                     {
                        //return Html::a($data->podpapka, ('/web/index.php?r=opisi/secondpage/index&message='.$data->podpapka));
-                       return Html::a($data->podpapka, ('/web/index.php?r=opisi/list-files/index&folder='.$data->papka.'&subfolder='.$data->podpapka));
+                       return $data->podpapka;
                     },
                 'format' => 'raw',
 				'filter' => Html::input('text', $searchModel->formName() . '[podpapka]', $searchModel->podpapka,['class' => 'form-control']),
@@ -75,11 +84,19 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 'label' => 'Анотація складу документів опису справ',
                 'attribute' => 'name_opisi',
-				'value' => function($data)
+				'value' => function($data) use ($sectablename)
                     {
                        //return Html::a($data->podpapka, ('/web/index.php?r=opisi/secondpage/index&message='.$data->podpapka));
                        //return Html::a($data->name_opisi, ('/web/index.php?r=opisi/list-files/index&folder='..'&subfolder='..'&='.$data->name_opisi));
-                        return  Html::a($data->name_opisi, ['opisi/list-files/index', 'folder' => $data->papka, 'subfolder' => $data->podpapka, 'params' => $data->name_opisi, 'fond'=> $_GET['fond'],'opis' => $data->nomer_opisi], ['class' => '']);
+                        return  Html::a($data->name_opisi, ['opisi/list-files/index',
+                            'folder' => $data->papka,
+                            'subfolder' => $data->podpapka,
+                            /* 'params' => $data->name_opisi, */
+                            'fond'=> $_GET['fond'],
+                            'nametable' => $_GET['nametable'],
+                            'sectablename' => $sectablename,
+                            //'sectablename' => '.'."$sectablename".'.',
+                            'opis' => $data->nomer_opisi], ['class' => '']);
                     },
                 'format' => 'raw',
 				'filter' => Html::input('text', $searchModel->formName() . '[name_opisi]', $searchModel->name_opisi,['class' => 'form-control']),
@@ -101,7 +118,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'label' => 'ЦФК',
 
                 'value' => function($data){
-                    return  Html::a($data->delo, ['opisi/list-files/index', 'folder' => $data->papka, 'subfolder' => $data->podpapka, 'params' => $data->name_opisi, 'fond'=> $_GET['fond'],'opis' => $data->nomer_opisi], ['class' => '']);
+                    return  Html::a($data->delo);
 
                 },
                 'format' => 'raw',

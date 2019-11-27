@@ -80,8 +80,13 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => function($data)
                     {
                        //return Html::a($data->name_fond, ('/web/index.php?r=opisi/secondpage/index&message='.$data->papka.'&sectablename='.$secnametable));
-                       return Html::a($data->name_fond, ['opisi/secondpage', 'message' => $data->papka, 'sectablename' => $_GET['nametable'], 'fond' => $data->nomer_fonda], ['class' => 'profile-link']);
-					  // return $data->name_fond;
+                       return Html::a($data->name_fond, ['opisi/secondpage',
+                           'message' => $data->papka,
+                           'nametable' => $_GET['nametable'] ,
+                           'sectablename' => $_GET['nametable'],
+                           'fond' => $data->nomer_fonda],
+                           ['class' => 'profile-link']);
+
                     },
                 'format' => 'raw',
 				'filter' => Html::input('text', $searchModel->formName() . '[name_fond]', $searchModel->name_fond, ['class' => 'form-control']),

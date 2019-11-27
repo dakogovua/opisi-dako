@@ -13,7 +13,14 @@ use yii\widgets\ActiveForm;
 $this->title = 'Скани';
 
 
-$this->params['breadcrumbs'][] = ['label' => 'Фонди', 'url' => ['/opisi/firstpage']];
+$this->params['breadcrumbs'][] = ['label' => 'Фонди',
+    'url' => [
+            '/opisi/firstpage',
+            'nametable' => $_GET['nametable'],
+            'sectablename' => $_GET['sectablename']
+        ],
+
+    ];
 //$this->params['breadcrumbs'][] = ['label' => 'Описи', 'url' => ['/opisi/secondpage/']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -24,11 +31,15 @@ $this->params['breadcrumbs'][] = $this->title;
 <h1><?= $this->title.", папка ".Yii::$app->request->get('folder')."/".Yii::$app->request->get('subfolder')."/".Yii::$app->request->get('delofolder')  ?></h1>
 
 
+<?= $namefond ?> <br>
+<?= $opisname ?> <br>
+<?= $delaname ?>
 
 
-<?= Yii::$app->request->get('params') ?>
 
 <p>
+
+
     <?php
 
 
@@ -126,11 +137,25 @@ $this->params['breadcrumbs'][] = $this->title;
             'label' => 'Заголовок справи (подано мовою оригіналу).',
             'attribute' => 'title',
             'value' => function($data)
-            {
+          /*  {
                 //return Html::a($data->podpapka, ('/web/index.php?r=opisi/secondpage/index&message='.$data->podpapka));
                // return Html::a($data->title, ('/web/index.php?r=opisi/list-files/index&folder='.$data->papka_fond.'&subfolder='.$data->papka_opis.'&delofolder='.$data->papka_delo));
-                return Html::a($data->title, ('/web/index.php?r=opisi/list-files/index&folder='.$data->papka_fond.'&subfolder='.$data->papka_opis.'&delofolder='.$data->papka_delo));
-            },
+                return Html::a($data->title, ('/web/index.php?r=opisi/list-files/index&folder='.
+                    $data->papka_fond.'&subfolder='.$data->papka_opis.'&delofolder='.$data->papka_delo));
+            },*/
+
+             {
+                        return  Html::a($data->title, ['opisi/list-files/index',
+                            'folder' => $data->papka_fond,
+                            'subfolder' => $data->papka_opis,
+                            'delofolder' => papka_delo,
+                            'fond'=> $_GET['fond'],
+                            'nametable' => $_GET['nametable'],
+                            'sectablename' => $_GET['sectablename'],
+                            ],
+                            ['class' => '']
+                        );
+              },
             'format' => 'raw',
             'filter' => Html::input('text', $searchModel->formName() . '[title]', $searchModel->title,['class' => 'form-control']),
 
@@ -147,6 +172,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 return Url::to([$action, 'id' => $model->id, 'nametable' => $_GET['nametable'] ]);
             }
         ],
+
     ],
 ]); ?>
 
