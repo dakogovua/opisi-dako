@@ -148,7 +148,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         return  Html::a($data->title, ['opisi/list-files/index',
                             'folder' => $data->papka_fond,
                             'subfolder' => $data->papka_opis,
-                            'delofolder' => papka_delo,
+                            'delofolder' => $data->papka_delo,
                             'fond'=> $_GET['fond'],
                             'nametable' => $_GET['nametable'],
                             'sectablename' => $_GET['sectablename'],
