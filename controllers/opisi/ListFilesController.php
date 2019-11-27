@@ -35,13 +35,7 @@ class ListFilesController extends \yii\web\Controller
 
     public function actionIndex($folder, $subfolder = null,$delofolder = null, $fond = null, $opis = null, $nametable, $sectablename)
     {
-<<<<<<< HEAD
-		
-		
-=======
 
-
->>>>>>> master2
         if(!$delofolder){
             $searchModel = new DelaSearch();
 
@@ -57,13 +51,6 @@ class ListFilesController extends \yii\web\Controller
         }
 
         $wwebfiles = new ListFiles();
-<<<<<<< HEAD
-		
-=======
-
-<<<<<<< HEAD
->>>>>>> master2
-=======
         $fondname = Firstpage::useTable($nametable);
         $fondname = $fondname->findOne([
             'papka' => $folder,
@@ -92,7 +79,6 @@ class ListFilesController extends \yii\web\Controller
 
 
         //Arrays of files
->>>>>>> master2
         $webfiles = $wwebfiles ->getFiles($folder,$subfolder,$delofolder, $fond, $opis);
 
 
