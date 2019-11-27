@@ -2,6 +2,8 @@
 
 namespace app\controllers\opisi;
 
+use app\models\opisi\Firstpage;
+use app\models\opisi\Secondpage;
 use Yii;
 
 use app\models\opisi\Dela;
@@ -31,7 +33,7 @@ class ListFilesController extends \yii\web\Controller
         ];
     }
 
-    public function actionIndex($folder,$subfolder = null,$delofolder = null, $fond = null, $opis = null)
+    public function actionIndex($folder, $subfolder = null,$delofolder = null, $fond = null, $opis = null, $nametable, $sectablename)
     {
 <<<<<<< HEAD
 		
@@ -59,6 +61,37 @@ class ListFilesController extends \yii\web\Controller
 		
 =======
 
+<<<<<<< HEAD
+>>>>>>> master2
+=======
+        $fondname = Firstpage::useTable($nametable);
+        $fondname = $fondname->findOne([
+            'papka' => $folder,
+            'nomer_fonda' => $fond
+        ]);
+        $namefond = $fondname -> name_fond;
+        //exit;
+
+        $opisname = Secondpage::useTable($sectablename);
+        $opisname = $opisname->findOne([
+            'papka' => $folder,
+            'podpapka' => $subfolder
+        ]);
+        $opisname = $opisname -> name_opisi;
+
+
+
+        $delaname = Dela::findOne([
+            'papka_fond' => $folder,
+            'papka_opis' => $subfolder
+        ]);
+        $delaname = $delaname -> title;
+
+
+
+
+
+        //Arrays of files
 >>>>>>> master2
         $webfiles = $wwebfiles ->getFiles($folder,$subfolder,$delofolder, $fond, $opis);
 
@@ -88,6 +121,7 @@ class ListFilesController extends \yii\web\Controller
         }
 
 
+
         return $this->render('index',[
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -95,7 +129,10 @@ class ListFilesController extends \yii\web\Controller
 
             'fond' => $fond,
             'opis' => $opis,
-            'model' => $model
+            'model' => $model,
+            'namefond' => $namefond,
+            'opisname' => $opisname,
+            'delaname' => $delaname
         ]);
 
     }

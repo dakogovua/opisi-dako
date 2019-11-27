@@ -3,6 +3,9 @@
 namespace app\controllers\opisi;
 
 use Yii;
+
+use app\models\opisi\Firstpage;
+
 use app\models\opisi\Secondpage;
 use app\models\opisi\SecondpageSearch;
 use yii\web\Controller;
@@ -62,7 +65,14 @@ class SecondpageController extends Controller
     public function actionIndex($message = null, $sectablename = null, $fond = null, $cfk = null)
     {
 
-     //   echo $sectablename;
+        $fondname = Firstpage::useTable($sectablename);
+        $fondname = $fondname->findOne([
+            'papka' => $message,
+            // 'nomer_fonda' => $fond
+        ]);
+        //print_r($fondname);
+        $namefond = $fondname -> name_fond;
+
 
 
        switch ($sectablename) {
@@ -78,6 +88,8 @@ class SecondpageController extends Controller
            default:
                $sectablename = 'secondpage';
        }
+
+
 
        // echo $sectablename;
 
@@ -95,7 +107,8 @@ class SecondpageController extends Controller
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
 			'message' => $message,
-            'fond' => $fond,
+            'sectablename' => $sectablename,
+            'namefond' => $namefond
         ]);
     }
 
