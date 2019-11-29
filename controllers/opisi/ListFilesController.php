@@ -51,11 +51,7 @@ class ListFilesController extends \yii\web\Controller
         }
 
         $wwebfiles = new ListFiles();
-<<<<<<< HEAD
-=======
 
-        //exit;
->>>>>>> master2
         $fondname = Firstpage::useTable($nametable);
         $fondname = $fondname->findOne([
             'papka' => $folder,
