@@ -45,8 +45,9 @@ class SecondpageSearch extends Secondpage
         $query = $query -> find();
 
         if($cfk){
-            $query->innerjoinWith('dela')->groupBy($tablename.'.papka');
-            echo $query->createCommand()->getRawSql();
+
+            $query->innerjoinWith('dela');
+         //   echo $query->createCommand()->getRawSql();
 
         }
         // add conditions that should always apply here

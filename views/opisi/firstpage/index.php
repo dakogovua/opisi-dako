@@ -23,7 +23,6 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title).' '.$fondtext ?></h1>
 
 
-
     <p>
 <?php	
 	 echo Yii::$app->user->isGuest ? (
@@ -77,14 +76,16 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 'label' => 'Назва фонду*',
 				'attribute' => 'name_fond',
-                'value' => function($data)
+                'value' => function($data) use ($cfk)
                     {
                        //return Html::a($data->name_fond, ('/web/index.php?r=opisi/secondpage/index&message='.$data->papka.'&sectablename='.$secnametable));
                        return Html::a($data->name_fond, ['opisi/secondpage',
                            'message' => $data->papka,
                            'nametable' => $_GET['nametable'] ,
                            'sectablename' => $_GET['nametable'],
-                           'fond' => $data->nomer_fonda],
+                           'fond' => $data->nomer_fonda,
+                           'cfk' => Yii::$app->request->get('cfk')? 1 : 0,
+                            ],
                            ['class' => 'profile-link']);
 
                     },

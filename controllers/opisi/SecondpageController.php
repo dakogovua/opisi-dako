@@ -64,14 +64,17 @@ class SecondpageController extends Controller
      */
     public function actionIndex($message = null, $sectablename = null, $fond = null, $cfk = null)
     {
+        //Важно, тут $sectablename идеёт как раз с именем таблицы фирстпейджа, поэтому лучше её не двигать.
+        if ($sectablename){
+            $fondname = Firstpage::useTable($sectablename);
+            $fondname = $fondname->findOne([
+                'papka' => $message,
+                // 'nomer_fonda' => $fond
+            ]);
+            //print_r($fondname);
+            $namefond = $fondname -> name_fond;
 
-        $fondname = Firstpage::useTable($sectablename);
-        $fondname = $fondname->findOne([
-            'papka' => $message,
-            // 'nomer_fonda' => $fond
-        ]);
-        //print_r($fondname);
-        $namefond = $fondname -> name_fond;
+        }
 
 
 
@@ -95,7 +98,8 @@ class SecondpageController extends Controller
 
         $searchModel = new SecondpageSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams, $sectablename, $cfk);
-		
+
+        //message  - это папка фонда
 		if (isset ($message))
 			{
 				$dataProvider->query->andWhere(['papka' => $message]);
@@ -131,7 +135,7 @@ class SecondpageController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate($sectablename = null)
+    public function actionCreate($sectablename = null, $fond = null)
     {
         switch ($sectablename) {
             case "null":
@@ -148,8 +152,10 @@ class SecondpageController extends Controller
         }
         //$model = new Secondpage();
         $model = Secondpage::useTable($sectablename);
+        $model->papka = $fond;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+
             return $this->redirect(['view', 'id' => $model->id, 'sectablename' => $sectablename] );
         }
 
@@ -167,13 +173,15 @@ class SecondpageController extends Controller
      */
     public function actionUpdate($id,  $sectablename = null)
     {
+        //echo 'dd'.isset($sectablename); exit;
+
         if(!$sectablename){
             $sectablename = 'secondpage';
         }
 
         switch ($sectablename) {
             case "null":
-                $sectablename = secondpage;
+                $sectablename = 'secondpage';
                 break;
             case "firstpage":
                 $sectablename = 'secondpage';
@@ -188,13 +196,20 @@ class SecondpageController extends Controller
                 $sectablename = 'secondpage';
         }
 
+
+
         // echo $sectablename;
 
         $model = $this->findModel($id, $sectablename);
 
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+
             return $this->redirect(['view', 'id' => $model->id, 'sectablename' => $sectablename]);
         }
+
+
+
 
         return $this->render('update', [
             'model' => $model,
@@ -216,7 +231,7 @@ class SecondpageController extends Controller
 
         switch ($sectablename) {
             case "null":
-                $sectablename = secondpage;
+                $sectablename = 'secondpage';
                 break;
             case "firstpage":
                 $sectablename = 'secondpage';
@@ -224,8 +239,8 @@ class SecondpageController extends Controller
             case "radfirstpage":
                 $sectablename = 'radsecondpage';
                 break;
-            case "radsecondpage":
-                //$sectablename = 'radsecondpage';
+            //case "radsecondpage":
+            //    $sectablename = 'radsecondpage';
                 break;
             default:
                 $sectablename = 'secondpage';
@@ -251,7 +266,10 @@ class SecondpageController extends Controller
         }
 
         $model = Secondpage::useTable($sectablename);
+        //echo $sectablename;
+        //exit;
         if (($model = $model -> findOne($id)) !== null) {
+
             return $model;
         }
 
