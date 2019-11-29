@@ -74,10 +74,10 @@ class Secondpage extends \yii\db\ActiveRecord
     }
 
     public function getDela(){
-        return $this->hasMany(Dela::className(), [
+        return $this->hasOne(Dela::className(), [
             'papka_fond' => 'papka',
             'papka_opis' => 'podpapka'
-        ]);
+        ])->groupBy('papka_opis');
     }
 
 
