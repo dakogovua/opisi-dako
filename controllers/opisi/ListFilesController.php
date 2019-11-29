@@ -51,13 +51,18 @@ class ListFilesController extends \yii\web\Controller
         }
 
         $wwebfiles = new ListFiles();
+<<<<<<< HEAD
+=======
+
+        //exit;
+>>>>>>> master2
         $fondname = Firstpage::useTable($nametable);
         $fondname = $fondname->findOne([
             'papka' => $folder,
             'nomer_fonda' => $fond
         ]);
         $namefond = $fondname -> name_fond;
-        //exit;
+
 
         $opisname = Secondpage::useTable($sectablename);
         $opisname = $opisname->findOne([
@@ -67,12 +72,14 @@ class ListFilesController extends \yii\web\Controller
         $opisname = $opisname -> name_opisi;
 
 
+        if($delofolder){
+            $delaname = Dela::findOne([
+                'papka_fond' => $folder,
+                'papka_opis' => $subfolder
+            ]);
+            $delaname = $delaname -> title;
 
-        $delaname = Dela::findOne([
-            'papka_fond' => $folder,
-            'papka_opis' => $subfolder
-        ]);
-        $delaname = $delaname -> title;
+        }
 
 
 

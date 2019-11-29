@@ -4,8 +4,6 @@ namespace app\models\opisi;
 
 use Yii;
 
-
-
 /**
  * This is the model class for table "secondpage".
  *
@@ -20,16 +18,7 @@ use Yii;
  */
 class Secondpage extends \yii\db\ActiveRecord
 {
-    /**
-     * @inheritdoc
-     */
-   // public static function tableName()
-   // {
-   //     return 'secondpage';
-   // }
-
     protected static $table;
-
     public static function useTable($table) {
         static::$table = $table;
 
@@ -71,7 +60,7 @@ class Secondpage extends \yii\db\ActiveRecord
             'years' => 'Крайні дати',
         ];
     }
-
+    //выводит дело
     public function getDelo(){
         return $this->hasMany(Dela::className(), [
             'papka_fond' => 'papka'
@@ -84,6 +73,18 @@ class Secondpage extends \yii\db\ActiveRecord
             ->count();
     }
 
+    public function getDela(){
+        return $this->hasMany(Dela::className(), [
+            'papka_fond' => 'papka',
+            'papka_opis' => 'podpapka'
+        ]);
+    }
+
+
+    /*function Search($value, $array)
+    {
+        return(array_search($value, $array));
+    }*/
 
 
 

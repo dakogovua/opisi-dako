@@ -18,8 +18,6 @@ use Yii;
 class Firstpage extends \yii\db\ActiveRecord
 {
 
-
-
     protected static $table;
     public static function useTable($table) {
         static::$table = $table;
@@ -87,5 +85,6 @@ class Firstpage extends \yii\db\ActiveRecord
             'papka_fond' => 'papka'
         ])->count();
     }
+
 
 }

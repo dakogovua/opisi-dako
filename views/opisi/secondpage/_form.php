@@ -17,9 +17,17 @@ use app\models\opisi\Firstpage;
     <?php // echo $form->field($model, 'papka')->textarea(['rows' => 6]); ?>
 
     <?php
+
     $modelka = Firstpage::useTable($_GET['sectablename']);
+
+        $value = $model->papka;
+
+        $items = \yii\helpers\ArrayHelper::map($modelka::find()->all(),
+            'papka', 'papka');
+        $param = ['options' =>[ $value => ['Selected' => true]]];
+
         echo $form->field($model, 'papka')
-		->dropDownList(\yii\helpers\ArrayHelper::map($modelka::find()->all(), 'id', 'papka')); ?>
+		->dropDownList($items, $param); ?>
 
     <?= $form->field($model, 'podpapka')->textInput(['maxlength' => true]) ?>
 
