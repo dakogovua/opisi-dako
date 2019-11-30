@@ -47,7 +47,7 @@ $this->title = Yii::$app->name;
                 'url' => ['#'],
                 // 'template' => '<a href="{url}" >{label}<i class="fa fa-angle-left pull-right"></i></a>',
                 'items' => [
-                    ['label' => 'До 1917 року', 'url' => '/web/index.php?r=opisi/firstpage'],
+                    ['label' => 'До 1917 року', 'url' => '/web/index.php?r=opisi/firstpage&nametable=firstpage'],
                     ['label' => 'Радянський перiод', 'url' => '/web/index.php?r=opisi/firstpage&nametable=radfirstpage'],
                     //['label' => 'Something else here', 'url' => '#'],
                 ],
