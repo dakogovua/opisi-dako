@@ -193,7 +193,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php
         $i=1;
         $webroot = 'scans/'.$_GET['folder'].'/'.$_GET['subfolder'].'/'.$_GET['delofolder'].'/';
-        echo $webroot."<br>";
+
     ?>
 
     <?php foreach($filelist as $file): ?>
@@ -205,7 +205,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
     <?php if(!Yii::$app->user->isGuest):?>
-        <?= $file ?><br>
+
         <?= str_replace($webroot, "", $file) ?>
 
         <button type="button" class="btn btn-warning"
