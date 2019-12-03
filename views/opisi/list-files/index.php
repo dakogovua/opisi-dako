@@ -193,7 +193,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php
         $i=1;
         $webroot = Yii::getAlias('@webroot'.'/scans/'.$_GET['folder'].'/'.$_GET['subfolder'].'/'.$_GET['delofolder'].'/');
-
+        echo $webroot."<br>";
     ?>
 
     <?php foreach($filelist as $file): ?>
