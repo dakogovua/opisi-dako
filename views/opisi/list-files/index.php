@@ -58,11 +58,21 @@ $this->params['breadcrumbs'][] = $this->title;
         <strong>Внимание!</strong> Нажатие на красный крестик приведет к удвлению файла на сервере. До перезагрузки страницы у вас еще будет возможность посмотреть, что вы удалили (оно помечено красным). Но учтите, что открыв файл, после закрытия страничка перезагрузится!
     </div>
 
-    <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]) ?>
+    <div class="alert alert-warning alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        Если хотите заменить файлы и не поламать сортировку файлов, то новые файлы подгружайте с такими же именами, лучше всего по одному файлу. Файлы с именем titul автоматически будут вначале.
+    </div>
 
-    <?= $form->field($model, 'imageFiles[]')->fileInput(['multiple' => true, 'accept' => 'image/*']) ?>
+    <?php $form = ActiveForm::begin(['options' => [
+            'enctype' => 'multipart/form-data'
+    ]]) ?>
 
-    <button>Submit</button>
+    <?= $form->field($model, 'imageFiles[]')->fileInput([
+         'multiple' => true,
+        'accept' => 'image/*',
+        ]) ?>
+
+    <button>Закачать</button>
 
     <?php ActiveForm::end() ?>
 
@@ -180,16 +190,24 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
 <div id = "gallery_1">
-<?php $i=1; ?>
-<?php foreach($filelist as $file): ?>
+    <?php
+        $i=1;
+        $webroot = Yii::getAlias('@webroot');
+        // print_r($file);
+
+    ?>
+
+    <?php foreach($filelist as $file): ?>
 <div>
 <?= Html::a(Html::img($file, ['class' => 'koss-img', 'alt' => 'опис']), $file, ['class' => 'colorbox', 'alt' => 'відкриється опис', 'rel' => 'gallery']) ?>
 <br>
 <b>
-<?= $i++ ?>
+    <?= $i++.'.' ?>
+    <?= trim($file, $webroot) ?>
 
 
     <?php if(!Yii::$app->user->isGuest):?>
+
 
         <button type="button" class="btn btn-warning"
                 data-delfile = '<?= $file ?>'

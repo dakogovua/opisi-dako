@@ -28,6 +28,13 @@ class UploadForm extends Model
         ];
     }
 
+    public function attributeLabels()
+    {
+        return [
+            'imageFiles' => 'Сканы'
+            ];
+    }
+
     public function upload($folder)
     {
         if ($this->validate()) {
