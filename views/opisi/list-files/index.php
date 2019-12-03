@@ -192,7 +192,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div id = "gallery_1">
     <?php
         $i=1;
-        $webroot = Yii::getAlias('@webroot');
+        $webroot = Yii::getAlias('@webroot'.'/scans/');
         // print_r($file);
 
     ?>
