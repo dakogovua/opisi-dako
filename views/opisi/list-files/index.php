@@ -192,8 +192,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div id = "gallery_1">
     <?php
         $i=1;
-        $webroot = Yii::getAlias('@webroot'.'/scans/'.$_GET['folder'].'/'.$_GET['subfolder'].'/');
-        // print_r($file);
+        $webroot = Yii::getAlias('@webroot'.'/scans/'.$_GET['folder'].'/'.$_GET['subfolder'].'/'.$_GET['delofolder'].'/');
 
     ?>
 
@@ -203,11 +202,11 @@ $this->params['breadcrumbs'][] = $this->title;
 <br>
 <b>
     <?= $i++.'.' ?>
-    <?= trim($file, $webroot) ?>
 
 
     <?php if(!Yii::$app->user->isGuest):?>
 
+        <?= str_replace($webroot, "", $file) ?>
 
         <button type="button" class="btn btn-warning"
                 data-delfile = '<?= $file ?>'
