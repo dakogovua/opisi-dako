@@ -205,7 +205,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
     <?php if(!Yii::$app->user->isGuest):?>
-
+        <?= $file ?><br>
         <?= str_replace($webroot, "", $file) ?>
 
         <button type="button" class="btn btn-warning"
