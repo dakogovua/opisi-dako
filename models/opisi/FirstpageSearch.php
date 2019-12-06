@@ -46,13 +46,15 @@ class FirstpageSearch extends Firstpage
         $query = Firstpage::useTable($tablename);//::find();
         $query = $query->find();
 
+
         if($cfk){
             $query->innerjoinWith('dela')->groupBy($tablename.'.papka');
+
         }
-
-
-       // print_r($query);
-       // exit();
+        else {
+            $query->joinWith('dela')->groupBy($tablename.'.papka');
+           // echo $query->createCommand()->getRawSql(); exit;
+        }
 
         // add conditions that should always apply here
 
@@ -61,12 +63,15 @@ class FirstpageSearch extends Firstpage
 			'pagination' => array('pageSize' => 50),
         ]);
 
-        $dataProvider->sort->attributes['dela'] = [
-            // The tables are the ones our relation are configured to
-            // in my case they are prefixed with "tbl_"
-            'asc' => ['dela.id' => SORT_ASC],
-            'desc' => ['dela.id' => SORT_DESC],
-        ];
+
+            $dataProvider->sort->attributes['dela'] = [
+                // The tables are the ones our relation are configured to
+                // in my case they are prefixed with "tbl_"
+                'asc' => ['dela.id' => SORT_ASC],
+                'desc' => ['dela.id' => SORT_DESC],
+            ];
+
+
 
         $this->load($params);
 

@@ -76,6 +76,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?php ActiveForm::end() ?>
 
+<hr>
 <?php endif; ?>
 
 

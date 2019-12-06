@@ -61,14 +61,13 @@ class Secondpage extends \yii\db\ActiveRecord
         ];
     }
     //выводит дело
-    public function getDelo(){
+    public function getDelocount(){
         return $this->hasMany(Dela::className(), [
             'papka_fond' => 'papka'
         ])
             ->andWhere([
                 'and',
                 ['papka_opis' => $this->podpapka],
-                //['recipient_id' => $this->id],
             ])
             ->count();
     }

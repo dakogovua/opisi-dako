@@ -116,9 +116,9 @@ $this->params['breadcrumbs'][] = $this->title;
             [
 
                 'label' => 'ЦФК',
-
+                'attribute' => 'dela',
                 'value' => function($data){
-                    return  Html::a($data->delo);
+                    return  Html::a($data->delocount);
 
                 },
                 'format' => 'raw',

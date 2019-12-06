@@ -5,6 +5,9 @@ namespace app\controllers\opisi;
 use Yii;
 use app\models\opisi\Firstpage;
 use app\models\opisi\FirstpageSearch;
+
+use app\models\opisi\ListFiles;
+
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -79,6 +82,7 @@ class FirstpageController extends Controller
        // $searchModel->nametable = $nametable;
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams, $nametable, $cfk);
 
+        //exit;
 
 		////////////////
 	/*	$name_fonds = Firstpage::find()
@@ -179,8 +183,11 @@ class FirstpageController extends Controller
         }
 
 
-        $this->findModel($id, $nametable)->delete();
 
+
+        ListFiles::delFolder('aaaa','bbb', 'ccccc');
+
+        $this->findModel($id, $nametable)->delete();
         return $this->redirect(['index', 'nametable' => $nametable]);
     }
 

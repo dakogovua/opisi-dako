@@ -106,6 +106,10 @@ class ListFiles
         return $webfiles;
     }
 
+    public function delFolder($folder,$subfolder,$delofolder){
+        return $folder.'/'.$subfolder.'/'.$delofolder;
+    }
+
     public function getFond()
     {
         return $this->hasMany(Dela::className(), [

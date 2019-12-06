@@ -50,11 +50,22 @@ class SecondpageSearch extends Secondpage
          //   echo $query->createCommand()->getRawSql();
 
         }
+        else {
+            $query->joinWith('dela')->groupBy($tablename.'.podpapka');
+        }
+
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
+
+        $dataProvider->sort->attributes['dela'] = [
+            // The tables are the ones our relation are configured to
+            // in my case they are prefixed with "tbl_"
+            'asc' => ['dela.id' => SORT_ASC],
+            'desc' => ['dela.id' => SORT_DESC],
+        ];
 
         $this->load($params);
 
@@ -75,7 +86,8 @@ class SecondpageSearch extends Secondpage
             ->andFilterWhere(['like', 'name_opisi', $this->name_opisi])
             ->andFilterWhere(['like', 'copy_opisi', $this->copy_opisi])
             ->andFilterWhere(['like', 'count_opisis', $this->count_opisis])
-            ->andFilterWhere(['like', 'years', $this->years]);
+            ->andFilterWhere(['like', 'years', $this->years])
+            ->andFilterWhere(['like', 'dela.id', $this->dela]);
 
         return $dataProvider;
     }
