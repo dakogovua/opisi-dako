@@ -12,6 +12,8 @@ use app\models\opisi\Secondpage;
  */
 class SecondpageSearch extends Secondpage
 {
+    public $dela;
+
     /**
      * @inheritdoc
      */
@@ -19,7 +21,7 @@ class SecondpageSearch extends Secondpage
     {
         return [
             [['id'], 'integer'],
-            [['papka', 'podpapka', 'nomer_opisi', 'name_opisi', 'copy_opisi', 'count_opisis', 'years'], 'safe'],
+            [['papka', 'podpapka', 'nomer_opisi', 'name_opisi', 'copy_opisi', 'count_opisis', 'years', 'dela'], 'safe'],
         ];
     }
 

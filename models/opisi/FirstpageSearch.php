@@ -52,7 +52,9 @@ class FirstpageSearch extends Firstpage
 
         }
         else {
-            $query->joinWith('dela')->groupBy($tablename.'.papka');
+            $query->joinWith('dela')->groupBy($tablename.'.papka')->orderBy(
+                ['id' => SORT_ASC]
+            );
            // echo $query->createCommand()->getRawSql(); exit;
         }
 
