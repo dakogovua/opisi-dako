@@ -48,16 +48,17 @@ class FirstpageSearch extends Firstpage
 
 
         if($cfk){
-            $query->innerjoinWith('dela')->groupBy($tablename.'.papka');
+            $query->innerjoinWith('dela')->groupBy($tablename.'.papka')->orderBy(
+                ['id' => SORT_ASC]);
 
         }
         else {
             $query->joinWith('dela')->groupBy($tablename.'.papka')->orderBy(
                 ['id' => SORT_ASC]
             );
-           // echo $query->createCommand()->getRawSql(); exit;
-        }
 
+        }
+// echo $query->createCommand()->getRawSql(); exit;
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
@@ -73,6 +74,13 @@ class FirstpageSearch extends Firstpage
                 'desc' => ['dela.id' => SORT_DESC],
             ];
 
+        /* $dataProvider->sort->attributes['id'] = [
+            // The tables are the ones our relation are configured to
+            // in my case they are prefixed with "tbl_"
+            'asc' => ['firstpage.id' => SORT_ASC],
+            'desc' => ['firstpage.id' => SORT_DESC],
+        ]; */
+
 
 
         $this->load($params);
@@ -85,16 +93,17 @@ class FirstpageSearch extends Firstpage
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'id' => $this->id,
+            $tablename.'.id' => $this->id,
             'count_items' => $this->count_items,
             'count_opisi' => $this->count_opisi,
         ]);
 
         $query->andFilterWhere(['like', 'papka', $this->papka])
-            ->andFilterWhere(['like', 'nomer_fonda', $this->nomer_fonda])
+            ->andFilterWhere(['like', $tablename.'.nomer_fonda', $this->nomer_fonda])
             ->andFilterWhere(['like', 'name_fond', $this->name_fond])
             ->andFilterWhere(['like', 'dates', $this->dates])
             ->andFilterWhere(['like', 'dela.id', $this->dela]);
+        //    ->andFilterWhere(['like', 'firstpage.id', $this->id]);
 
 
 

@@ -26,7 +26,7 @@ class ListFiles
         //echo $dir;
         //$files=\yii\helpers\FileHelper::findFiles($dir);
         if (!is_dir($dir) && Yii::$app->user->isGuest ) { // item does not exist
-            throw new \yii\web\HttpException(404, 'Ошибка в БД или названии папки с файлами. Передайте эту информацию для решения проблемы --> '.$folder.'/'.$subfolder.'/'.$delofolder.'');
+            throw new \yii\web\HttpException(404, 'Дана папка в процесі наповнення сканами --> '.$folder.'/'.$subfolder.'/'.$delofolder.'');
         }
 
         else if (!is_dir($dir) && !Yii::$app->user->isGuest ){
@@ -37,7 +37,7 @@ class ListFiles
 
         $files=scandir($dir);
 
-        if (count($files) < 3 && Yii::$app->user->isGuest ) { // item does not exist
+        if (count($files) <= 3 && Yii::$app->user->isGuest ) { // item does not exist
             throw new \yii\web\HttpException(404, 'Передайте эту ошибку администратору. В папке нет файлов '.$folder.'/'.$subfolder.'/'.$delofolder.'');
         }
 

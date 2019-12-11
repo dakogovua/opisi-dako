@@ -48,12 +48,14 @@ class SecondpageSearch extends Secondpage
 
         if($cfk){
 
-            $query->innerjoinWith('dela');
+            $query->innerjoinWith('dela')->orderBy(
+                ['id' => SORT_ASC]);
          //   echo $query->createCommand()->getRawSql();
 
         }
         else {
-            $query->joinWith('dela')->groupBy($tablename.'.podpapka');
+            $query->joinWith('dela')->groupBy($tablename.'.podpapka')->orderBy(
+                ['id' => SORT_ASC]);
         }
 
         // add conditions that should always apply here
@@ -79,7 +81,7 @@ class SecondpageSearch extends Secondpage
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'id' => $this->id,
+            $tablename.'.id' => $this->id,
         ]);
 
         $query->andFilterWhere(['like', 'papka', $this->papka])

@@ -46,13 +46,15 @@ $config = [
             ],
         ],
         'db' => $db,
-        /*
-        'urlManager' => [
+
+        /*'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                'e-archive' => 'site/cfk',
+
             ],
-        ],*/
+        ], */
         
     ],
     'params' => $params,
