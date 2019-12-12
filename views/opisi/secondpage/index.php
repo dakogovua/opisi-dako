@@ -95,6 +95,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             'fond'=> $_GET['fond'],
                             'nametable' => $_GET['nametable'],
                             'sectablename' => $sectablename,
+                            'cfk' => $_GET['cfk'],
                             //'sectablename' => '.'."$sectablename".'.',
                             'opis' => $data->nomer_opisi], ['class' => '']);
                     },

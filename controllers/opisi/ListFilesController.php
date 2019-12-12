@@ -33,8 +33,9 @@ class ListFilesController extends \yii\web\Controller
         ];
     }
 
-    public function actionIndex($folder, $subfolder = null,$delofolder = null, $fond = null, $opis = null, $nametable, $sectablename)
+    public function actionIndex($folder, $subfolder = null,$delofolder = null, $fond = null, $opis = null, $nametable, $sectablename, $cfk = null)
     {
+
 
         if(!$delofolder){
             $searchModel = new DelaSearch();
@@ -82,7 +83,14 @@ class ListFilesController extends \yii\web\Controller
 
 
         //Arrays of files
-        $webfiles = $wwebfiles ->getFiles($folder,$subfolder,$delofolder, $fond, $opis);
+        if (!$cfk)
+        {
+            $webfiles = $wwebfiles ->getFiles($folder,$subfolder,$delofolder, $fond, $opis);
+        }
+        else{
+            $webfiles = [];
+        }
+
 
 
 
