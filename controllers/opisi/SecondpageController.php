@@ -248,7 +248,7 @@ class SecondpageController extends Controller
 
         $this->findModel($id, $sectablename)->delete();
 
-        return $this->redirect(['index', 'sectablename' => $sectablename ]);
+        return $this->redirect(['site/index', 'sectablename' => $sectablename ]);
     }
 
     /**

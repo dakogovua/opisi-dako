@@ -43,17 +43,23 @@ $this->title = Yii::$app->name;
         'items' => [
             ['label' => 'Головна', 'url' => ['/site/index']],
 
-            ['label' => 'Фонди',
+            ['label' => 'Описи',
                 'url' => ['#'],
                 // 'template' => '<a href="{url}" >{label}<i class="fa fa-angle-left pull-right"></i></a>',
                 'items' => [
                     ['label' => 'До 1917 року', 'url' => '/web/index.php?r=opisi/firstpage&nametable=firstpage'],
-                    ['label' => 'Радянський перiод', 'url' => '/web/index.php?r=opisi/firstpage&nametable=radfirstpage'],
+                    ['label' => '1917 - 1991', 'url' => '/web/index.php?r=opisi/firstpage&nametable=radfirstpage'],
                     //['label' => 'Something else here', 'url' => '#'],
                 ],
             ],
 
-        //    ['label' => 'Фонди', 'url' => ['opisi/firstpage']],
+            ['label' => 'Е-архів',
+                'url' => ['site/cfk'],
+
+            ],
+
+
+            //    ['label' => 'Фонди', 'url' => ['opisi/firstpage']],
         //    ['label' => 'Про сервіс', 'url' => ['/site/about']],
             ['label' => 'Контакти', 'url' => ['/site/contact']],
             Yii::$app->user->isGuest ? (

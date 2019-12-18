@@ -92,7 +92,7 @@ use yii\helpers\Html;
                     <p><a class="btn btn-default" href="http://catalog.dako.gov.ua/">Перейти на ДАКО.каталог &raquo;</a></p>
                 </div>
                 <div class="col-lg-4">
-                    <p><a class="btn btn-default" href="http://old.dako.gov.ua/">Перейти на старий сайт &raquo;</a></p>
+                    <p><a class="btn btn-default" href="/web/index.php?r=site/cfk">Перейти на ДАКО.e-архів &raquo;</a></p>
                 </div>
             </div>
 
