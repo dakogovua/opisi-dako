@@ -49,8 +49,10 @@ class SecondpageSearch extends Secondpage
         if($cfk){
 
             $query->innerjoinWith('dela')->orderBy(
-                ['id' => SORT_ASC]);
-         //   echo $query->createCommand()->getRawSql();
+            //$query->leftJoin('dela')->orderBy(
+                ['id' => SORT_ASC])
+                ->groupBy('papka_opis');;
+            //echo $query->createCommand()->getRawSql();
 
         }
         else {
