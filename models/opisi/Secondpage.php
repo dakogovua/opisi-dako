@@ -71,7 +71,7 @@ class Secondpage extends \yii\db\ActiveRecord
             ])
             ->count();
     }
-////////
+////////ddd
     public function getDela(){
         return $this->hasOne(Dela::className(), [
             'papka_fond' => 'papka',
