@@ -301,7 +301,23 @@ $this->registerJsFile ( 'js/jquery.ez-plus.js', [yii\web\View::POS_HEAD] );
 
 $script = <<< JS
 
+ $('ul.ui-front').on('click', function(){
+    console.log('click click', $('ul.ui-front'));
+    //ui-menu.ui-widget.ui-widget-content.ui-autocomplete.ui-front
+    //$(this).focusout();
+    //console.log($(this));
+    //$(this).blur();
+    $('#delasearch-title').blur();
+    //window.blur();
+})
+
+$('ul').click(function() {
+    console.log('ul click ul');
+});
+
+
 $('.well').remove();
+
 
 
  
@@ -327,19 +343,6 @@ zoomWindowFadeOut: 750,
 scrollZoom : true
    });
 
- $('ul.ui-front').on('click', function(){
-    console.log('click click', $('ul.ui-front'));
-    //ui-menu.ui-widget.ui-widget-content.ui-autocomplete.ui-front
-    //$(this).focusout();
-    //console.log($(this));
-    //$(this).blur();
-    $('#delasearch-title').blur();
-    //window.blur();
-})
-
-$('ul').click(function() {
-    console.log('ul click ul');
-});
 
 
 JS;
