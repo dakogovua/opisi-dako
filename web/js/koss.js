@@ -54,7 +54,7 @@ $('button.btn.btn-warning:not(:disabled)').click(function(e){
 });
 
 //////////// Обработка для автокомплита
-
+console.log('koss js');
 $('ul').click(function() {
     console.log('ul click ul');
 });
