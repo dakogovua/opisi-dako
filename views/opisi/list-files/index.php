@@ -321,7 +321,7 @@ zoomWindowFadeOut: 750,
 scrollZoom : true
    });
 
- $('#ui-id-1').on('click', function(){
+ $('.ui-menu.ui-widget.ui-widget-content.ui-autocomplete.ui-front').on('click', function(){
     console.log('click click');
     //$(this).focusout();
     //console.log($(this));
