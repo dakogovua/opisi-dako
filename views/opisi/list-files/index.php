@@ -314,7 +314,14 @@ zoomWindowFadeOut: 750,
 scrollZoom : true
    });
 
- 
+ $('#ui-id-1').on('click', function(){
+    console.log('click click');
+    //$(this).focusout();
+    //console.log($(this));
+    //$(this).blur();
+    $('#delasearch-title').blur();
+    //window.blur();
+})
 
 
 JS;
