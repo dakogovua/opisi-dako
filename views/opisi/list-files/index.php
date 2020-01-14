@@ -349,9 +349,7 @@ JS;
     
    
 	$this->registerJs($script, yii\web\View::POS_LOAD);
-    $this->registerJsFile(
-    '@web/js/koss.js'
-    );
+    $this->registerJsFile('@web/js/koss.js', [yii\web\View::POS_LOAD]);
 
 
     
