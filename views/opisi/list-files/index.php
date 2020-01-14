@@ -95,6 +95,8 @@ $this->params['breadcrumbs'][] = $this->title;
 <h2>Справи</h2>
 
 
+<?php Pjax::begin(); ?>
+
 <?= GridView::widget([
     'dataProvider' => $dataProvider,
     'filterModel' => $searchModel,
@@ -211,7 +213,7 @@ $this->params['breadcrumbs'][] = $this->title;
     ],
 ]); ?>
 
-
+<?php Pjax::end(); ?>
 
 
 <div id = "gallery_1">
@@ -313,13 +315,7 @@ scrollZoom : true
    });
 
  
-$('#ui-id-1').on('click', function(){
-    console.log('click');
-    //$(this).focusout();
-    //console.log($(this));
-    //$(this).blur();
-    $('#delasearch-title').blur();
-}) 
+
 
 JS;
     
