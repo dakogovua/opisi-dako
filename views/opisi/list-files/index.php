@@ -315,7 +315,7 @@ $('ul').click(function() {
     console.log('ul click ul');
 });
 
-
+/*
 $('.well').remove();
 
 
@@ -343,7 +343,7 @@ zoomWindowFadeOut: 750,
 scrollZoom : true
    });
 
-
+*/
 
 JS;
     
