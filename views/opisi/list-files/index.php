@@ -91,6 +91,12 @@ $this->params['breadcrumbs'][] = $this->title;
 ]) ?>
 </div>
 
+<?php
+    $folderdelo = $_GET['delofolder'];
+    ?>
+
+<?php if(!$folderdelo) : ?>
+
 
 <h2>Справи</h2>
 
@@ -215,6 +221,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <?php Pjax::end(); ?>
 
+<?php endif; ?>
 
 <div id = "gallery_1">
     <?php
