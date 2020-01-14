@@ -300,6 +300,10 @@ $this->registerJsFile ( 'js/jquery.ez-plus.js', [yii\web\View::POS_HEAD] );
 //$this->registerJsFile ( 'https://cdn.rawgit.com/igorlino/elevatezoom-plus/1.1.20/src/jquery.ez-plus.js', [yii\web\View::POS_END] );
 
 $script = <<< JS
+    
+    $('ul').click(function() {
+        console.log('ul click ul');
+    });
 
  $('ul.ui-front').on('click', function(){
     console.log('click click', $('ul.ui-front'));
@@ -311,15 +315,7 @@ $script = <<< JS
     //window.blur();
 })
 
-$('ul').click(function() {
-    console.log('ul click ul');
-});
-
-/*
 $('.well').remove();
-
-
-
  
  $('a.colorbox').colorbox({
     'onComplete': function(){ 
@@ -343,7 +339,7 @@ zoomWindowFadeOut: 750,
 scrollZoom : true
    });
 
-*/
+
 
 JS;
     
