@@ -14,6 +14,7 @@ use yii\filters\VerbFilter;
 use app\models\opisi\UploadForm;
 use app\models\opisi\ListFiles;
 
+use yii\helpers\ArrayHelper;
 use yii\web\UploadedFile;
 
 // use yii\helpers\FileHelper;
@@ -48,8 +49,21 @@ class ListFilesController extends \yii\web\Controller
                 'papka_opis' => $subfolder
             ]);
 
+            $arrayTitle = Dela::find()
+                ->select('title')
+                ->where(
+                    [
+                        'papka_fond' => $folder,
+                        'papka_opis' => $subfolder
+                    ]
+                )
+                ->asArray()->all();
 
+            $titles = ArrayHelper::getColumn($arrayTitle, 'title');
+            //print_r($titles);
         }
+
+
 
         $wwebfiles = new ListFiles();
 
@@ -129,7 +143,9 @@ class ListFilesController extends \yii\web\Controller
             'model' => $model,
             'namefond' => $namefond,
             'opisname' => $opisname,
-            'delaname' => $delaname
+            'delaname' => $delaname,
+
+            'titles' => $titles,
         ]);
 
     }

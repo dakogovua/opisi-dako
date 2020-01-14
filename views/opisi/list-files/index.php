@@ -2,13 +2,17 @@
 /* @var $this yii\web\View */
 use yii\helpers\Html;
 use kartik\spinner\Spinner;
-use yii\imagine\Image;
+
 use himiklab\colorbox\Colorbox;
 
 use yii\helpers\Url;
 
 use yii\grid\GridView;
 use yii\widgets\ActiveForm;
+
+use yii\jui\AutoComplete;
+
+use yii\widgets\Pjax;
 
 $this->title = 'Скани';
 
@@ -87,9 +91,9 @@ $this->params['breadcrumbs'][] = $this->title;
 ]) ?>
 </div>
 
-<?php if($dataProvider->totalCount > 0): ?>
 
 <h2>Справи</h2>
+
 
 <?= GridView::widget([
     'dataProvider' => $dataProvider,
@@ -146,7 +150,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'title:ntext' => [
 
             'label' => 'Заголовок справи (подано мовою оригіналу).',
-            'attribute' => 'title',
+
             'value' => function($data)
           /*  {
                 //return Html::a($data->podpapka, ('/web/index.php?r=opisi/secondpage/index&message='.$data->podpapka));
@@ -168,7 +172,27 @@ $this->params['breadcrumbs'][] = $this->title;
                         );
               },
             'format' => 'raw',
-            'filter' => Html::input('text', $searchModel->formName() . '[title]', $searchModel->title,['class' => 'form-control']),
+            'attribute' => 'title',
+        //    'filter' => Html::input('text', $searchModel->formName() . '[title]', $searchModel->title,['class' => 'form-control']),
+            'filter' => AutoComplete::widget([
+                'model' => $searchModel,
+                'attribute' => 'title',
+                'clientOptions' => [
+                    'source' => $titles,
+                    'autoFill' => true,
+                    'minLength' => 2,
+
+                ],
+                'options' => [
+                    'class' => 'form-control'
+                ],
+
+                'clientEvents' => [
+                   // 'keydown' => 'function () { console.log("event change occured."); }'
+                ],
+
+            ]),
+
 
         ],
 
@@ -187,7 +211,7 @@ $this->params['breadcrumbs'][] = $this->title;
     ],
 ]); ?>
 
-<?php endif; ?>
+
 
 
 <div id = "gallery_1">
@@ -288,6 +312,14 @@ zoomWindowFadeOut: 750,
 scrollZoom : true
    });
 
+ 
+$('#ui-id-1').on('click', function(){
+    console.log('click');
+    //$(this).focusout();
+    //console.log($(this));
+    //$(this).blur();
+    $('#delasearch-title').blur();
+}) 
 
 JS;
     
