@@ -101,7 +101,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <h2>Справи</h2>
 
 
-<?php Pjax::begin(); ?>
+<?php // Pjax::begin(); ?>
 
 <?= GridView::widget([
     'dataProvider' => $dataProvider,
@@ -219,7 +219,7 @@ $this->params['breadcrumbs'][] = $this->title;
     ],
 ]); ?>
 
-<?php Pjax::end(); ?>
+<?php // Pjax::end(); ?>
 
 <?php endif; ?>
 
@@ -328,6 +328,33 @@ scrollZoom : true
    });
 
 
+$(".ui-front").click(function() {
+    console.log('ui-front');
+    $('input').blur();
+});
+
+
+//////////// Обработка для автокомплита
+
+ document.addEventListener("click", function(event) { // (1)
+  // console.log("Привет от " + event.target.tagName + ' ' + event.target.className  );
+});
+
+
+
+/*
+$('ul.ui-front').on('click', function(){
+    console.log('click click', $('ul.ui-front'));
+    //ui-menu.ui-widget.ui-widget-content.ui-autocomplete.ui-front
+    //$(this).focusout();
+    //console.log($(this));
+    //$(this).blur();
+    $('#delasearch-title').blur();
+    //window.blur();
+}) */
+
+ 
+ 
 
 JS;
     

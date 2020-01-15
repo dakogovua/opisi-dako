@@ -1,26 +1,6 @@
-console.log('koss js');
-
-//////////// Обработка для автокомплита
-
-$(document).click(function() {
-    console.log("doc click");
-});
-
-$('ul').click(function() {
-    console.log('ul click ul');
-});
-
-$('ul.ui-front').on('click', function(){
-    console.log('click click', $('ul.ui-front'));
-    //ui-menu.ui-widget.ui-widget-content.ui-autocomplete.ui-front
-    //$(this).focusout();
-    //console.log($(this));
-    //$(this).blur();
-    $('#delasearch-title').blur();
-    //window.blur();
-})
 
 
+/////////////////////////////////////////////////////
 
 $('button.btn.btn-warning:not(:disabled)').click(function(e){
 
