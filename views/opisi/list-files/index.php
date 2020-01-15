@@ -328,8 +328,8 @@ scrollZoom : true
    });
 
 
-$(".ui-front").click(function() {
-    console.log('ui-front');
+$(".ui-front .ui-menu-item-wrapper .ui-state-active").click(function(e) {
+    console.log(e.target.className);
     $('input').blur();
 });
 
