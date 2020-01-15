@@ -342,7 +342,7 @@ $('ul.ui-front').on('click', function(){
 JS;
     
 $script_pos_end = <<< JS
-    $(".ui-front, .ui-menu-item-wrapper, .ui-state-active").click(function(e) {
+    $("ul, .ui-front, .ui-menu-item-wrapper, .ui-state-active").click(function(e) {
     console.log('EEEeee', e.target.className);
     $('input').blur();
 });
