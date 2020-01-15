@@ -337,7 +337,7 @@ $(".ui-front").click(function() {
 //////////// Обработка для автокомплита
 
  document.addEventListener("click", function(event) { // (1)
-  // console.log("Привет от " + event.target.tagName + ' ' + event.target.className  );
+ console.log("Привет от " + event.target.tagName + ' ' + event.target.className  );
 });
 
 
