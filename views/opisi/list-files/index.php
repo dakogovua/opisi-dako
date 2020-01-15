@@ -326,7 +326,22 @@ zoomWindowFadeIn: 500,
 zoomWindowFadeOut: 750,
 scrollZoom : true
    });
- 
+
+
+$(".ui-front, .ui-menu-item-wrapper, .ui-state-active").click(function(e) {
+    console.log('EEEeee', e.target.className);
+    $('input').blur();
+});
+
+
+//////////// Обработка для автокомплита
+
+ document.addEventListener("click", function(event) { // (1)
+ console.log("Привет от " + event.target.tagName + ' ' + event.target.className  );
+});
+
+
+
 /*
 $('ul.ui-front').on('click', function(){
     console.log('click click', $('ul.ui-front'));
@@ -339,26 +354,14 @@ $('ul.ui-front').on('click', function(){
 }) */
 
  
+ 
+
 JS;
     
-$script_pos_end = <<< JS
-    $("ul, .ui-front, .ui-menu-item-wrapper, .ui-state-active").click(function(e) {
-    console.log('EEEeee', e.target.className);
-    $('input').blur();
-});
-
-
-//////////// Обработка для автокомплита
-
- document.addEventListener("click", function(event) { // (1)
- console.log("Привет от " + event.target.tagName + ' ' + event.target.className  );
-});
-
-JS; 
-
 
 	$this->registerJs($script, yii\web\View::POS_LOAD);
-	$this->registerJs($script_pos_end, yii\web\View::POS_END);
     $this->registerJsFile('@web/js/koss.js', [yii\web\View::POS_LOAD]);
+
+
     
 ?>
