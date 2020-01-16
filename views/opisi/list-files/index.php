@@ -311,7 +311,7 @@ $(".ui-front, .ui-menu-item-wrapper, .ui-state-active").click(function(e) {
 
 document.addEventListener("click", function(event) { // (1)
  console.log("Привет от " + event.target.tagName + ' ' + event.target.className  );
- if (event.target.classNam == 'ui-menu-item-wrapper'){
+ if (event.target.className == 'ui-menu-item-wrapper'){
      console.log('if!');
      $('input').blur();
  }
