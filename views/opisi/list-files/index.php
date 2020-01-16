@@ -303,19 +303,7 @@ $this->registerJsFile ( 'js/jquery.ez-plus.js', [yii\web\View::POS_HEAD] );
 //$this->registerJsFile ( 'https://cdn.rawgit.com/igorlino/elevatezoom-plus/1.1.20/src/jquery.ez-plus.js', [yii\web\View::POS_END] );
 
 $script = <<< JS
-    
-$(".ui-front, .ui-menu-item-wrapper, .ui-state-active").click(function(e) {
-    console.log('EEEeee', e.target.className);
-     $('input').blur();
-}); 
 
-document.addEventListener("click", function(event) { // (1)
- console.log("Привет от " + event.target.tagName + ' ' + event.target.className  );
- if (event.target.className == 'ui-menu-item-wrapper'){
-     console.log('if!');
-     $('input').blur();
- }
-});
 
 if ($('.well')){
     $('.well').remove();    
@@ -347,7 +335,7 @@ scrollZoom : true
 
 JS;
 
-
+    $this->registerJsFile('@web/js/click.js', ['position' => yii\web\View::POS_END]);
 	$this->registerJs($script, yii\web\View::POS_LOAD);
     $this->registerJsFile('@web/js/koss.js', ['position' => yii\web\View::POS_LOAD]);
 
