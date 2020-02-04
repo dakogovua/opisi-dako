@@ -226,10 +226,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <?php endif; ?>
 
-<?php if (!$_GET['cfk']): ?>
-
+<?php if (isset($_GET['cfk'])): ?>
     <h2>Описи</h2>
-
+<?php else: ?>
+    <h2>Справи</h2>
 <?php endif; ?>
 
 <div id = "gallery_1">
