@@ -102,7 +102,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
 <h2>Справи</h2>
-
+<h3>Фонд <?= $_GET['fond']?></h3>
+<h3>Опис <?= $_GET['opis']?></h3>
 
 <?php // Pjax::begin(); ?>
 
@@ -122,9 +123,15 @@ $this->params['breadcrumbs'][] = $this->title;
             'filter' => Html::input('text', $searchModel->formName() . '[id]', $searchModel->id,['class' => 'form-control']),
             'visible' => !Yii::$app->user->isGuest,
         ],
-        'nomer_fonda',
-        'opisi_num',
-        'delo_num',
+        'nomer_fonda'=>[
+            'visible' => !Yii::$app->user->isGuest,
+        ],
+        'opisi_num'=>[
+            'visible' => !Yii::$app->user->isGuest,
+        ],
+        'delo_num'=>[
+            'visible' => !Yii::$app->user->isGuest,
+        ],
         'papka_fond' =>[
             'label' => 'Папка Фонда',
             'value' => function($data)
