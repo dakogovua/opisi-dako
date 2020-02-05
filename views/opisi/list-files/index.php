@@ -101,9 +101,9 @@ $this->params['breadcrumbs'][] = $this->title;
 <?php if(!$folderdelo) : ?>
 
 
-<h2>Справи</h2>
-<h3>Фонд <?= $_GET['fond']?></h3>
-<h3>Опис <?= $_GET['opis']?></h3>
+<h2>Справи:</h2>
+<b>Фонд <?= $_GET['fond']?></b>,
+<b>Опис <?= $_GET['opis']?></b>
 
 <?php // Pjax::begin(); ?>
 

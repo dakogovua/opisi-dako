@@ -22,7 +22,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="secondpage-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
-
+    <h3>Фонд <?= $_GET['fond']?></h3>
     <?= $namefond ?>
 
     <p>
@@ -37,6 +37,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 );
         ?>
     </p>
+
+
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
