@@ -129,9 +129,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'opisi_num'=>[
             'visible' => !Yii::$app->user->isGuest,
         ],
-        'delo_num'=>[
-            'visible' => !Yii::$app->user->isGuest,
-        ],
+        'delo_num',
         'papka_fond' =>[
             'label' => 'Папка Фонда',
             'value' => function($data)
