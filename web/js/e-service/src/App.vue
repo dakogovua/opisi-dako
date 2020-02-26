@@ -17,8 +17,9 @@
           >
           </app-input>
         </div>
+        <div>Додатково сплачується комісія платіжній системи</div>
         <button class="btn btn-primary" :disabled="done < info.length">
-          Сплатити {{info[4].value}} UAH
+          Сплатити {{calcComission}} UAH
         </button>
 
 
@@ -36,7 +37,7 @@
 </template>
 
 <script>
-
+    // SP = SP / 0.9725
 
 export default {
     data(){
@@ -107,6 +108,9 @@ export default {
             return {
                 width: (this.done / this.info.length * 100) + '%'
             }
+        },
+        calcComission(){
+            return (this.info[4].value / 0.973236).toFixed(2);
         }
     }
 
