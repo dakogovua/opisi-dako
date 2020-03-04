@@ -33,3 +33,6 @@ tests/_support/_generated
 #vagrant folder
 /.vagrant
 
+./config/*
+/config/*
+/config

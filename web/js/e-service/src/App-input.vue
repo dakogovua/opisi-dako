@@ -25,7 +25,7 @@ export default {
             activated: this.value != ''
         }
     },
-        props: ['name', 'value', 'pattern', 'replace'],
+        props: ['name', 'value', 'pattern', 'replace', 'post'],
 
         computed: {
             validClass()

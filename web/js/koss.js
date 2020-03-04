@@ -1,8 +1,9 @@
-
+//Скрипт для удаления файлов
 
 /////////////////////////////////////////////////////
-
+console.log('koss.js')
 $('button.btn.btn-warning:not(:disabled)').click(function(e){
+
 
 
 
@@ -51,6 +52,7 @@ $('button.btn.btn-warning:not(:disabled)').click(function(e){
             });
     } else {
         // Do nothing!
+        console.log('else Do nothing');
     }
 
 

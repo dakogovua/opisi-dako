@@ -342,6 +342,6 @@ JS;
 
     $this->registerJsFile('@web/js/click.js', ['position' => yii\web\View::POS_END]);
 	$this->registerJs($script, yii\web\View::POS_LOAD);
-    $this->registerJsFile('@web/js/koss.js', ['position' => yii\web\View::POS_LOAD]);
+    $this->registerJsFile('@web/js/koss.js', ['position' => yii\web\View::POS_END]);
 
 ?>

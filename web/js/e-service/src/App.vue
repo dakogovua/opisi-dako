@@ -18,14 +18,15 @@
           </app-input>
         </div>
         <div>Додатково сплачується комісія платіжній системи</div>
-        <button class="btn btn-primary" :disabled="done < info.length">
+        <button class="btn btn-primary" :disabled="done < info.length" :click="onClickBtn">
           Сплатити {{calcComission}} UAH
         </button>
 
 
+
       </form>
       <div v-else>
-        <table class="table table-bordered">
+        <table class="tablev v-le-bordered">
           <tr v-for="(item, index) in  info">
             <td>{{ item.name }}</td>
             <td>{{ item.value }}</td>
@@ -33,10 +34,63 @@
         </table>
       </div>
     </div>
+
+    <button @click="onClickBtn">onClickBtn</button>
+
   </div>
 </template>
 
 <script>
+    function post(path, params, method) {
+        method = method || "post"; // Set method to post by default if not specified.
+
+
+        // The rest of this code assumes you are not using a library.
+        // It can be made less wordy if you use one.
+        var form = document.createElement("form");
+        form.setAttribute("method", method);
+        form.setAttribute("action", path);
+
+        for(var key in params) {
+            console.log('paramsparams', params[key].post, params[key].value)
+            if(params.hasOwnProperty(key)) {
+                var hiddenField = document.createElement("input");
+                hiddenField.setAttribute("type", "hidden");
+                hiddenField.setAttribute("value", params[key].value);
+                key = key.replace(/\-/g, '_')
+
+                //console.log('key ', key)
+                hiddenField.setAttribute("name", params[key].post);
+
+                form.appendChild(hiddenField);
+            }
+        }
+        // var arrcsrf; //
+        // $.ajax({ //эта фигня запрашивает csrf и отправляет форму
+        //     url: '/',
+        //     type: "GET",
+        //     //   data: {},
+        //     success: function (data) {
+        //         //    console.log('data csrf url /', data)
+        //         arrcsrf  =  data.split(";");
+        //         // console.log('arrcsrf ',arrcsrf)
+        //
+        //         //console.log('arrcsrf[0] ', arrcsrf[0], ' arrcsrf[0] ', arrcsrf[1])
+        //
+        //         var hiddenToken = document.createElement("input");
+        //         hiddenToken.setAttribute("name", arrcsrf[0]);
+        //         hiddenToken.setAttribute("value",arrcsrf[1]);
+        //         form.appendChild(hiddenToken);
+        //
+        //         document.body.appendChild(form);
+        //         form.submit();
+        //     }
+        // })
+
+        document.body.appendChild(form);
+        form.submit();
+    }
+
     // SP = SP / 0.9725
 
 export default {
@@ -48,32 +102,37 @@ export default {
                 {
                     name: "Прізвище Ім'я По-батькові",
                     value: '',
-                    pattern: /^[a-zA-Z ]{2,30}$/,
-                    replace: /^[]$/
+                    pattern: /^[a-zA-Zа-яА-яії ]{2,30}$/,
+                    replace: /\d/g,
+                    post: 'name'
                 },
                 {
                     name: 'Телефон',
                     value: '',
                     pattern: /^[0-9]{7,14}$/,
-                    replace: /\D/g
+                    replace: /\D/g,
+                    post: 'phone'
                 },
                 {
                     name: 'Email',
                     value: '',
                     pattern: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
-                    replace: /^[]$/
+                    replace: /[А-Яа-яі]/g,
+                    post: 'email'
                 },
                 {
                     name: 'Номер замовлення',
                     value: '',
                     pattern: /\d+/,
-                    replace: /^[]$/
+                    replace: /^[]$/,
+                    post: 'ordernum'
                 },
                 {
                     name: 'Сумма замовлення',
                     value: '',
                     pattern: /.+/,
-                    replace: /^[]$/
+                    replace: /\D/g,
+                    post: 'summ'
                 }
             ],
                 controls: [],
@@ -101,6 +160,9 @@ export default {
             }
 
             this.done = done;
+        },
+        onClickBtn(){
+            post('http://localhost/web/index.php?r=pay', this.info);
         }
     },
     computed: {
