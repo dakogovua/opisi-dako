@@ -10,11 +10,11 @@ namespace app\controllers;
 
 use \yii\web\Controller;
 
-use \DateTime;
-use DatePeriod;
-use \DateInterval;
-use app\models\ClientData as ClientDatamodel;
-use app\models\OtherVendordata as OtherVendordatamodel;
+//use \DateTime;
+//use DatePeriod;
+//use \DateInterval;
+use app\models\pay\Clients;
+
 
 use Yii;
 
@@ -29,13 +29,53 @@ class PayController extends Controller
         return parent::beforeAction($action);
     }
 
+    function convertToMysql($time){
+        return date('Y-m-d H:i:s',$time);
+    }
+
     public $layout = false;
     public $public_key = 'i61109306451';
     public $private_key = 'fXeKlQQQeYgH3ZR5s7CEez8XW2UnMkPHE4Y7XNqV';
 
 
     public function actionIndex(){
-        print_r($_POST);
+    //    print_r($_POST);
+
+        $user = new Clients();
+        $time = time();
+        $service_order=$time."-".rand(1, 9);
+
+        $user->date_time_prepay = $this->convertToMysql($time);
+        $user->service_order = $service_order;
+        $user->status = 'prepay';
+        echo '<hr>';
+
+        if ($user->load(Yii::$app->request->post(), '') && $user->save()) {
+
+           $user->getErrors();
+
+            $liqpay = new LiqPay($this->public_key, $this->private_key);
+            $html = $liqpay->cnb_form(array(
+                'action'         => 'pay',
+                'amount'         => $user->sum,
+                //    'amount'         => $vendorsmodel->sumapi,
+                'currency'       => 'UAH',
+                'description'    => 'Оплата за послуги '.$user->order_dako,
+                'order_id'       => $user->service_order,
+                'version'        => '3',
+                'sandbox'        => '1',
+            ));
+
+
+            echo $html; //Отправляем всё в ликпей
+        }
+        else {
+
+            echo "CRITICAL ERROR";
+            echo "<hr>";
+            print_r($user->getErrors());
+            die;
+        }
     }
 
 
@@ -137,7 +177,7 @@ class PayController extends Controller
             Yii::info($messageLog, 'payment_liqpay'); //запись в лог
 
         }else{
-            //  throw new \yii\web\HttpException(404, 'Ошибка. Передайте эту информацию для решения проблемы');
+             throw new \yii\web\HttpException(404, 'Ошибка. Передайте эту информацию для решения проблемы');
         }
 
 

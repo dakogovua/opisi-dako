@@ -35,7 +35,7 @@
       </div>
     </div>
 
-    <button @click="onClickBtn">onClickBtn</button>
+    <!-- <button @click="onClickBtn">onClickBtn</button> -->
 
   </div>
 </template>
@@ -125,14 +125,14 @@ export default {
                     value: '',
                     pattern: /\d+/,
                     replace: /^[]$/,
-                    post: 'ordernum'
+                    post: 'order_dako'
                 },
                 {
                     name: 'Сумма замовлення',
                     value: '',
                     pattern: /.+/,
                     replace: /\D/g,
-                    post: 'summ'
+                    post: 'sum'
                 }
             ],
                 controls: [],
