@@ -18,7 +18,7 @@
           </app-input>
         </div>
         <div>Додатково сплачується комісія платіжній системи</div>
-        <button class="btn btn-primary" :disabled="done < info.length" :click="onClickBtn">
+        <button class="btn btn-primary" :disabled="done < info.length" @click="onClickBtn">
           Сплатити {{calcComission}} UAH
         </button>
 
@@ -130,8 +130,8 @@ export default {
                 {
                     name: 'Сумма замовлення',
                     value: '',
-                    pattern: /.+/,
-                    replace: /\D/g,
+                    pattern: /\d+\.{0,1}\d{0,2}/,
+                    replace: /[A-Za-z!\ ,]/g,
                     post: 'sum'
                 }
             ],

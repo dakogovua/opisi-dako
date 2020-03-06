@@ -170,9 +170,9 @@ class PayController extends Controller
                 'post' => $data_result
             ];
 
-            echo "<hr>";
-            echo $data_result;
-            echo "<hr>";
+//            echo "<hr>";
+//            echo $data_result;
+//            echo "<hr>";
 
             Yii::info($messageLog, 'payment_liqpay'); //запись в лог
 
