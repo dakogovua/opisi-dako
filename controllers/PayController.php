@@ -68,7 +68,7 @@ class PayController extends Controller
             ));
 
 
-        //    echo $html; //Отправляем всё в ликпей
+            echo $html; //Отправляем всё в ликпей
         }
         else {
 
