@@ -48,6 +48,7 @@ class PayController extends Controller
         $user->date_time_prepay = $this->convertToMysql($time);
         $user->service_order = $service_order;
         $user->status = 'prepay';
+
         echo '<hr>';
 
         if ($user->load(Yii::$app->request->post(), '') && $user->save()) {
@@ -67,7 +68,7 @@ class PayController extends Controller
             ));
 
 
-            echo $html; //Отправляем всё в ликпей
+        //    echo $html; //Отправляем всё в ликпей
         }
         else {
 
@@ -187,9 +188,9 @@ class PayController extends Controller
         $status = $array["status"];
         $transaction_id = $array["transaction_id"];
         $order_id = $array["order_id"];
-        $order_id = 23427;
 
-        echo '$order_id '.$order_id;
+
+        echo '$order_id '.$order_id.' '. $array["order_id"];
 
         $clientmodel = ClientDatamodel::findOne([
             'doc_number' => $order_id,
