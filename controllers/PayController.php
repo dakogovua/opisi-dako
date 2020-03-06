@@ -22,7 +22,7 @@ class PayController extends Controller
 {
     public function beforeAction($action)
     {
-        if ($action->id == 'paid' || $action->id == 'index') {
+        if ($action->id == 'paidcallback' || $action->id == 'index') {
             $this->enableCsrfValidation = false;
         }
 
