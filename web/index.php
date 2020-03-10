@@ -1,6 +1,7 @@
 <?php
 
 $hostname = $_SERVER['SERVER_NAME'];
+
 echo $hostname;
 
 // comment out the following two lines when deployed to production
