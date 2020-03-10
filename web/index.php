@@ -1,7 +1,7 @@
 <?php
 
 $hostname = $_SERVER['SERVER_NAME'];
-echo $hostname;
+// echo $hostname;
 
 // comment out the following two lines when deployed to production
  defined('YII_DEBUG') or define('YII_DEBUG', true);
