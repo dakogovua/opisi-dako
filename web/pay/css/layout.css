@@ -235,7 +235,7 @@ ul#nav li.current a { color: #1E732D; }
 	display: inline-block;
 	float: left;
 }
-#main #mc_embed_signup input[type="email"] {	
+#main #mc_embed_signup input[type="email"], #main #mc_embed_signup input[type="password"] {
 	font-size: 15px;
 	height: 54px;
 	line-height: 30px;
@@ -243,7 +243,8 @@ ul#nav li.current a { color: #1E732D; }
 	border-radius: 3px 0 0 3px;	
 	background: #727272;
 	background: rgba(255, 255, 255, .2);	
-	width: 70%;
+	width: 30%;
+    margin-inline-end: 2px;
 }
 #main #mc_embed_signup input[type="submit"] {
 	font-size: 15px;

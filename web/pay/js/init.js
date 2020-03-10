@@ -201,4 +201,9 @@ jQuery(document).ready(function($) {
         $('#menu').toggleClass('active');
     });
 
+
+    $('#kossbtn').click(function(){
+        window.location.href='http://dako.gov.ua';
+    });
+
 });

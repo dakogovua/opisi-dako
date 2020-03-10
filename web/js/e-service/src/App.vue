@@ -162,7 +162,7 @@ export default {
             this.done = done;
         },
         onClickBtn(){
-            post('http://localhost/web/index.php?r=pay', this.info);
+            post('http://opisi.dako.gov.ua/web/index.php?r=pay', this.info);
         }
     },
     computed: {
