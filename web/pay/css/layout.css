@@ -499,3 +499,11 @@ footer .copyright  li:first-child:before {
     background-color: #ef1212;
     border-color: #000;
 }
+
+a#kossbtn {
+    cursor: pointer;
+}
+
+a#kossbtn:hover {
+    color:#d8d0d0;
+}
