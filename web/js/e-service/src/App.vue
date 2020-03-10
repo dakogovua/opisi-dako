@@ -100,14 +100,14 @@ export default {
 
             info: [
                 {
-                    name: "Прізвище Ім'я По-батькові",
+                    name: "Прізвище Ім'я По-батькові / Name",
                     value: '',
                     pattern: /^[a-zA-Zа-яА-яії ]{2,30}$/,
                     replace: /\d/g,
                     post: 'name'
                 },
                 {
-                    name: 'Телефон',
+                    name: 'Телефон / Phone',
                     value: '',
                     pattern: /^[0-9]{7,14}$/,
                     replace: /\D/g,
@@ -121,14 +121,14 @@ export default {
                     post: 'email'
                 },
                 {
-                    name: 'Номер замовлення',
+                    name: 'Номер замовлення / Order number',
                     value: '',
                     pattern: /\d+/,
                     replace: /^[]$/,
                     post: 'order_dako'
                 },
                 {
-                    name: 'Сумма замовлення',
+                    name: 'Сумма замовлення / Summ',
                     value: '',
                     pattern: /\d+\.{0,1}\d{0,2}/,
                     replace: /[А-Яа-яA-Za-zіїє!\ ,]/g,

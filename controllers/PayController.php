@@ -22,6 +22,8 @@ class PayController extends Controller
 {
     public function beforeAction($action)
     {
+        $this->layout = 'pay';
+
         if ($action->id == 'paidcallback' || $action->id == 'index') {
             $this->enableCsrfValidation = false;
         }
@@ -161,6 +163,7 @@ class PayController extends Controller
         $sign = base64_encode(sha1($this->private_key.$data.$this->private_key, 1));
 
         $data_result = base64_decode($data);
+        $data_result = '{"payment_id":1263584946,"action":"pay","status":"sandbox","version":3,"type":"buy","paytype":"card","public_key":"i61109306451","acq_id":414963,"order_id":"1583537545-5","liqpay_order_id":"U7HS1QWH1583537559446563","description":"Оплата за послуги sdfsdf234","sender_phone":"380503843096","sender_first_name":"Irina","sender_last_name":"Konstantinova","sender_card_mask2":"516875*62","sender_card_bank":"pb","sender_card_type":"mc","sender_card_country":804,"ip":"212.90.172.202","amount":234234.0,"currency":"UAH","sender_commission":0.0,"receiver_commission":6441.44,"agent_commission":0.0,"amount_debit":234234.0,"amount_credit":234234.0,"commission_debit":0.0,"commission_credit":6441.44,"currency_debit":"UAH","currency_credit":"UAH","sender_bonus":0.0,"amount_bonus":0.0,"mpi_eci":"7","is_3ds":false,"language":"ru","create_date":1583537559447,"end_date":1583537559988,"transaction_id":1263584946}';
         $date = date("Y-m-d H:i:s");
 
         if(strcasecmp($sign, $signature) == 0){
@@ -178,7 +181,7 @@ class PayController extends Controller
             Yii::info($messageLog, 'payment_liqpay'); //запись в лог
 
         }else{
-             throw new \yii\web\HttpException(404, 'Ошибка. Передайте эту информацию для решения проблемы');
+      //       throw new \yii\web\HttpException(404, 'Ошибка. Передайте эту информацию для решения проблемы');
         }
 
 
@@ -190,10 +193,10 @@ class PayController extends Controller
         $order_id = $array["order_id"];
 
 
-        echo '$order_id '.$order_id.' '. $array["order_id"];
+       // echo '$order_id '.$order_id.' '. $array["order_id"];
 
-        $clientmodel = ClientDatamodel::findOne([
-            'doc_number' => $order_id,
+        $clientmodel = Clients::findOne([
+            'service_order' => $order_id,
         ]);
 
 
@@ -201,13 +204,11 @@ class PayController extends Controller
         $clientmodel->status = $status;
         $clientmodel->transaction_id = $transaction_id;
 
-        $clientnodel->save(false);
+        $clientmodel->save(false);
 
-        echo "<hr><pre>";
-        print_r($polismodel);
-        echo "</pre><hr>";
+       // print_r($clientmodel);
 
-        return $this->render('paid',compact('polismodel'));
+        return $this->render('paid',['clientmodel' => $clientmodel]);
     }
 
 }
