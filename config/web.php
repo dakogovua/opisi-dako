@@ -4,6 +4,7 @@ $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
 
 $config = [
+//    'defaultRoute' => 'site/cfk',
     'id' => 'basic',
 	 'language' => 'ru',
 	 'name'=>'ДАКО.описи&справи',
@@ -35,6 +36,7 @@ $config = [
             // 'useFileTransport' to false and configure a transport
             // for the mailer to send real emails.
             'useFileTransport' => false,
+            // DEV 'useFileTransport' => true,
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,

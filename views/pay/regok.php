@@ -51,6 +51,13 @@
         </div>
     </header> <!-- Header End -->
 
+    <?php if( Yii::$app->session->hasFlash('success') ): ?>
+        <div class="alert alert-success alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <?php echo Yii::$app->session->getFlash('success'); ?>
+        </div>
+    <?php endif;?>
+
     <div  id="main" class="row">
 
         <div class="twelve columns koss">
@@ -84,20 +91,7 @@
 
                 </form>
             </div>
-            <hr>
-                <?php $form = ActiveForm::begin(
-                   //     [  'action' => '?r=pay/signup']
-                ) ?>
-                <?= $form->field($model, 'username') ?>
-                <?= $form->field($model, 'password')->passwordInput() ?>
-                <div class="form-group">
-                    <div>
-                        <?= Html::submitButton('Регистрация', ['class' => 'btn btn-success']) ?>
-                    </div>
-                </div>
-                <?php ActiveForm::end() ?>
 
-            <hr>
             <p><a id="kossbtn" class="btn btn-lg btn-red">Закрити</a></p>
 
 <!--            <ul class="social">-->
