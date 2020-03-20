@@ -71,33 +71,34 @@
 
             <!-- Begin MailChimp Signup Form -->
             <div id="mc_embed_signup">
-                <form action="#" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+                <?php $form = ActiveForm::begin(
+                    [  'action' => '?r=cabinet/signup']
+                ) ?>
+                <div class="signup">
+                <?= $form->field($model, 'username')->input('email', [
+                            'value' => $model->email,
+                            'class' => 'email',
+                            'placeholder' => 'Ваш е-мейл'
+                    ]) ?>
 
-                    <input type="email" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required value="<?= $clientmodel->email ?>">
+                    <?= $form->field($model, 'password')->passwordInput([
+                            'class' => 'email',
+                            'placeholder' => 'password'
+                        ])->label('Password'); ?>
 
-                    <input type="password" name="password" class="email" id="mce-Password" placeholder="password" required value="">
+                    <div class="form-group">
+                        <div class="register-btn">
+                            <?= Html::submitButton('Реєстрація', ['class' => 'btn btn-success ']) ?>
+                        </div>
+                    </div>
+                </div>
 
                     <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
                     <div style="position: absolute; left: -5000px;"><input type="text" name="b_cdb7b577e41181934ed6a6a44_e65110b38d" value=""></div>
-
-                    <!-- <div class="clear"> --><input type="submit" value="Зареєструватись" name="subscribe" id="mc-embedded-subscribe" class="button"><!-- </div> -->
-
-                </form>
-            </div>
-            <hr>
-                <?php $form = ActiveForm::begin(
-                   //     [  'action' => '?r=pay/signup']
-                ) ?>
-                <?= $form->field($model, 'username') ?>
-                <?= $form->field($model, 'password')->passwordInput() ?>
-                <div class="form-group">
-                    <div>
-                        <?= Html::submitButton('Регистрация', ['class' => 'btn btn-success']) ?>
-                    </div>
-                </div>
                 <?php ActiveForm::end() ?>
 
-            <hr>
+            </div>
+
             <p><a id="kossbtn" class="btn btn-lg btn-red">Закрити</a></p>
 
 <!--            <ul class="social">-->

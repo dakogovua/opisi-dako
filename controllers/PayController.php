@@ -17,7 +17,7 @@ use \yii\web\Controller;
 use app\models\pay\Clients;
 use app\models\SignupForm;
 
-use app\models\User;
+
 
 use Yii;
 
@@ -95,7 +95,7 @@ class PayController extends Controller
 
         $data_result = base64_decode($data);
 
-        // $data_result = '{"payment_id":1263584946,"action":"pay","status":"sandbox","version":3,"type":"buy","paytype":"card","public_key":"i61109306451","acq_id":414963,"order_id":"1583537545-5","liqpay_order_id":"U7HS1QWH1583537559446563","description":"Оплата за послуги sdfsdf234","sender_phone":"380503843096","sender_first_name":"Irina","sender_last_name":"Konstantinova","sender_card_mask2":"516875*62","sender_card_bank":"pb","sender_card_type":"mc","sender_card_country":804,"ip":"212.90.172.202","amount":234234.0,"currency":"UAH","sender_commission":0.0,"receiver_commission":6441.44,"agent_commission":0.0,"amount_debit":234234.0,"amount_credit":234234.0,"commission_debit":0.0,"commission_credit":6441.44,"currency_debit":"UAH","currency_credit":"UAH","sender_bonus":0.0,"amount_bonus":0.0,"mpi_eci":"7","is_3ds":false,"language":"ru","create_date":1583537559447,"end_date":1583537559988,"transaction_id":1263584946}';
+         $data_result = '{"payment_id":1263584946,"action":"pay","status":"sandbox","version":3,"type":"buy","paytype":"card","public_key":"i61109306451","acq_id":414963,"order_id":"1583961186-9","liqpay_order_id":"U7HS1QWH1583537559446563","description":"Оплата за послуги sdfsdf234","sender_phone":"380503843096","sender_first_name":"Irina","sender_last_name":"Konstantinova","sender_card_mask2":"516875*62","sender_card_bank":"pb","sender_card_type":"mc","sender_card_country":804,"ip":"212.90.172.202","amount":234234.0,"currency":"UAH","sender_commission":0.0,"receiver_commission":6441.44,"agent_commission":0.0,"amount_debit":234234.0,"amount_credit":234234.0,"commission_debit":0.0,"commission_credit":6441.44,"currency_debit":"UAH","currency_credit":"UAH","sender_bonus":0.0,"amount_bonus":0.0,"mpi_eci":"7","is_3ds":false,"language":"ru","create_date":1583537559447,"end_date":1583537559988,"transaction_id":1263584946}';
         // $date = date("Y-m-d H:i:s");
 
         if(strcasecmp($sign, $signature) == 0){
@@ -148,64 +148,6 @@ class PayController extends Controller
         ]);
     }
 
-    public function actionSignup()
-    {
-        $model = new SignupForm();
-        if ($model->load(Yii::$app->request->post())) {
 
-            if ($user = $model->signup()) {
-                $email = \Yii::$app->mailer->compose()
-                    ->setTo($user->email)
-                    //->setFrom([\Yii::$app->params['supportEmail'] => \Yii::$app->name . ' robot'])
-                    ->setFrom(['ingener@dako.gov.ua' => 'Dako.service'])
-                    ->setSubject('Signup Confirmation')
-                    ->setTextBody("
-                                Click this link ".
-
-                                Yii::$app->urlManager->createAbsoluteUrl(
-                                    //['pay/confirm','id'=>$user->id,'key'=>$user->auth_key]
-                                    ['pay/confirm', 'key'=>$user->auth_key]))
-                    ->send();
-            if($email){
-                Yii::$app->getSession()->setFlash('success','Check Your email!');
-            }
-            else{
-                Yii::$app->getSession()->setFlash('warning','Failed, contact Admin!');
-            }
-                return $this->render('regok', [
-
-                ]);
-            }
-        }
-
-        return $this->render('paid', [
-            'model' => $model,
-        ]);
-    }
-
-    public function actionConfirm($key)
-    {
-    //    print_r($_GET);
-    //    die;
-
-        $user = Client::find()->where([
-        //    'id'=>$id,
-            'auth_key'=>$key,
-            'status'=>0,
-        ])->one();
-
-
-        if(!empty($user)){
-            $user->status=10;
-            $user->save();
-            Yii::$app->getSession()->setFlash('success','Success!');
-        }
-                else{
-                    Yii::$app->getSession()->setFlash('warning','Failed!');
-        }
-            return $this->render('regok',[]);
-
-        // return $this->goHome();
-    }
 
 }

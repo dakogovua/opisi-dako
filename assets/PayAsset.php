@@ -28,6 +28,7 @@ class PayAsset extends AssetBundle
 
         //'pay/js/modernizr.js',
         //'js/bootstrap.min.js',
+      //  "https://code.jquery.com/jquery-3.4.1.min.js",
 "http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js",
 //"pay/js/jquery-migrate-1.2.1.min.js",
         "pay/js/init.js",
@@ -41,8 +42,9 @@ class PayAsset extends AssetBundle
     ];
 
     public $depends = [
-      //  'yii\web\YiiAsset',
-      //  'yii\web\JqueryAsset'
+ //       'yii\bootstrap\BootstrapPluginAsset',
+//       'yii\web\YiiAsset',
+//        'yii\web\JqueryAsset'
     ];
 }
 

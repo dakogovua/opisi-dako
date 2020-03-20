@@ -1,7 +1,11 @@
 <?php
     use yii\helpers\Html;
     use yii\bootstrap\ActiveForm;
-?>
+
+    use app\assets\CabinetAsset;
+    CabinetAsset::register($this);
+
+    ?>
 
 <div id="preloader">
     <div id="status">
@@ -31,78 +35,84 @@
                 <div class="nav-toggle"><span></span></div>
             <ul id="menu">
 
-                <li><a href="">Увійти в кабінет</a></li>
+                <li><a href="">ВИйти</a></li>
 <!--                <li><a href="">Зареєструватись</a></li>-->
             </ul>
         </nav>
 
-        <nav id="nav-wrap">
 
-            <a class="menu-btn" href="#nav-wrap" title="Show navigation">Show navigation</a>
-            <a class="menu-btn" href="#" title="Hide navigation">Hide navigation</a>
-
-            <ul id="nav" class="nav">
-                <li class="current"><a class="smoothscroll" href="#home">Home</a></li>
-                <li><a class="smoothscroll" href="#about">About</a></li>
-                <li><a class="smoothscroll" href="#location">Location</a></li>
-            </ul> <!-- end #nav -->
-
-        </nav> <!-- end #nav-wrap -->
         </div>
     </header> <!-- Header End -->
-
+<div class="">
     <?php if( Yii::$app->session->hasFlash('success') ): ?>
-        <div class="alert alert-success alert-dismissible" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <?php echo Yii::$app->session->getFlash('success'); ?>
-        </div>
-    <?php endif;?>
 
+            <div class="alert alert-success alert-dismissible" role="alert">
+
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <?php echo Yii::$app->session->getFlash('success'); ?>
+            </div>
+
+    <?php endif;?>
+</div>
     <div  id="main" class="row">
 
-        <div class="twelve columns koss">
+        <div class="twelve columns koss reg">
 
-            <h1>Ми вже працюємо над Вашим замовленням, <?= $clientmodel->name ?>. </h1>
+            <ul class="nav nav-tabs">
+                <li class="active">
+                    <a data-toggle="tab" href="#description">Login</a>
+                </li>
+                <li>
+                    <a data-toggle="tab" href="#characteristics">Register</a>
+                </li>
+                <li>
+                    <a data-toggle="tab" href="#opinion">Правила</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active" id="description">
+                    <div class="site-login">
+                        <h1><?= Html::encode($this->title) ?></h1>
 
-            <p>Номер замовлення <?= $clientmodel->order_dako ?>, з Вами зв"яжуться за телефоном <?= $clientmodel->phone ?> або через е-мейл <?=$clientmodel -> email ?>.</p>
-            <p>Якщо Ви вже зареєстровані, то натисніть Увійти щоб попасти в кабінет користувача</p>
+                        <p>Після підтвердження е-мейлу, введіть ваш е-мейл та пароль при реєстрації:</p>
 
-            <h5>Нам потрібен час для виконання замовлення</h5>
+                        <?php $form = ActiveForm::begin([
+                            'id' => 'login-form',
+                            'layout' => 'horizontal',
+                            'fieldConfig' => [
+                                'template' => "{label}\n<div class=\"col-lg-3\">{input}</div>\n<div class=\"col-lg-8\">{error}</div>",
+                                'labelOptions' => ['class' => 'col-lg-1 control-label'],
+                            ],
+                        ]); ?>
 
-            <div id="counter" class="cf">
-                <span>134 <em>дні</em></span>
-                <span>12 <em>години</em></span>
-                <span>50 <em>хвилини</em></span>
-                <span>33 <em>секунди</em></span>
+                        <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
+
+                        <?= $form->field($model, 'password')->passwordInput() ?>
+
+                        <!--                --><?//= $form->field($model, 'rememberMe')->checkbox([
+                        //                    'template' => "<div class=\"col-lg-offset-1 col-lg-3\">{input} {label}</div>\n<div class=\"col-lg-8\">{error}</div>",
+                        //                ]) ?>
+
+                        <div class="form-group">
+                            <div class="col-lg-offset-1 col-lg-11">
+                                <?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
+                            </div>
+                        </div>
+
+                        <?php ActiveForm::end(); ?>
+
+                    </div>
+                </div>
+                <div class="tab-pane" id="characteristics">
+                    Для реєстрації заповніть форму та підтвердіть е-мейл
+                </div>
+                <div class="tab-pane" id="opinion">
+                    Як користуватись кабінетом користувача ДАКО.сервіс
+                </div>
             </div>
 
-            <!-- Begin MailChimp Signup Form -->
-            <div id="mc_embed_signup">
-                <form action="#" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
 
-                    <input type="email" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required value="<?= $clientmodel->email ?>">
 
-                    <input type="password" name="password" class="email" id="mce-Password" placeholder="password" required value="">
-
-                    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-                    <div style="position: absolute; left: -5000px;"><input type="text" name="b_cdb7b577e41181934ed6a6a44_e65110b38d" value=""></div>
-
-                    <!-- <div class="clear"> --><input type="submit" value="Зареєструватись" name="subscribe" id="mc-embedded-subscribe" class="button"><!-- </div> -->
-
-                </form>
-            </div>
-
-            <p><a id="kossbtn" class="btn btn-lg btn-red">Закрити</a></p>
-
-<!--            <ul class="social">-->
-<!--                <li><a href="#"><i class="fa fa-facebook"></i></a></li>-->
-<!--                <li><a href="#"><i class="fa fa-twitter"></i></a></li>-->
-<!--                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>-->
-<!--                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>-->
-<!--                <li><a href="#"><i class="fa fa-instagram"></i></a></li>-->
-<!--                <li><a href="#"><i class="fa fa-dribbble"></i></a></li>-->
-<!--                <li><a href="#"><i class="fa fa-skype"></i></a></li>-->
-<!--            </ul>-->
 
         </div>
 

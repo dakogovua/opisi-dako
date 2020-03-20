@@ -1013,3 +1013,11 @@ header {
     bottom: -10px;
 }
 
+.kflash {
+    text-align: center;
+    background: snow;
+    /* margin-top: 29px; */
+    padding: 4 0 0 0;
+}
+
+

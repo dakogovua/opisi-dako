@@ -507,3 +507,11 @@ a#kossbtn {
 a#kossbtn:hover {
     color:#d8d0d0;
 }
+
+.signup {
+    display: flex;
+}
+
+.register-btn{
+    margin: 50px 2px;
+}
