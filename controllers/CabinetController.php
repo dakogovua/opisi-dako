@@ -26,8 +26,6 @@ class CabinetController extends Controller
 
     public function actionSignup()
     {
-
-
         $model = new SignupForm();
         if ($model->load(Yii::$app->request->post())) {
 
@@ -56,9 +54,6 @@ class CabinetController extends Controller
 
                 ]);
             }
-
-
-
         }
 
         return $this->render('regok', [
@@ -70,14 +65,11 @@ class CabinetController extends Controller
     {
         //    print_r($_GET);
         //    die;
-
         $user = Client::find()->where([
             //    'id'=>$id,
             'auth_key'=>$key,
             'status'=>0,
         ])->one();
-
-
         if(!empty($user)){
             $user->status=10;
             $user->save();
@@ -87,7 +79,6 @@ class CabinetController extends Controller
             Yii::$app->getSession()->setFlash('warning','Failed!');
         }
         return $this->render('regok',[]);
-
         // return $this->goHome();
     }
 

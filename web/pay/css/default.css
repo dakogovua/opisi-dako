@@ -1021,3 +1021,15 @@ header {
 }
 
 
+form#login-form {
+    display: inline-block;
+}
+
+label.col-lg-1.control-label {
+    width: 100px;
+}
+
+.alert.alert-success.alert-dismissible {
+    margin: 0 auto;
+    width: 60%;
+}

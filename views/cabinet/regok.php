@@ -43,7 +43,7 @@
 
         </div>
     </header> <!-- Header End -->
-<div class="">
+<div class="alertflash">
     <?php if( Yii::$app->session->hasFlash('success') ): ?>
 
             <div class="alert alert-success alert-dismissible" role="alert">
@@ -71,7 +71,7 @@
             </ul>
             <div class="tab-content">
                 <div class="tab-pane active" id="description">
-                    <div class="site-login">
+                    <div class="site-login ">
                         <h1><?= Html::encode($this->title) ?></h1>
 
                         <p>Після підтвердження е-мейлу, введіть ваш е-мейл та пароль при реєстрації:</p>
@@ -108,6 +108,8 @@
                 </div>
                 <div class="tab-pane" id="opinion">
                     Як користуватись кабінетом користувача ДАКО.сервіс
+
+
                 </div>
             </div>
 
