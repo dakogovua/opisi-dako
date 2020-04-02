@@ -18,7 +18,7 @@ class DelFilesController extends Controller
 
         $this->layout = false;
 
-       // print_r($_GET);
+        // print_r($_GET);
 
         if (!Yii::$app->user->isGuest) {
             $delfile = Yii::$app->request->get('delfile');
@@ -34,23 +34,24 @@ class DelFilesController extends Controller
         }
     }
 
-    public function pathDel($pathcall){
+    public static function pathDel($pathcall){
         $webroot = Yii::getAlias('@webroot');
-        $pathdel = $webroot.'/'.$pathcall;
-        self::rmrf($pathdel);
+        $pathdel = $webroot.'/scans/'.$pathcall;
+        self::rrmdir($pathdel);
     }
 
-     function rmrf($dir) {
-
-        foreach (glob($dir) as $file) {
-            if (is_dir($file)) {
-                rmrf("$file/*");
-                rmdir($file);
-            } else {
-                unlink($file);
+    private static function rrmdir($dir) {
+        if (is_dir($dir)) {
+            $objects = scandir($dir);
+            foreach ($objects as $object) {
+                if ($object != "." && $object != "..") {
+                    if (is_dir($dir. DIRECTORY_SEPARATOR .$object) && !is_link($dir."/".$object))
+                        rrmdir($dir. DIRECTORY_SEPARATOR .$object);
+                    else
+                        unlink($dir. DIRECTORY_SEPARATOR .$object);
+                }
             }
+            rmdir($dir);
         }
-
-
     }
 }

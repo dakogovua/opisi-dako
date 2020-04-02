@@ -212,7 +212,7 @@ class ListFilesController extends \yii\web\Controller
 
         $model->delete();
 
-     //   return $this->redirect(['index']);
+        //   return $this->redirect(['index']);
         return $this->goBack();
     }
 
