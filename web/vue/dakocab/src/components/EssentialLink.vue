@@ -2,9 +2,12 @@
   <q-item
     clickable
     tag="a"
-    target="_blank"
+
     :href="link"
+    :class="[link.slice(2).localeCompare(currentPage) ? '': 'active' ]"
   >
+
+
     <q-item-section
       v-if="icon"
       avatar
@@ -18,6 +21,7 @@
         {{ caption }}
       </q-item-label>
     </q-item-section>
+
   </q-item>
 </template>
 
@@ -37,13 +41,29 @@ export default {
 
     link: {
       type: String,
-      default: '#'
+      default: '#',
     },
 
     icon: {
       type: String,
       default: ''
     }
-  }
+  },
+    methods:{
+        // currentPage(i){
+        //     console.log ('i', i, this.$route.path)
+        //     if (i == '/#'+this.$route.path){
+        //         return 'active';
+        //     }
+        //     else return '';
+        //
+        // }
+    },
+    computed: {
+        currentPage(){
+
+             return this.$route.path;
+        }
+    }
 }
 </script>

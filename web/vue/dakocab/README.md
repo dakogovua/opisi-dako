@@ -1,6 +1,6 @@
-# Dako App (kquasar)
+# Dako cabinet (dakocabinet)
 
-DAKO user cabinet
+User cabinet DAKO.service
 
 ## Install the dependencies
 ```bash

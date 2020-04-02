@@ -33,4 +33,24 @@ class DelFilesController extends Controller
             return $this->goHome();
         }
     }
+
+    public function pathDel($pathcall){
+        $webroot = Yii::getAlias('@webroot');
+        $pathdel = $webroot.'/'.$pathcall;
+        DelFilesController::rmrf($pathdel);
+    }
+
+     function rmrf($dir) {
+
+        foreach (glob($dir) as $file) {
+            if (is_dir($file)) {
+                rmrf("$file/*");
+                rmdir($file);
+            } else {
+                unlink($file);
+            }
+        }
+
+
+    }
 }

@@ -197,9 +197,23 @@ class ListFilesController extends \yii\web\Controller
     {
 
 
-        $this->findModel($id)->delete();
+        // $this->redirect(array('opisi/del-files', 'param1'=>'value1', 'param2'=>'value2'));
 
-        return $this->redirect(['index']);
+
+        $model = $this->findModel($id);
+        $papka_delo = $model->papka_delo;
+
+        $papka_fond = $model->papka_fond;
+        $papka_opis = $model->papka_opis;
+        $path = $papka_fond.'/'.$papka_opis.'/'.$papka_delo;
+
+        DelFilesController::pathDel($path);
+        //$this->findModel($id)->delete();
+
+        $model->delete();
+
+     //   return $this->redirect(['index']);
+        return $this->goBack();
     }
 
     protected function findModel($id)

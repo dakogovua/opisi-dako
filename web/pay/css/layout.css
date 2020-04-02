@@ -287,7 +287,7 @@ ul#nav li.current a { color: #1E732D; }
 	color: #fff; 
    padding-top: 96px;
    padding-bottom: 72px;     
-   overflow: hidden; 
+   /*overflow: hidden; */
 }
 #about a, #about a:visited  { color: #0C3012; }
 #about a:hover, #about a:focus { color: #fff; }

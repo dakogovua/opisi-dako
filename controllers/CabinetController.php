@@ -15,13 +15,16 @@ use Yii;
 
 class CabinetController extends Controller
 {
+
+    public $defaultAction = 'signup';
+
     public function beforeAction($action)
     {
         $this->layout = 'pay';
         return parent::beforeAction($action);
     }
     public function actionIndex(){
-        echo "CABINET";
+        echo 'sdfsdf';
     }
 
     public function actionSignup()

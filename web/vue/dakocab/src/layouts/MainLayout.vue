@@ -1,5 +1,5 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
+  <q-layout view="hHh Lpr lFf">
     <q-header elevated>
       <q-toolbar>
         <q-btn
@@ -12,10 +12,20 @@
         />
 
         <q-toolbar-title>
-          Quasar App
+          Menu
         </q-toolbar-title>
 
-        <div>Quasar v{{ $q.version }}</div>
+        <div id="logo">
+
+          <a class="logo" href="">
+            <span>Д</span>
+            <span>А</span>
+            <span>К</span>
+            <span>O</span>
+          </a>
+
+          <span class="service">сервіс</span>
+        </div>
       </q-toolbar>
     </q-header>
 
@@ -30,7 +40,7 @@
           header
           class="text-grey-8"
         >
-          Essential Links
+          Navigation
         </q-item-label>
         <EssentialLink
           v-for="link in essentialLinks"
@@ -41,8 +51,19 @@
     </q-drawer>
 
     <q-page-container>
-      <router-view />
+      <router-view  />
     </q-page-container>
+
+    <q-footer>
+      <q-tabs>
+      <q-route-tab v-for="link in essentialLinks"
+                   :key="link.title"
+                   v-bind="link"/>
+      <q-route-tab name="videos" label="Videos" />
+      <q-route-tab name="articles" label="Articles" />
+      </q-tabs>
+    </q-footer>
+
   </q-layout>
 </template>
 
@@ -61,40 +82,22 @@ export default {
       leftDrawerOpen: false,
       essentialLinks: [
         {
-          title: 'Docs',
-          caption: 'quasar.dev',
-          icon: 'school',
-          link: 'https://quasar.dev'
+          title: 'Замовлення',
+          caption: 'Кошик замовлень',
+          icon: 'shopping_basket',
+          link: '/#/'
         },
         {
-          title: 'Github',
-          caption: 'github.com/quasarframework',
-          icon: 'code',
-          link: 'https://github.com/quasarframework'
+          title: 'Налаштування користувача',
+          caption: 'User settings',
+          icon: 'account_box',
+          link: '/#/settings'
         },
         {
-          title: 'Discord Chat Channel',
-          caption: 'chat.quasar.dev',
-          icon: 'chat',
-          link: 'https://chat.quasar.dev'
-        },
-        {
-          title: 'Forum',
-          caption: 'forum.quasar.dev',
-          icon: 'record_voice_over',
-          link: 'https://forum.quasar.dev'
-        },
-        {
-          title: 'Twitter',
-          caption: '@quasarframework',
-          icon: 'rss_feed',
-          link: 'https://twitter.quasar.dev'
-        },
-        {
-          title: 'Facebook',
-          caption: '@QuasarFramework',
-          icon: 'public',
-          link: 'https://facebook.quasar.dev'
+          title: 'Вийти',
+          caption: 'Logout',
+          icon: 'exit_to_app',
+          link: '/#/login'
         }
       ]
     }

@@ -243,7 +243,7 @@ $this->params['breadcrumbs'][] = $this->title;
         $webroot = 'scans/'.$_GET['folder'].'/'.$_GET['subfolder'].'/'.$_GET['delofolder'].'/';
 
     ?>
-
+<?php if(count($filelist ) > 0): ?>
     <?php foreach($filelist as $file): ?>
 <div>
 <?= Html::a(Html::img($file, ['class' => 'koss-img', 'alt' => 'опис']), $file, ['class' => 'colorbox', 'alt' => 'відкриється опис', 'rel' => 'gallery']) ?>
@@ -253,8 +253,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
     <?php if(!Yii::$app->user->isGuest):?>
-
-        <?= str_replace($webroot, "", $file) ?>
+        <?= $file ?>
 
         <button type="button" class="btn btn-warning"
                 data-delfile = '<?= $file ?>'
@@ -265,6 +264,7 @@ $this->params['breadcrumbs'][] = $this->title;
 </div>
 
 <?php endforeach;?>
+<?php endif; ?>
 
 </div>
 

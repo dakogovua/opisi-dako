@@ -1,9 +1,9 @@
 {
-  "name": "kquasar",
+  "name": "dakocabinet",
   "version": "0.0.1",
-  "description": "DAKO user cabinet",
-  "productName": "Dako App",
-  "cordovaId": "ua.gov.dakocabinet",
+  "description": "User cabinet DAKO.service",
+  "productName": "Dako cabinet",
+  "cordovaId": "org.cordova.quasar.app",
   "capacitorId": "",
   "author": "admin <ingener@dako.gov.ua>",
   "private": true,
