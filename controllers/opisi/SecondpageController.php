@@ -246,7 +246,18 @@ class SecondpageController extends Controller
                 $sectablename = 'secondpage';
         }
 
-        $this->findModel($id, $sectablename)->delete();
+    //    $this->findModel($id, $sectablename)->delete();
+
+        $model = $this->findModel($id, $sectablename);
+
+
+        $papka_fond = $model->papka;
+        $papka_opis = $model->podpapka;
+        $path = $papka_fond.'/'.$papka_opis;
+
+        DelFilesController::pathDel($path);
+
+        $model->delete();
 
         return $this->redirect(['site/index', 'sectablename' => $sectablename ]);
     }

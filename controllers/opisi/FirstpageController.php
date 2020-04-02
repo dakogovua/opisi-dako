@@ -182,12 +182,19 @@ class FirstpageController extends Controller
             $nametable = 'firstpage';
         }
 
+        $model = $this->findModel($id, $nametable);
+   //     $papka_delo = $model->papka_delo;
+
+        $papka_fond = $model->papka;
+    //    $papka_opis = $model->papka_opis;
+        $path = $papka_fond;
+
+        DelFilesController::pathDel($path);
+
+    //   $this->findModel($id, $nametable)->delete();
+        $model->delete();
 
 
-
-        ListFiles::delFolder('aaaa','bbb', 'ccccc');
-
-        $this->findModel($id, $nametable)->delete();
         return $this->redirect(['index', 'nametable' => $nametable]);
     }
 
