@@ -37,7 +37,7 @@ class DelFilesController extends Controller
     public function pathDel($pathcall){
         $webroot = Yii::getAlias('@webroot');
         $pathdel = $webroot.'/'.$pathcall;
-        DelFilesController::rmrf($pathdel);
+        self::rmrf($pathdel);
     }
 
      function rmrf($dir) {
