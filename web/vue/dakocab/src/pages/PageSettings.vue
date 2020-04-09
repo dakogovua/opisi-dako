@@ -3,3 +3,18 @@
     Настройки
   </q-page>
 </template>
+
+<script>
+export default {
+  data(){
+      return {
+          user : {
+              username: '',
+              email: '',
+              phone: '',
+              name: ''
+          }
+      }
+  }
+}
+</script>

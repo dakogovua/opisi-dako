@@ -85,11 +85,12 @@ class ListFilesController extends \yii\web\Controller
 
         if($delofolder){
             $delaname = Dela::findOne([
-                'papka_fond' => $folder,
-                'papka_opis' => $subfolder
+//                'papka_fond' => $folder,
+//                'papka_opis' => $subfolder,
+                'papka_delo' => $delofolder
             ]);
             $delaname = $delaname -> title;
-
+           // echo $delaname;
         }
 
 

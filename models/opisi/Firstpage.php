@@ -73,6 +73,8 @@ class Firstpage extends \yii\db\ActiveRecord
 
     }*/
 
+
+
     public function getDela(){
         return $this->hasMany(Dela::className(), [
             'papka_fond' => 'papka'
@@ -84,6 +86,25 @@ class Firstpage extends \yii\db\ActiveRecord
         return $this->hasMany(Dela::className(), [
             'papka_fond' => 'papka'
         ])->count();
+    }
+
+    public function getOpisi(){
+        echo "<pre>";
+        //print_r($this);
+        echo $_GET['nametable'];
+        exit;
+        return $this->hasMany(Secondpage::className(), [
+            'papka' => 'papka'
+        ]);
+        // ->count();
+    }
+
+    public function beforeDelete() {
+
+        $this->opisi->delete();
+
+        // call the parent implementation so that this event is raise properly
+        return parent::beforeDelete();
     }
 
 
