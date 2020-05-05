@@ -111,7 +111,7 @@ $folderdelo = $_GET['delofolder'];
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+//            ['class' => 'yii\grid\SerialColumn'],
 
             'id'=>[
                 'label' => 'ID',

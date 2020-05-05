@@ -1,2 +1,5 @@
-export function someGetter (/* state */) {
+export function orders (state) {
+        return state.orders;
+
 }
+

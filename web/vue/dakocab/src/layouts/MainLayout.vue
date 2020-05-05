@@ -54,15 +54,7 @@
       <router-view  />
     </q-page-container>
 
-    <q-footer>
-      <q-tabs>
-      <q-route-tab v-for="link in essentialLinks"
-                   :key="link.title"
-                   v-bind="link"/>
-      <q-route-tab name="videos" label="Videos" />
-      <q-route-tab name="articles" label="Articles" />
-      </q-tabs>
-    </q-footer>
+
 
   </q-layout>
 </template>
