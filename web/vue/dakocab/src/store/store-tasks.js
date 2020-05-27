@@ -1,3 +1,5 @@
+import Vue from 'vue'
+
 const state = {
         orders: {
             ID1 : {
@@ -46,13 +48,25 @@ const state = {
 
 }
 
-const mutuations = {
-
+const mutations = {
+    updateTask(state, payload){
+        console.log ('payload from mutatiom', payload);
+        Object.assign(state.orders[payload.id], payload.updates)
+    },
+    deleteTask(state, id){
+        console.log ('DELETE from mutatiom', id);
+        //delete state.orders[id];
+        Vue.delete(state.orders, id)
+    }
 }
 
 const actions = {
-    updateTask({commit}, payload){
-        console.log ('asdasdasdasd', payload)
+    updateTask({ commit }, payload){
+        commit('updateTask', payload)
+    },
+
+    deleteTask({ commit }, id){
+        commit('deleteTask', id)
     }
 
 }
@@ -66,7 +80,7 @@ const getters = {
 export default {
     namespaced: true,
     state,
-    mutuations,
+    mutations,
     actions,
     getters
 }

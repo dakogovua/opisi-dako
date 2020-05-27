@@ -39,7 +39,15 @@
                 </div>
             </div>
         </q-item-section>
-
+        <q-item-section side >
+            <q-btn
+                    @click.stop="promptToDelete(id)"
+                    dense
+                    flat
+                   round
+                   color="red"
+                   icon="delete_forever" />
+        </q-item-section>
     </q-item>
 
 </template>
@@ -50,7 +58,26 @@
         name: "Tasks.vue",
         props: ['order', 'id'],
         methods: {
-            ...mapActions('orders', ['updateTask'])
+            ...mapActions('orders', ['updateTask', 'deleteTask']),
+            promptToDelete(id){
+                this.confirm(id);
+            },
+            confirm (id) {
+                this.$q.dialog({
+                    title: 'Confirm',
+                    message: 'Really delete?',
+                    cancel: true,
+                    persistent: true
+                }).onOk(() => {
+                     console.log('>>>> OK', id)
+                    this.deleteTask(id);
+
+                }).onCancel(() => {
+                    // console.log('>>>> Cancel')
+                }).onDismiss(() => {
+                    // console.log('I am triggered on both OK and Cancel')
+                })
+            }
         }
 
     }
