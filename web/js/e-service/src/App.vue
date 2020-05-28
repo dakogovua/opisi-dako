@@ -17,7 +17,9 @@
           >
           </app-input>
         </div>
-        <div>Додатково сплачується комісія за прийом платежу</div>
+        <div>Додатково сплачується комісія LiqPay 2.75% від суми платежу</div>
+        <div>Розмір коміссії LiqPay: {{ (calcComission - this.info[4].value).toFixed(2)}} UAH</div>
+        <div><b>Разом до сплати:</b></div>
         <button class="btn btn-primary" :disabled="done < info.length" @click="onClickBtn">
           Сплатити {{calcComission}} UAH
         </button>
@@ -35,7 +37,7 @@
       </div>
     </div>
 
-     <button @click="onClickBtn">onClickBtn</button>
+     <!--<button @click="onClickBtn">onClickBtn</button>-->
 
   </div>
 </template>
@@ -128,7 +130,7 @@ export default {
                     post: 'order_dako'
                 },
                 {
-                    name: 'Сумма замовлення / Summ',
+                    name: 'Сумма замовлення / Summ, UAH',
                     value: '',
                     pattern: /\d+\.{0,1}\d{0,2}/,
                     replace: /[А-Яа-яA-Za-zіїє!\ ,]/g,
