@@ -13,12 +13,14 @@
                      :pattern="item.pattern"
                      :replace = "item.replace"
                      :key="index"
+                     :type = "item.type"
                      @changedata="onChangeData(index, $event)"
+                     :calcDiff = "calcDiff"
           >
           </app-input>
         </div>
-        <div>Додатково сплачується комісія LiqPay 2.75% від суми платежу</div>
-        <div>Розмір коміссії LiqPay: {{ (calcComission - this.info[4].value).toFixed(2)}} UAH</div>
+
+
         <div><b>Разом до сплати:</b></div>
         <button class="btn btn-primary" :disabled="done < info.length" @click="onClickBtn">
           Сплатити {{calcComission}} UAH
@@ -38,6 +40,7 @@
     </div>
 
      <!--<button @click="onClickBtn">onClickBtn</button>-->
+
 
   </div>
 </template>
@@ -67,27 +70,6 @@
                 form.appendChild(hiddenField);
             }
         }
-        // var arrcsrf; //
-        // $.ajax({ //эта фигня запрашивает csrf и отправляет форму
-        //     url: '/',
-        //     type: "GET",
-        //     //   data: {},
-        //     success: function (data) {
-        //         //    console.log('data csrf url /', data)
-        //         arrcsrf  =  data.split(";");
-        //         // console.log('arrcsrf ',arrcsrf)
-        //
-        //         //console.log('arrcsrf[0] ', arrcsrf[0], ' arrcsrf[0] ', arrcsrf[1])
-        //
-        //         var hiddenToken = document.createElement("input");
-        //         hiddenToken.setAttribute("name", arrcsrf[0]);
-        //         hiddenToken.setAttribute("value",arrcsrf[1]);
-        //         form.appendChild(hiddenToken);
-        //
-        //         document.body.appendChild(form);
-        //         form.submit();
-        //     }
-        // })
 
         document.body.appendChild(form);
         form.submit();
@@ -135,6 +117,11 @@ export default {
                     pattern: /\d+\.{0,1}\d{0,2}/,
                     replace: /[А-Яа-яA-Za-zіїє!\ ,]/g,
                     post: 'sum'
+                },
+                {
+                    name: 'Я погоджуюсь сплатити коміссію за отримувача',
+                    value: false,
+                    type: 'checkbox'
                 }
             ],
                 controls: [],
@@ -174,7 +161,13 @@ export default {
             }
         },
         calcComission(){
-            return (this.info[4].value / 0.973236).toFixed(2);
+            let val = 0.9724999999999996
+            // return (this.info[4].value / 0.973236).toFixed(2);
+            return (this.info[4].value / val).toFixed(2);
+
+        },
+        calcDiff(){
+            return (this.calcComission - this.info[4].value).toFixed(2);
         }
     }
 
