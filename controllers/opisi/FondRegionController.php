@@ -40,7 +40,7 @@ class FondRegionController extends Controller
             'query' => RegionFondName::find(),
         ]);
 
-        return $this->render('fond-region-crud\index', [
+        return $this->render('index', [
             'dataProvider' => $dataProvider,
         ]);
     }

@@ -26,15 +26,14 @@ $this->params['breadcrumbs'][] = $this->title;
         ]) ?>
     </p>
 
-    <pre>
-        <?php print_r($model->tagNames); ?>
-    </pre>
+
 
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
             'id',
             'fond_name',
+            'tagsString'
         ],
     ]) ?>
 
