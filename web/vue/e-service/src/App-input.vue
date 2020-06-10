@@ -27,7 +27,7 @@
                 @change="onCheckbox"
         >
         <span class="cr"><i class="cr-icon fa fa-check"></i></span>
-        {{ name }} {{calcDiff}}
+        {{ name }} {{calcDiff}} UAH
     </label>
 
 
