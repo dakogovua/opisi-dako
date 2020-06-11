@@ -119,7 +119,7 @@ export default {
                     post: 'sum'
                 },
                 {
-                    name: 'Я погоджуюсь сплатити коміссію за отримувача за можливість сплати online',
+                    name: 'Я погоджуюсь сплатити за зручну можливість сплати online',
                     value: false,
                     type: 'checkbox'
                 }
