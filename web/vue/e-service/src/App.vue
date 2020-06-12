@@ -119,7 +119,7 @@ export default {
                     post: 'sum'
                 },
                 {
-                    name: 'Я погоджуюсь сплатити за зручну можливість сплати online',
+                    name: 'Я погоджуюсь заплатити 2.83% від суми за зручність сплати online',
                     value: false,
                     type: 'checkbox'
                 }
@@ -161,8 +161,8 @@ export default {
             }
         },
         calcComission(){
-          //  let val = 0.9724999999999996
-            let val = 0.9732360097323601
+            let val = 0.9724999999999996 // 2.83
+         //   let val = 0.9732360097323601 // 2.75
             // return (this.info[4].value / 0.973236).toFixed(2);
             return (this.info[4].value / val).toFixed(2);
 
