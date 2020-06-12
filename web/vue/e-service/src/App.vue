@@ -161,7 +161,8 @@ export default {
             }
         },
         calcComission(){
-            let val = 0.9724999999999996
+          //  let val = 0.9724999999999996
+            let val = 0.9732360097323601
             // return (this.info[4].value / 0.973236).toFixed(2);
             return (this.info[4].value / val).toFixed(2);
 
