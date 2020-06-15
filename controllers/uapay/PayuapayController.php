@@ -1,6 +1,6 @@
 <?php
 
-namespace app\controllers\opisi;
+namespace app\controllers\uapay;
 
 use Yii;
 use app\models\opisi\RegionFondName;
@@ -10,9 +10,9 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * FondRegionController implements the CRUD actions for RegionFondName model.
+ * PayuapayController implements the CRUD actions for RegionFondName model.
  */
-class FondRegionController extends Controller
+class PayuapayController extends Controller
 {
     /**
      * {@inheritdoc}

@@ -39,8 +39,8 @@ class PayController extends Controller
     }
 
     public $layout = false;
-    public $public_key = 'sandbox_i181799248';
-    public $private_key = 'sandbox_8A2dOsHMRgEvZYRKhDRMResxO4309Tc8ZhK1mI6W';
+    private $public_key = 'i10334901580';
+    private $private_key = '7wmI2KtkXR20MkWkYXDH2QHsHHYQSZMQ6NCIxx2Z';
 
 
     public function actionIndex(){
