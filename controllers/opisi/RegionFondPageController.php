@@ -8,6 +8,7 @@ use app\models\opisi\RegionFondPageSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 
 /**
  * RegionFondPageController implements the CRUD actions for RegionFondPage model.
@@ -24,6 +25,31 @@ class RegionFondPageController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
+                ],
+
+            ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['index','create','update','view','delete'],
+                'rules' => [
+                    // allow authenticated users
+                    [
+                        'allow' => true,
+                        'actions' => ['index','create','update','view','delete'],
+                        'roles' => ['@'],
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' => ['index', 'view'],
+                        'roles' => ['?'],
+                    ],
+                    [
+                        'allow' => false,
+                        'actions' => ['create','update','delete'],
+                        'roles' => ['?'],
+                    ],
+                    // everything else is denied
+
                 ],
             ],
         ];

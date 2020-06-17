@@ -14,11 +14,15 @@ class RegionFondPageSearch extends RegionFondPage
     /**
      * {@inheritdoc}
      */
+    public $nameTagsString;
+    public $nameFondsString;
+
+
     public function rules()
     {
         return [
             [['id', 'count_opisi', 'fond_id', 'tag_id'], 'integer'],
-            [['papka', 'nomer_fonda', 'name_fond', 'count_items', 'dates'], 'safe'],
+            [['papka', 'nomer_fonda', 'name_fond', 'count_items', 'dates', 'nameFondsString', 'nameTagsString'], 'safe'],
         ];
     }
 
@@ -44,17 +48,38 @@ class RegionFondPageSearch extends RegionFondPage
 
         // add conditions that should always apply here
 
+//        $query->joinWith(['nameFonds']);
+
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
+
+        $dataProvider->setSort([
+            'attributes' => [
+                'nomer_fonda',
+                'name_fond',
+                'nameFondsString' => [
+                    'asc' => ['region_fond_name.fond_name' => SORT_ASC],
+                    'desc' => ['region_fond_name.fond_name' => SORT_DESC],
+                    'label' => 'Link Name'
+                ],
+                'nameTagsString' => [
+                    'asc' => ['region_tag_name.tag_name' => SORT_ASC],
+                    'desc' => ['region_tag_name.tag_name' => SORT_DESC],
+                    'label' => 'Link Name tag'
+                ]
+            ]]);
 
         $this->load($params);
 
         if (!$this->validate()) {
             // uncomment the following line if you do not want to return any records when validation fails
             // $query->where('0=1');
+//            $query->joinWith(['nameFonds']);
             return $dataProvider;
         }
+
+
 
         // grid filtering conditions
         $query->andFilterWhere([
@@ -69,6 +94,14 @@ class RegionFondPageSearch extends RegionFondPage
             ->andFilterWhere(['like', 'name_fond', $this->name_fond])
             ->andFilterWhere(['like', 'count_items', $this->count_items])
             ->andFilterWhere(['like', 'dates', $this->dates]);
+
+        $query->joinWith(['nameFonds' => function ($q) {
+            $q->where('region_fond_name.fond_name LIKE "%' . $this->nameFondsString . '%"');
+        }]);
+        $query->joinWith(['nameTags' => function ($q) {
+            $q->where('region_tag_name.tag_name LIKE "%' . $this->nameTagsString . '%"');
+        }]);
+
 
         return $dataProvider;
     }

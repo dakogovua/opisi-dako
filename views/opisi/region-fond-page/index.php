@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\grid\GridView;
+use kartik\grid\GridView;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\opisi\RegionFondPageSearch */
@@ -12,39 +12,83 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="region-fond-page-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1>Фонди архівних установ області</h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
+    <?php if(!Yii::$app->user->isGuest): ?>
     <p>
         <?= Html::a('Create Region Fond Page', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
+    <?php endif ?>
+
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'pjax' => true,
+        'striped' => true,
+        'hover' => true,
+        // 'panel' => ['type' => 'primary', 'heading' => 'Grid Grouping Example'],
+        'panel' => [
+            'type' => 'primary',
+
+        ],
+        'toggleDataContainer' => ['class' => 'btn-group mr-2'],
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
-            'papka',
+//            'id',
+//            [
+//                'attribute' => 'papka',
+//            ],
             'nomer_fonda',
-            'name_fond:ntext',
+            [
+                'attribute' => 'name_fond',
+             ],
             'count_items',
             'count_opisi',
             'dates:ntext',
-            'fond_id',
-            'tag_id',
-            ['value' => function($data){
-                return $data->nameTag->tag_name;
+//            'fond_id',
+//            'tag_id',
+            [
+               'attribute' => 'nameTagsString',
 
-            }],
-            ['value' => function($data){
-              //  print_r($data->nameFond->tags);
-        return $data->nameFond->fond_name;
+                'group' => true,
+                'filterType' => GridView::FILTER_SELECT2,
+                'filter' => \yii\helpers\ArrayHelper::map(\app\models\opisi\RegionTagName::find()->asArray()->all(), 'tag_name', 'tag_name'),
+                'filterInputOptions' => ['placeholder' => 'Зробіть вибір ...'],
+                'filterWidgetOptions' => [
+                    'pluginOptions' => ['allowClear' => true],
+                ]
+//                'groupedRow' => true,                    // move grouped column to a single grouped row
+//                'groupOddCssClass' => 'kv-grouped-row',  // configure odd group cell css class
+//                'groupEvenCssClass' => 'kv-grouped-row', // configure even group cell css class
 
-            }],
+            ],
+            [
+                'attribute' => 'nameFondsString',
+                'group' => true,
+                'filterType' => GridView::FILTER_SELECT2,
+                'filter' => \yii\helpers\ArrayHelper::map(\app\models\opisi\RegionFondName::find()->asArray()->all(), 'fond_name', 'fond_name'),
+                'filterInputOptions' => ['placeholder' => 'Зробіть вибір ...'],
+                'filterWidgetOptions' => [
+                    'pluginOptions' => ['allowClear' => true],
+                ]
+            ],
 
-            ['class' => 'yii\grid\ActionColumn'],
+//            ['value' => function($data){
+//                return $data->nameTag->tag_name;
+//
+//            }],
+//            ['value' => function($data){
+//              //  print_r($data->nameFond->tags);
+//        return $data->nameFond->fond_name;
+//
+//            }],
+
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'visible' => !Yii::$app->user->isGuest,
+            ],
         ],
     ]); ?>
 </div>

@@ -66,7 +66,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'papka',
                 'value' => function($data)
                     {
-                       return Html::a($data->papka, ('/web/index.php?r=opisi/secondpage/index&message='.$data->papka));
+                       return $data->papka;
                     },
                 'format' => 'html',
 				// 'filter' => Html::input('text', $searchModel->formName() . '[papka]', $searchModel->papka,['class' => 'form-control']),

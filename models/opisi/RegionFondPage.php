@@ -22,6 +22,8 @@ class RegionFondPage extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
+
+
     public static function tableName()
     {
         return 'region_fond_page';
@@ -31,8 +33,7 @@ class RegionFondPage extends \yii\db\ActiveRecord
      * {@inheritdoc}
      */
 
-    public $tag_name;
-    public $fond_name;
+
 
     public function rules()
     {
@@ -42,6 +43,7 @@ class RegionFondPage extends \yii\db\ActiveRecord
             [['count_opisi', 'fond_id', 'tag_id'], 'integer'],
             [['papka', 'count_items'], 'string', 'max' => 20],
             [['nomer_fonda'], 'string', 'max' => 100],
+            [['nameFond'], 'safe'],
         ];
     }
 
@@ -52,22 +54,30 @@ class RegionFondPage extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'papka' => 'Papka',
-            'nomer_fonda' => 'Nomer Fonda',
-            'name_fond' => 'Name Fond',
-            'count_items' => 'Count Items',
-            'count_opisi' => 'Count Opisi',
-            'dates' => 'Dates',
-            'fond_id' => 'Fond ID',
-            'tag_id' => 'Tag ID',
+            'papka' => 'Папка',
+            'nomer_fonda' => '№ фонду',
+            'name_fond' => 'Назва фонду',
+            'count_items' => 'Кількість од.зб.',
+            'count_opisi' => 'Кількість описів',
+            'dates' => 'Крайні дати',
+            'nameTagsString' => 'Тип установи',
+            'nameFondsString' => 'Назва установи',
         ];
     }
 
-    public function getNameFond(){
+    public function getNameFonds(){
         return $this->hasOne(RegionFondName::className(), ['id' => 'fond_id']);
     }
 
-    public function getNameTag(){
+    public function getNameTags(){
         return $this->hasOne(RegionTagName::className(), ['id' => 'tag_id']);
+    }
+
+    public function getNameFondsString() {
+        return $this->nameFonds->fond_name;
+    }
+
+    public function getNameTagsString(){
+        return $this->nameTags->tag_name;
     }
 }
