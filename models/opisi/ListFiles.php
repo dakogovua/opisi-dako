@@ -30,7 +30,9 @@ class ListFiles
         }
 
         else if (!is_dir($dir) && !Yii::$app->user->isGuest ){
-            FileHelper::createDirectory($dir);
+            if(!FileHelper::createDirectory($dir)){
+                throw new \yii\web\HttpException(500, 'Папка не создалась --> '.$folder.'/'.$subfolder.'/'.$delofolder.'');
+            }
 
         }
 
