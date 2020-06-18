@@ -335,8 +335,8 @@ if ($('.well')){
  $('.koss-img').elevateZoom({
     zoomType: "inner",
 cursor: "pointer",
-zoomWindowFadeIn: 500,
-zoomWindowFadeOut: 750,
+zoomWindowFadeIn: 300,
+zoomWindowFadeOut: 550,
 scrollZoom : true
    });
  
