@@ -59,14 +59,15 @@ $this->params['breadcrumbs'][] = $this->title;
                 'filterWidgetOptions' => [
                     'pluginOptions' => ['allowClear' => true],
                 ],
-                'groupedRow' => true,                    // move grouped column to a single grouped row
-                'groupOddCssClass' => 'kv-grouped-row',  // configure odd group cell css class
-                'groupEvenCssClass' => 'kv-grouped-row', // configure even group cell css class
+
 
             ],
             [
                 'attribute' => 'nameFondsString',
-//                'group' => true,
+                'group' => true,
+                  'groupedRow' => true,                    // move grouped column to a single grouped row
+                'groupOddCssClass' => 'kv-grouped-row',  // configure odd group cell css class
+                'groupEvenCssClass' => 'kv-grouped-row', // configure even group cell css class
                 'filterType' => GridView::FILTER_SELECT2,
                 'filter' => \yii\helpers\ArrayHelper::map(\app\models\opisi\RegionFondName::find()->asArray()->all(), 'fond_name', 'fond_name'),
                 'filterInputOptions' => ['placeholder' => 'Зробіть вибір ...'],
