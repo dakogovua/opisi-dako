@@ -66,7 +66,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'attribute' => 'nameFondsString',
-                'group' => true,
+//                'group' => true,
                 'filterType' => GridView::FILTER_SELECT2,
                 'filter' => \yii\helpers\ArrayHelper::map(\app\models\opisi\RegionFondName::find()->asArray()->all(), 'fond_name', 'fond_name'),
                 'filterInputOptions' => ['placeholder' => 'Зробіть вибір ...'],
