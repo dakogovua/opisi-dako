@@ -58,10 +58,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 'filterInputOptions' => ['placeholder' => 'Зробіть вибір ...'],
                 'filterWidgetOptions' => [
                     'pluginOptions' => ['allowClear' => true],
-                ]
-//                'groupedRow' => true,                    // move grouped column to a single grouped row
-//                'groupOddCssClass' => 'kv-grouped-row',  // configure odd group cell css class
-//                'groupEvenCssClass' => 'kv-grouped-row', // configure even group cell css class
+                ],
+                'groupedRow' => true,                    // move grouped column to a single grouped row
+                'groupOddCssClass' => 'kv-grouped-row',  // configure odd group cell css class
+                'groupEvenCssClass' => 'kv-grouped-row', // configure even group cell css class
 
             ],
             [
