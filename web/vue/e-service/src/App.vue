@@ -40,7 +40,7 @@
     </div>
 
      <!--<button @click="onClickBtn">onClickBtn</button>-->
-
+    <!--<button @click="onClickBtn">Pay an arbitrary amount</button>-->
 
   </div>
 </template>
@@ -76,6 +76,8 @@
     }
 
     // SP = SP / 0.9725
+
+
 
 export default {
     data(){
@@ -126,14 +128,32 @@ export default {
             ],
                 controls: [],
             done: 0,
-            formSubmited: false
+            formSubmited: false,
+            button: {},
 
       }
+    },
+    mounted() {
+
+
+        this.$loadScript("https://api.fondy.eu/static_common/v1/checkout/ipsp.js")
+            .then(() => {
+                console.log('script is loaded')
+                this.button = $ipsp.get('button');
+                this.button.setMerchantId( 1396424);
+                this.button.setAmount('', 'USD');
+                this.button.setHost('api.fondy.eu');
+            })
+            .catch(() => {
+                console.log('error load script')
+            });
+
     },
     created(){
         for(let i = 0; i < this.info.length; i++){
             this.controls.push(false);
         }
+
     },
     methods: {
         onChangeData(index, data){
@@ -151,7 +171,25 @@ export default {
             this.done = done;
         },
         onClickBtn(){
-            post('http://opisi.dako.gov.ua/web/index.php?r=pay', this.info);
+            let url = 'http://opisi.dako.gov.ua/web/index.php?r=pay'
+            fetch(url, {
+                method: 'post',
+                headers: {
+                    "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
+                },
+                body: this.info
+            })
+                .then(json)
+                .then(function (data) {
+                    console.log('Request succeeded with JSON response', data);
+                })
+                .catch(function (error) {
+                    console.log('Request failed', error);
+                });
+
+            // location.href=this.button.getUrl();
+
+            // post('http://opisi.dako.gov.ua/web/index.php?r=pay', this.info);
         }
     },
     computed: {

@@ -13,7 +13,18 @@
 
         <q-toolbar-title>
           Menu
+          <q-btn
+                class="marginLeft"
+                dense
+                unelevated
+                color="primary"
+                icon="arrow_back"
+                label="Back" />
         </q-toolbar-title>
+
+
+
+        <q-toolbar-title>{{ title }}</q-toolbar-title>
 
         <div id="logo">
 
@@ -93,6 +104,18 @@ export default {
         }
       ]
     }
-  }
+
+  },
+    computed:{
+        title(){
+            //console.log(this.$route);
+           return this.$route.name;
+        }
+    },
 }
 </script>
+<style>
+  .marginLeft{
+    margin-left: 185px;
+  }
+</style>

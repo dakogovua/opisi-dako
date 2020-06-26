@@ -1,26 +1,32 @@
 <template>
 
 
-    <q-item @click = "updateTask({
-        id: id,
-        updates: {
-            status: !order.status
-        }
-    })"
-
+    <q-item
+            to = "/details"
             clickable
             v-ripple
             :class = " !order.status ? 'bg-orange-11' : 'bg-light-green-2' ">
         <q-item-section side top>
-            <q-checkbox v-model="order.status" /> {{ order.status }} {{ id }}
+            <q-checkbox v-model="order.status"
+
+                @click = "updateTask({
+                id: id,
+                updates: {
+                    status: !order.status
+                }
+                })"
+            /> {{ order.status }} {{ id }}
         </q-item-section>
 
-        <q-item-section>
+        <q-item-section
+
+            >
             <q-item-label>{{ order.id }}</q-item-label>
 
-            <q-item-label caption
-                          :class="{'text-strikethrough' : order.status}"
-            >
+            <q-item-label
+
+                    caption
+                    :class="{'text-strikethrough' : order.status}">
                 {{order.service_order}}
             </q-item-label>
         </q-item-section>

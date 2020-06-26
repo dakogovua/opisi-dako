@@ -44,7 +44,7 @@ class PayController extends Controller
 
 
     public function actionIndex(){
-    //    print_r($_POST);
+        print_r($_POST);
 
         $user = new Clients();
         $time = time();
@@ -60,20 +60,20 @@ class PayController extends Controller
 
            $user->getErrors();
 
-            $liqpay = new LiqPay($this->public_key, $this->private_key);
-            $html = $liqpay->cnb_form(array(
-                'action'         => 'pay',
-                'amount'         => $user->sum,
-                //    'amount'         => $vendorsmodel->sumapi,
-                'currency'       => 'UAH',
-                'description'    => 'Оплата за послуги '.$user->order_dako,
-                'order_id'       => $user->service_order,
-                'version'        => '3',
-                'sandbox'        => '1',
-            ));
+//            $liqpay = new LiqPay($this->public_key, $this->private_key);
+//            $html = $liqpay->cnb_form(array(
+//                'action'         => 'pay',
+//                'amount'         => $user->sum,
+//                //    'amount'         => $vendorsmodel->sumapi,
+//                'currency'       => 'UAH',
+//                'description'    => 'Оплата за послуги '.$user->order_dako,
+//                'order_id'       => $user->service_order,
+//                'version'        => '3',
+//                'sandbox'        => '1',
+//            ));
 
 
-            echo $html; //Отправляем всё в ликпей
+         //   echo $html; //Отправляем всё в ликпей
         }
         else {
 
