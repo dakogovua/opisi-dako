@@ -40,7 +40,6 @@
       </div>
     </div>
 
-    {{ button }}
 
      <!--<button @click="onClickBtn">onClickBtn</button>-->
     <!--<button @click="onClickBtn">Pay an arbitrary amount</button>-->
