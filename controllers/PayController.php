@@ -234,6 +234,10 @@ class PayController extends Controller
 
         $clientmodel->save(false);
 
+        print_r($clientmodel);
+
+        $clientmodel->save(false);
+
 
 
         $model = new SignupForm();
