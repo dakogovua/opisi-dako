@@ -90,35 +90,35 @@ export default {
             info: [
                 {
                     name: "Прізвище Ім'я По-батькові / Name",
-                    value: 'sdfsdfsdf',
+                    value: '',
                     pattern: /^[a-zA-Zа-яА-яії ]{2,30}$/,
                     replace: /\d/g,
                     post: 'name'
                 },
                 {
                     name: 'Телефон / Phone',
-                    value: '1231231',
+                    value: '',
                     pattern: /^[0-9]{7,14}$/,
                     replace: /\D/g,
                     post: 'phone'
                 },
                 {
                     name: 'Email',
-                    value: 'kk@kk.cc',
+                    value: '',
                     pattern: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
                     replace: /[А-Яа-яі]/g,
                     post: 'email'
                 },
                 {
                     name: 'Номер замовлення / Order number',
-                    value: '11',
+                    value: '',
                     pattern: /\d+/,
                     replace: /^[]$/,
                     post: 'order_dako'
                 },
                 {
                     name: 'Сумма замовлення / Summ, UAH',
-                    value: '22',
+                    value: '',
                     pattern: /\d+\.{0,1}\d{0,2}/,
                     replace: /[А-Яа-яA-Za-zіїє!\ ,]/g,
                     post: 'sum'
@@ -181,14 +181,18 @@ export default {
             this.button.addField({
                 name : 'name',
                 label: 'Призначення платежу',
-                value: this.info[0].value + ' ' + this.info[1].value + ' ' + this.info[2].value + ' ' + this.info[3].value + ' ' + this.info[4].value,
+                value: this.info[0].value + ' ; ' + this.info[1].value + ' ; ' + this.info[2].value + ' ; ' + this.info[3].value + ' ; ' + this.info[4].value,
                 readonly : true
 
             });
 
+
+
+
             this.button.setAmount(this.info[4].value, 'UAH',true);
 
             let btn = this.button
+            console.log('btn', btn )
             let postString = '';
             for (let key in this.info){
              //   console.log ('key', key, this.info.length, this.info[key])
@@ -198,7 +202,7 @@ export default {
                 }
             }
 
-            console.log('postString', postString )
+
 
              let url = 'https://opisi.dako.gov.ua/web/index.php?r=pay'
             // let url = 'http://localhost/web/index.php?r=pay'
@@ -216,10 +220,12 @@ export default {
                     {
                         response.json().then(function(data) {
                            // console.log('data', data);
-                            btn.data.name = data;
-                            location.href=btn.getUrl();
+                            btn.data.fields[0].name = data;
+                          //  btn.data.fields[1].name = data;
+                        //    console.log ('btn response ', btn,  'btn.data.name', btn.data.name )
+                             location.href=btn.getUrl();
                         });
-                        console.log ('btn', btn,  'btn.name', btn.data.name )
+
                    //
                        return response.text();
                     }

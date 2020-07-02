@@ -74,7 +74,7 @@ class PayController extends Controller
 
 
     public function actionIndex(){
-    //    print_r($_POST);
+        //    print_r($_POST);
 
 
         $user = new Clients();
@@ -87,7 +87,7 @@ class PayController extends Controller
         $user->service_order = $service_order;
         $user->status = 'prepay';
 
-   //     echo '<hr>';
+        //     echo '<hr>';
 
         if ($user->load(Yii::$app->request->post(), '') && $user->save()) {
 
@@ -125,60 +125,116 @@ class PayController extends Controller
     }
 
     public function actionPaidcallback(){
-        print_r($_POST);
+        //    print_r($_POST);
+        $post = $_POST;
+        $array = array(
+            'rrn' => ''
+        ,'masked_card' => '444455XXXXXX6666'
+        ,'sender_cell_phone' => ''
+        ,'response_status' => 'success'
+        ,'sender_account' => ''
+        ,'fee' => ''
+        ,'rectoken_lifetime' => ''
+        ,'reversal_amount' => 0
+        ,'settlement_amount' => 0
+        ,'actual_amount' => 22919
+        ,'order_status' => 'approved'
+        ,'response_description' => ''
+        ,'verification_status' => ''
+        ,'order_time' => '02.07.2020 19:51:20'
+        ,'actual_currency' => 'UAH'
+        ,'order_id' => 'Order_1449555_n0Ueb4cIep_1593708680'
+        ,'parent_order_id' => ''
+        ,'merchant_data' => '{"name":"1593708674-7","label":"Призначення платежу","value":"sdfsdfsdfsdf 12312313 kk@kk.cce 113 223","hidden":false}'
+        ,'tran_type' => 'purchase'
+        ,'eci' => '7'
+        ,'settlement_date' => ''
+        ,'payment_system' => 'card'
+        ,'rectoken' => ''
+        ,'approval_code' => 478450
+        ,'merchant_id' => 1449555
+        ,'settlement_currency' => ''
+        ,'payment_id' => 240892647
+        ,'product_id' => ''
+        ,'currency' => 'UAH'
+        ,'card_bin' => 444455
+        ,'response_code' => ''
+        ,'card_type' => 'VISA'
+        ,'amount' => 22300
+        ,'sender_email' => ''
+        ,'signature' => 'ac4991334e3151ab9029107a977326297d5941e9'
+        );
 
-        $signature = $_POST["signature"];
-        $data = $_POST["data"];
-        //Anton $public_key = 'i69930799562';
-        //Anton $private_key = 'rRZfFUKEnYTzXG0pgadJRKCdiQr9OAeW0au5gtAH';
-        $sign = base64_encode(sha1($this->private_key.$data.$this->private_key, 1));
+        //  echo "<pre>";
+        //     print_r($post);
+        //   echo "</pre>";
 
-        $data_result = base64_decode($data);
+        $status = $post['order_status'];
+        $merchant_data = $post['merchant_data'];
+
+        // echo $status;
+        // echo "<br>";
+        // print_r(json_decode($merchant_data));
+        // echo "<hr>";
+        // echo json_decode($merchant_data)[0]->name;
+
+        // $signature = $_POST["signature"];
+        // $data = $_POST["data"];
+        // //Anton $public_key = 'i69930799562';
+        // //Anton $private_key = 'rRZfFUKEnYTzXG0pgadJRKCdiQr9OAeW0au5gtAH';
+        // $sign = base64_encode(sha1($this->private_key.$data.$this->private_key, 1));
+
+        // $data_result = base64_decode($data);
 
         //TEST $data_result = '{"payment_id":1263584946,"action":"pay","status":"sandbox","version":3,"type":"buy","paytype":"card","public_key":"i61109306451","acq_id":414963,"order_id":"1583961186-9","liqpay_order_id":"U7HS1QWH1583537559446563","description":"Оплата за послуги sdfsdf234","sender_phone":"380503843096","sender_first_name":"Irina","sender_last_name":"Konstantinova","sender_card_mask2":"516875*62","sender_card_bank":"pb","sender_card_type":"mc","sender_card_country":804,"ip":"212.90.172.202","amount":234234.0,"currency":"UAH","sender_commission":0.0,"receiver_commission":6441.44,"agent_commission":0.0,"amount_debit":234234.0,"amount_credit":234234.0,"commission_debit":0.0,"commission_credit":6441.44,"currency_debit":"UAH","currency_credit":"UAH","sender_bonus":0.0,"amount_bonus":0.0,"mpi_eci":"7","is_3ds":false,"language":"ru","create_date":1583537559447,"end_date":1583537559988,"transaction_id":1263584946}';
         // $date = date("Y-m-d H:i:s");
 
-        if(strcasecmp($sign, $signature) == 0){
+        if($status == 'approved'){
             // file_put_contents("callback.txt", $date."-".$data_result."\r\n", FILE_APPEND);
 
             $messageLog = [
-                'status' => 'Ликпей ок.',
-                'post' => $data_result
+                'status' => 'Fondy ок.',
+                'post' => $post
             ];
 
 //            echo "<hr>";
 //            echo $data_result;
 //            echo "<hr>";
 
-            Yii::info($messageLog, 'payment_liqpay'); //запись в лог
+            Yii::info($messageLog, 'payment_Fondy'); //запись в лог
 
         }else{
-      //       throw new \yii\web\HttpException(404, 'Ошибка. Передайте эту информацию для решения проблемы');
+            throw new \yii\web\HttpException(404, 'Ошибка. Передайте эту информацию для решения проблемы');
         }
 
 
 
 
-        $array = json_decode($data_result, true);
-        $status = $array["status"];
-        $transaction_id = $array["transaction_id"];
-        $order_id = $array["order_id"];
+        // $array = json_decode($data_result, true);
+        // $status = $array["status"];
+        $transaction_id = $post["payment_id"];
+        $order_id = json_decode($merchant_data)[0]->name;
 
 
-       // echo '$order_id '.$order_id.' '. $array["order_id"];
+        // echo '$order_id '.$order_id.' '. $array["order_id"];
 
         $clientmodel = Clients::findOne([
             'service_order' => $order_id,
         ]);
 
-
+        if (!$clientmodel){
+            echo "Data error";
+            return false;
+        }
 
         $clientmodel->status = $status;
         $clientmodel->transaction_id = $transaction_id;
 
+        print_r($clientmodel);
+
         $clientmodel->save(false);
 
-       // print_r($clientmodel);
+
 
         $model = new SignupForm();
 
