@@ -27,6 +27,7 @@ class PayController extends Controller
     {
         return [
             '*',                        // star allows all domains
+            'https://dako.gov.ua',
 //            'http://test1.example.com',
 //            'http://test2.example.com',
 //            'http://localhost:8080'
@@ -127,43 +128,43 @@ class PayController extends Controller
     public function actionPaidcallback(){
         //    print_r($_POST);
         $post = $_POST;
-        $array = array(
-            'rrn' => ''
-        ,'masked_card' => '444455XXXXXX6666'
-        ,'sender_cell_phone' => ''
-        ,'response_status' => 'success'
-        ,'sender_account' => ''
-        ,'fee' => ''
-        ,'rectoken_lifetime' => ''
-        ,'reversal_amount' => 0
-        ,'settlement_amount' => 0
-        ,'actual_amount' => 22919
-        ,'order_status' => 'approved'
-        ,'response_description' => ''
-        ,'verification_status' => ''
-        ,'order_time' => '02.07.2020 19:51:20'
-        ,'actual_currency' => 'UAH'
-        ,'order_id' => 'Order_1449555_n0Ueb4cIep_1593708680'
-        ,'parent_order_id' => ''
-        ,'merchant_data' => '{"name":"1593708674-7","label":"Призначення платежу","value":"sdfsdfsdfsdf 12312313 kk@kk.cce 113 223","hidden":false}'
-        ,'tran_type' => 'purchase'
-        ,'eci' => '7'
-        ,'settlement_date' => ''
-        ,'payment_system' => 'card'
-        ,'rectoken' => ''
-        ,'approval_code' => 478450
-        ,'merchant_id' => 1449555
-        ,'settlement_currency' => ''
-        ,'payment_id' => 240892647
-        ,'product_id' => ''
-        ,'currency' => 'UAH'
-        ,'card_bin' => 444455
-        ,'response_code' => ''
-        ,'card_type' => 'VISA'
-        ,'amount' => 22300
-        ,'sender_email' => ''
-        ,'signature' => 'ac4991334e3151ab9029107a977326297d5941e9'
-        );
+//        $array = array(
+//            'rrn' => ''
+//        ,'masked_card' => '444455XXXXXX6666'
+//        ,'sender_cell_phone' => ''
+//        ,'response_status' => 'success'
+//        ,'sender_account' => ''
+//        ,'fee' => ''
+//        ,'rectoken_lifetime' => ''
+//        ,'reversal_amount' => 0
+//        ,'settlement_amount' => 0
+//        ,'actual_amount' => 22919
+//        ,'order_status' => 'approved'
+//        ,'response_description' => ''
+//        ,'verification_status' => ''
+//        ,'order_time' => '02.07.2020 19:51:20'
+//        ,'actual_currency' => 'UAH'
+//        ,'order_id' => 'Order_1449555_n0Ueb4cIep_1593708680'
+//        ,'parent_order_id' => ''
+//        ,'merchant_data' => '{"name":"1593708674-7","label":"Призначення платежу","value":"sdfsdfsdfsdf 12312313 kk@kk.cce 113 223","hidden":false}'
+//        ,'tran_type' => 'purchase'
+//        ,'eci' => '7'
+//        ,'settlement_date' => ''
+//        ,'payment_system' => 'card'
+//        ,'rectoken' => ''
+//        ,'approval_code' => 478450
+//        ,'merchant_id' => 1449555
+//        ,'settlement_currency' => ''
+//        ,'payment_id' => 240892647
+//        ,'product_id' => ''
+//        ,'currency' => 'UAH'
+//        ,'card_bin' => 444455
+//        ,'response_code' => ''
+//        ,'card_type' => 'VISA'
+//        ,'amount' => 22300
+//        ,'sender_email' => ''
+//        ,'signature' => 'ac4991334e3151ab9029107a977326297d5941e9'
+//        );
 
         //  echo "<pre>";
         //     print_r($post);
