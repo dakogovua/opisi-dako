@@ -27,7 +27,7 @@
                 @change="onCheckbox"
         >
         <span class="cr"><i class="cr-icon fa fa-check"></i></span>
-        {{ name }} {{calcDiff}} UAH
+        {{ name }}
     </label>
 
 
@@ -44,6 +44,8 @@ export default {
         }
     },
         props: ['name', 'value', 'pattern', 'replace', 'post', 'type', 'calcDiff'],
+
+
 
         computed: {
             validClass()

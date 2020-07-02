@@ -20,10 +20,11 @@
           </app-input>
         </div>
 
-
-        <div><b>Разом до сплати:</b></div>
-        <button class="btn btn-primary" :disabled="done < info.length" @click="onClickBtn">
-          Сплатити {{calcComission}} UAH
+        <!--<div><b>Разом до сплати:</b></div>-->
+        <button class="btn btn-primary"
+                :disabled="done < info.length"
+                @click="onClickBtn">
+          Сплатити {{info[4].value}} UAH
         </button>
 
 
@@ -39,6 +40,8 @@
       </div>
     </div>
 
+    {{ button }}
+
      <!--<button @click="onClickBtn">onClickBtn</button>-->
     <!--<button @click="onClickBtn">Pay an arbitrary amount</button>-->
 
@@ -46,34 +49,34 @@
 </template>
 
 <script>
-    function post(path, params, method) {
-        method = method || "post"; // Set method to post by default if not specified.
-
-
-        // The rest of this code assumes you are not using a library.
-        // It can be made less wordy if you use one.
-        var form = document.createElement("form");
-        form.setAttribute("method", method);
-        form.setAttribute("action", path);
-
-        for(var key in params) {
-            console.log('paramsparams', params[key].post, params[key].value)
-            if(params.hasOwnProperty(key)) {
-                var hiddenField = document.createElement("input");
-                hiddenField.setAttribute("type", "hidden");
-                hiddenField.setAttribute("value", params[key].value);
-                key = key.replace(/\-/g, '_')
-
-                //console.log('key ', key)
-                hiddenField.setAttribute("name", params[key].post);
-
-                form.appendChild(hiddenField);
-            }
-        }
-
-        document.body.appendChild(form);
-        form.submit();
-    }
+    // function post(path, params, method) {
+    //     method = method || "post"; // Set method to post by default if not specified.
+    //
+    //
+    //     // The rest of this code assumes you are not using a library.
+    //     // It can be made less wordy if you use one.
+    //     var form = document.createElement("form");
+    //     form.setAttribute("method", method);
+    //     form.setAttribute("action", path);
+    //
+    //     for(var key in params) {
+    //         console.log('paramsparams', params[key].post, params[key].value)
+    //         if(params.hasOwnProperty(key)) {
+    //             var hiddenField = document.createElement("input");
+    //             hiddenField.setAttribute("type", "hidden");
+    //             hiddenField.setAttribute("value", params[key].value);
+    //             key = key.replace(/\-/g, '_')
+    //
+    //             //console.log('key ', key)
+    //             hiddenField.setAttribute("name", params[key].post);
+    //
+    //             form.appendChild(hiddenField);
+    //         }
+    //     }
+    //
+    //     document.body.appendChild(form);
+    //     form.submit();
+    // }
 
     // SP = SP / 0.9725
 
@@ -87,41 +90,41 @@ export default {
             info: [
                 {
                     name: "Прізвище Ім'я По-батькові / Name",
-                    value: '',
+                    value: 'sdfsdfsdf',
                     pattern: /^[a-zA-Zа-яА-яії ]{2,30}$/,
                     replace: /\d/g,
                     post: 'name'
                 },
                 {
                     name: 'Телефон / Phone',
-                    value: '',
+                    value: '1231231',
                     pattern: /^[0-9]{7,14}$/,
                     replace: /\D/g,
                     post: 'phone'
                 },
                 {
                     name: 'Email',
-                    value: '',
+                    value: 'kk@kk.cc',
                     pattern: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
                     replace: /[А-Яа-яі]/g,
                     post: 'email'
                 },
                 {
                     name: 'Номер замовлення / Order number',
-                    value: '',
+                    value: '11',
                     pattern: /\d+/,
                     replace: /^[]$/,
                     post: 'order_dako'
                 },
                 {
                     name: 'Сумма замовлення / Summ, UAH',
-                    value: '',
+                    value: '22',
                     pattern: /\d+\.{0,1}\d{0,2}/,
                     replace: /[А-Яа-яA-Za-zіїє!\ ,]/g,
                     post: 'sum'
                 },
                 {
-                    name: 'Я погоджуюсь заплатити 2.75% від суми замовлення та 0.08% за зручність сплати online',
+                    name: 'Я погоджуюсь сплатити комісію',
                     value: false,
                     type: 'checkbox'
                 }
@@ -140,8 +143,9 @@ export default {
             .then(() => {
                 console.log('script is loaded')
                 this.button = $ipsp.get('button');
-                this.button.setMerchantId( 1396424);
-                this.button.setAmount('', 'USD');
+                this.button.setMerchantId(1449555);
+             //   this.button.setMerchantId(1396424); //test merchant
+
                 this.button.setHost('api.fondy.eu');
             })
             .catch(() => {
@@ -169,30 +173,72 @@ export default {
             }
 
             this.done = done;
+
+
         },
         onClickBtn(){
-            let url = 'http://opisi.dako.gov.ua/web/index.php?r=pay'
+            this.done = 0; // Disable click btn
+            this.button.addField({
+                name : '',
+                label: 'Призначення платежу',
+                value: this.info[0].value + ' ' + this.info[1].value + ' ' + this.info[2].value + ' ' + this.info[3].value + ' ' + this.info[4].value,
+                readonly : true
+
+            });
+
+            this.button.setAmount(this.info[4].value, 'UAH',true);
+
+            let btn = this.button
+            let postString = '';
+            for (let key in this.info){
+             //   console.log ('key', key, this.info.length, this.info[key])
+                postString +=this.info[key].post + '=' + this.info[key].value
+                if (key != this.info.length - 1){
+                    postString += '&'
+                }
+            }
+
+            console.log('postString', postString )
+
+            //let url = 'http://opisi.dako.gov.ua/web/index.php?r=pay'
+            let url = 'http://localhost/web/index.php?r=pay'
+
             fetch(url, {
+                // mode: 'no-cors',
                 method: 'post',
-                headers: {
-                    "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
-                },
-                body: this.info
+                headers: {'Content-Type':'application/x-www-form-urlencoded'}, // this line is important, if this content-type is not set it wont work
+                body: postString
+                // body: JSON.stringify(this.info)
             })
-                .then(json)
-                .then(function (data) {
-                    console.log('Request succeeded with JSON response', data);
+                .then(function(response) {                      // first then()
+                   // console.log('response', response)
+                    if(response.ok)
+                    {
+                        response.json().then(function(data) {
+                           // console.log('data', data);
+                            btn.data.name = data;
+                            location.href=btn.getUrl();
+                        });
+                        console.log ('btn', btn,  'btn.name', btn.data.name )
+                   //
+                       return response.text();
+                    }
+
+                    throw new Error('Something went wrong.');
                 })
                 .catch(function (error) {
-                    console.log('Request failed', error);
+                    console.log('Request failed -->', error);
                 });
 
-            // location.href=this.button.getUrl();
+            //
 
             // post('http://opisi.dako.gov.ua/web/index.php?r=pay', this.info);
         }
     },
     computed: {
+        // jsn(){
+        //     return JSON.stringify(this.info);
+        // },
         progressWidth(){
             return {
                 width: (this.done / this.info.length * 100) + '%'
