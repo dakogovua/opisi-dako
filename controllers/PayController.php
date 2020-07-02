@@ -28,6 +28,7 @@ class PayController extends Controller
         return [
             '*',                        // star allows all domains
             'https://dako.gov.ua',
+            'http://dako.gov.ua',
 //            'http://test1.example.com',
 //            'http://test2.example.com',
 //            'http://localhost:8080'
