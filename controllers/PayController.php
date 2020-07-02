@@ -233,17 +233,15 @@ class PayController extends Controller
         $clientmodel->status = $status;
         $clientmodel->transaction_id = $transaction_id;
 
-        print_r($clientmodel);
 
-        $clientmodel->save(false);
-
-        print_r($clientmodel);
 
         $clientmodel->save(false);
 
 
+//      print_r($clientmodel);
 
         $model = new SignupForm();
+        $model->email = $clientmodel->email;
 
         return $this->render('paid',[
             'clientmodel' => $clientmodel,
