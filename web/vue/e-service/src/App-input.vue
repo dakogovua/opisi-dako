@@ -63,15 +63,15 @@ export default {
 
                 setTimeout(
                     (() => {
-                        console.log('replace ', e.target.value , e.target.value.replace(this.replace,''))
+                     //   console.log('replace ', e.target.value , e.target.value.replace(this.replace,''))
                         this.activated = true;
                         this.$emit('changedata', {
                             value: e.target.value,
                             valid: this.pattern.test(e.target.value)
                         });
-                        console.log('settimeou')
+                     //   console.log('settimeou')
                         e.target.value = e.target.value.replace(this.replace,'');
-                    }), 1000);
+                    }), 600);
             },
             onCheckbox(e){
                 this.$emit('changedata', {

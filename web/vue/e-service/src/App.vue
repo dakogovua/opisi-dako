@@ -200,7 +200,7 @@ export default {
 
             console.log('postString', postString )
 
-             let url = 'http://opisi.dako.gov.ua/web/index.php?r=pay'
+             let url = 'https://opisi.dako.gov.ua/web/index.php?r=pay'
             // let url = 'http://localhost/web/index.php?r=pay'
 
             fetch(url, {
