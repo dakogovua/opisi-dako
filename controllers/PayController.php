@@ -44,6 +44,7 @@ class PayController extends Controller
                 'cors'  => [
                     // restrict access to domains:
                     'Origin'                           => static::allowedDomains(),
+                    'Access-Control-Allow-Origin'      => static::allowedDomains(),
                     'Access-Control-Request-Method'    => ['POST'],
                     'Access-Control-Allow-Credentials' => false,
                     'Access-Control-Max-Age'           => 3600,                 // Cache (seconds)
