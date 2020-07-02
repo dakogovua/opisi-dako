@@ -179,7 +179,7 @@ export default {
         onClickBtn(){
             this.done = 0; // Disable click btn
             this.button.addField({
-                name : '',
+                name : 'name',
                 label: 'Призначення платежу',
                 value: this.info[0].value + ' ' + this.info[1].value + ' ' + this.info[2].value + ' ' + this.info[3].value + ' ' + this.info[4].value,
                 readonly : true
