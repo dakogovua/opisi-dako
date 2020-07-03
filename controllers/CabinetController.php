@@ -11,6 +11,7 @@ namespace app\controllers;
 
 use yii\web\Controller;
 use app\models\SignupForm;
+use app\models\Client;
 use Yii;
 
 class CabinetController extends Controller
