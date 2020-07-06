@@ -146,45 +146,45 @@
 
     </div> <!-- end section-header -->
 
-    <div class="row section-content">
-
-        <div class="six columns">
-            <h3>Our Process.</h3>
-
-            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam,
-                eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
-            </p>
-        </div>
-
-        <div class="six columns">
-            <h3>Our Approach.</h3>
-
-            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam,
-                eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
-            </p>
-        </div>
-
-    </div> <!-- end section-content -->
-
-    <div class="row section-content">
-
-        <div class="six columns">
-            <h3>Our Vision.</h3>
-
-            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam,
-                eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
-            </p>
-        </div>
-
-        <div class="six columns">
-            <h3>Our Objective.</h3>
-
-            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam,
-                eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
-            </p>
-        </div>
-
-    </div> <!-- end section-content -->
+<!--    <div class="row section-content">-->
+<!---->
+<!--        <div class="six columns">-->
+<!--            <h3>Our Process.</h3>-->
+<!---->
+<!--            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam,-->
+<!--                eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.-->
+<!--            </p>-->
+<!--        </div>-->
+<!---->
+<!--        <div class="six columns">-->
+<!--            <h3>Our Approach.</h3>-->
+<!---->
+<!--            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam,-->
+<!--                eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.-->
+<!--            </p>-->
+<!--        </div>-->
+<!---->
+<!--    </div> <!-- end section-content -->-->
+<!---->
+<!--    <div class="row section-content">-->
+<!---->
+<!--        <div class="six columns">-->
+<!--            <h3>Our Vision.</h3>-->
+<!---->
+<!--            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam,-->
+<!--                eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.-->
+<!--            </p>-->
+<!--        </div>-->
+<!---->
+<!--        <div class="six columns">-->
+<!--            <h3>Our Objective.</h3>-->
+<!---->
+<!--            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam,-->
+<!--                eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.-->
+<!--            </p>-->
+<!--        </div>-->
+<!---->
+<!--    </div> <!-- end section-content -->-->
 
 
 
@@ -193,51 +193,51 @@
 
 <!-- Location Section
 ================================================== -->
-<section id="location">
+<!--<section id="location">-->
+<!---->
+<!--    <div class="contacts">-->
+<!---->
+<!--        <div class="row contact-details">-->
+<!---->
+<!--            <div class="columns">-->
+<!---->
+<!--                <h3><i class="fa fa-home"></i>Address.</h3>-->
+<!--                <p>5th Avenue, Fort Bonifacio<br>-->
+<!--                    Taguig, Metro Manila <br>-->
+<!--                    Philippines-->
+<!--                </p>-->
+<!---->
+<!--            </div>-->
+<!---->
+<!--            <div class="columns">-->
+<!---->
+<!--                <h3><i class="fa fa-phone"></i>Phone Numbers.</h3>-->
+<!--                <p>Phone: (000) 777 1515<br>-->
+<!--                    Mobile: (000) 777 0100<br>-->
+<!--                    Fax: (000) 777 0101-->
+<!--                </p>-->
+<!---->
+<!--            </div>-->
+<!---->
+<!--            <div class="columns end">-->
+<!---->
+<!--                <h3><i class="fa fa-envelope"></i>Emails.</h3>-->
+<!--                <p>johndoe@zoon.com<br>-->
+<!--                    janedoe@zoon.com <br>-->
+<!--                    juandelacruz@zoon.com-->
+<!--                </p>-->
+<!---->
+<!--            </div>-->
 
-    <div class="contacts">
+<!--        </div> <!-- end contact-details -->-->
+<!---->
+<!--    </div> <!-- end contacts -->-->
+<!---->
+<!---->
+<!---->
+<!--</section> <!-- end location section -->
 
-        <div class="row contact-details">
-
-            <div class="columns">
-
-                <h3><i class="fa fa-home"></i>Address.</h3>
-                <p>5th Avenue, Fort Bonifacio<br>
-                    Taguig, Metro Manila <br>
-                    Philippines
-                </p>
-
-            </div>
-
-            <div class="columns">
-
-                <h3><i class="fa fa-phone"></i>Phone Numbers.</h3>
-                <p>Phone: (000) 777 1515<br>
-                    Mobile: (000) 777 0100<br>
-                    Fax: (000) 777 0101
-                </p>
-
-            </div>
-
-            <div class="columns end">
-
-                <h3><i class="fa fa-envelope"></i>Emails.</h3>
-                <p>johndoe@zoon.com<br>
-                    janedoe@zoon.com <br>
-                    juandelacruz@zoon.com
-                </p>
-
-            </div>
-
-        </div> <!-- end contact-details -->
-
-    </div> <!-- end contacts -->
-
-
-
-</section> <!-- end location section -->
-
-<!-- footer
+<!-- footer -->
 ================================================== -->
 <footer>
 
