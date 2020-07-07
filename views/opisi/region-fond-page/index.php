@@ -40,28 +40,31 @@ $this->params['breadcrumbs'][] = $this->title;
 //            [
 //                'attribute' => 'papka',
 //            ],
-            'nomer_fonda',
+
+            [
+                'attribute' => 'nomer_fonda',
+                'width' => '25px'
+            ],
             [
                 'attribute' => 'name_fond',
              ],
-            'count_items',
-            'count_opisi',
-            'dates:ntext',
+            [
+                'attribute' => 'count_items',
+                'width' => '25px'
+            ],
+            [
+                'attribute' => 'count_opisi',
+                'width' => '25px'
+            ],
+            [
+                'attribute' => 'dates',
+                'width' => '25px'
+            ],
+
+
 //            'fond_id',
 //            'tag_id',
-            [
-               'attribute' => 'nameTagsString',
 
-                'group' => true,
-                'filterType' => GridView::FILTER_SELECT2,
-                'filter' => \yii\helpers\ArrayHelper::map(\app\models\opisi\RegionTagName::find()->asArray()->all(), 'tag_name', 'tag_name'),
-                'filterInputOptions' => ['placeholder' => 'Зробіть вибір ...'],
-                'filterWidgetOptions' => [
-                    'pluginOptions' => ['allowClear' => true],
-                ],
-
-
-            ],
             [
                 'attribute' => 'nameFondsString',
                 'group' => true,
@@ -75,6 +78,20 @@ $this->params['breadcrumbs'][] = $this->title;
                     'pluginOptions' => ['allowClear' => true],
                 ]
             ],
+            [
+               'attribute' => 'nameTagsString',
+
+                'group' => true,
+                'filterType' => GridView::FILTER_SELECT2,
+                'filter' => \yii\helpers\ArrayHelper::map(\app\models\opisi\RegionTagName::find()->asArray()->all(), 'tag_name', 'tag_name'),
+                'filterInputOptions' => ['placeholder' => 'Зробіть вибір ...'],
+                'filterWidgetOptions' => [
+                    'pluginOptions' => ['allowClear' => true],
+                ],
+
+
+            ],
+
 
 //            ['value' => function($data){
 //                return $data->nameTag->tag_name;

@@ -24,9 +24,31 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'dates')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'fond_id')->textInput() ?>
+    <?php // $form->field($model, 'fond_id')->textInput() ?>
+    <?php
 
-    <?= $form->field($model, 'tag_id')->textInput() ?>
+
+            $fonds = \app\models\opisi\RegionFondName::find()->all();
+
+            $items = \yii\helpers\ArrayHelper::map($fonds,'id','fond_name');
+
+            $params = [
+                'prompt' => 'Укажите фонд'
+            ];
+
+            echo  $form->field($model, 'fond_id')->dropDownList($items,$params);
+     ?>
+
+    <?php
+        $tags = \app\models\opisi\RegionTagName::find()->all();
+
+        $items = \yii\helpers\ArrayHelper::map($tags,'id','tag_name');
+
+        $params = [
+            'prompt' => 'Укажите тип'
+        ];
+        echo $form->field($model, 'tag_id')->dropDownList($items,$params);
+    ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
