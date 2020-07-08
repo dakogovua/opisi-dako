@@ -47,6 +47,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'attribute' => 'name_fond',
+                'width' => '250px'
              ],
             [
                 'attribute' => 'count_items',

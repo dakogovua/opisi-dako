@@ -52,13 +52,20 @@ $this->params['breadcrumbs'][] = $this->title;
                     'pluginOptions' => ['allowClear' => true],
                 ]
             ],
-            ['attribute' => 'tagNames',
-                'value' => function($data){
-                    return $data->tagsString;
-                },
+            ['attribute' => 'tagsString',
+//                'value' => function($data){
+//                    return $data->tagsString;
+//                },
 
-                'group' => true,
-                'groupedRow' => true,                    // move grouped column to a single grouped row
+//                 'filterType' => GridView::FILTER_SELECT2,
+//                'filter' => \yii\helpers\ArrayHelper::map(\app\models\opisi\RegionFondName::find()->asArray()->all(), 'fond_name', 'fond_name'),
+//                'filterInputOptions' => ['placeholder' => 'Зробіть вибір ...'],
+//                'filterWidgetOptions' => [
+//                    'pluginOptions' => ['allowClear' => true],
+//                ],
+
+//                'group' => true,
+//                'groupedRow' => true,                    // move grouped column to a single grouped row
                 'groupOddCssClass' => 'kv-grouped-row',  // configure odd group cell css class
                 'groupEvenCssClass' => 'kv-grouped-row', // configure even group cell css class
             ],

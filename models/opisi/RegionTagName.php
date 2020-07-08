@@ -26,7 +26,7 @@ class RegionTagName extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['tag_name'], 'string', 'max' => 1],
+            [['tag_name'], 'string', 'max' => 100],
         ];
     }
 

@@ -13,7 +13,8 @@ use Yii;
  */
 class RegionFondName extends \yii\db\ActiveRecord
 {
-    public $tags;
+//    public $tagNames;
+   public $tags;
 //    public $newtags;
 
 
@@ -32,8 +33,8 @@ class RegionFondName extends \yii\db\ActiveRecord
     {
         return [
 //            [['tag_link_id'], 'integer'],
-            [['fond_name'], 'string', 'max' => 100],
-            [['tags'], 'safe']
+            [['fond_name'], 'string', 'max' => 500],
+            [['tagNames'], 'safe']
             
         ];
     }

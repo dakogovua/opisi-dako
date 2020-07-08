@@ -14,11 +14,13 @@ class RegionFondNameSearch extends RegionFondName
     /**
      * {@inheritdoc}
      */
+    public $tagsString;
+
     public function rules()
     {
         return [
             [['id'], 'integer'],
-            [['fond_name'], 'safe'],
+            [['fond_name', 'tagsString'], 'safe'],
         ];
     }
 
@@ -48,9 +50,9 @@ class RegionFondNameSearch extends RegionFondName
             'query' => $query,
         ]);
 
-        $dataProvider->sort->attributes['tagNames'] = [
-            'asc' => ['tagNames.tagsString' => SORT_ASC],
-            'desc' => ['tagNames.tagsString' => SORT_DESC],
+        $dataProvider->sort->attributes['tagsString'] = [
+            'asc' => ['region_tag_name.id' => SORT_ASC],
+            'desc' => ['region_tag_name.id' => SORT_DESC],
         ];
 
 
@@ -70,6 +72,10 @@ class RegionFondNameSearch extends RegionFondName
         ]);
 
         $query->andFilterWhere(['like', 'fond_name', $this->fond_name]);
+
+        $query->joinWith(['tagNames' => function ($q) {
+            $q->where('region_tag_name.tag_name LIKE "%' . $this->tagsString . '%"');
+        }]);
 
 
         return $dataProvider;
