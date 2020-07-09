@@ -9,7 +9,11 @@ TabsAsset::register($this)
 
 
 ?>
-
+    <svg class="hidden">
+        <defs>
+            <path id="tabshape" d="M80,60C34,53.5,64.417,0,0,0v60H80z"/>
+        </defs>
+    </svg>
 
 
     <div class="site-index">
@@ -168,6 +172,7 @@ $script = <<< JS
 (function() {
 
 				[].slice.call( document.querySelectorAll( '.tabs' ) ).forEach( function( el ) {
+				    // console.log('el', el);
 					new CBPFWTabs( el );
 				});
 

@@ -22,7 +22,7 @@ class TabsAsset extends AssetBundle
 
     ];
     public $js = [
-        'js/tabs-js/modernizr.custom.js',
+//        'js/tabs-js/modernizr.custom.js',
         'js/tabs-js/cbpFWTabs.js',
 
     ];
