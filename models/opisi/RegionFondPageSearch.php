@@ -14,15 +14,17 @@ class RegionFondPageSearch extends RegionFondPage
     /**
      * {@inheritdoc}
      */
-    public $nameTagsString;
+//    public $nameTagsString;
     public $nameFondsString;
+    public $nameFondsTagString;
 
 
     public function rules()
     {
         return [
             [['id', 'count_opisi', 'fond_id', 'tag_id'], 'integer'],
-            [['papka', 'nomer_fonda', 'name_fond', 'count_items', 'dates', 'nameFondsString', 'nameTagsString'], 'safe'],
+            [['papka', 'nomer_fonda', 'name_fond', 'count_items',
+                'dates', 'nameFondsString', 'nameTagsString', 'nameFondsTagString'], 'safe'],
         ];
     }
 
@@ -63,7 +65,7 @@ class RegionFondPageSearch extends RegionFondPage
                     'desc' => ['region_fond_name.fond_name' => SORT_DESC],
                     'label' => 'Link Name'
                 ],
-                'nameTagsString' => [
+                'nameFondsTagString' => [
                     'asc' => ['region_tag_name.tag_name' => SORT_ASC],
                     'desc' => ['region_tag_name.tag_name' => SORT_DESC],
                     'label' => 'Link Name tag'
@@ -86,7 +88,7 @@ class RegionFondPageSearch extends RegionFondPage
             'id' => $this->id,
             'count_opisi' => $this->count_opisi,
             'fond_id' => $this->fond_id,
-            'tag_id' => $this->tag_id,
+//            'tag_id' => $this->tag_id,
         ]);
 
         $query->andFilterWhere(['like', 'papka', $this->papka])
@@ -99,7 +101,8 @@ class RegionFondPageSearch extends RegionFondPage
             $q->where('region_fond_name.fond_name LIKE "%' . $this->nameFondsString . '%"');
         }]);
         $query->joinWith(['nameTags' => function ($q) {
-            $q->where('region_tag_name.tag_name LIKE "%' . $this->nameTagsString . '%"');
+            //$q->where('region_tag_name.tag_name LIKE "%' . $this->nameTagsString . '%"');
+            $q->where('region_tag_name.tag_name LIKE "%' . $this->nameFondsTagString . '%"');
         }]);
 
 

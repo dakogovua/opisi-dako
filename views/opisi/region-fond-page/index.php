@@ -80,7 +80,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 ]
             ],
             [
-               'attribute' => 'nameTagsString',
+               'attribute' => 'nameFondsTagString',
 
                 'group' => true,
                 'filterType' => GridView::FILTER_SELECT2,
@@ -92,6 +92,19 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
             ],
+
+//            'papka' => [
+//
+//                'label' => 'Папка',
+//                'attribute' => 'papka',
+//                'value' => function($data)
+//                {
+//                    return $data->nameFonds->tagsString;
+//                 },
+//                'format' => 'html',
+//                // 'filter' => Html::input('text', $searchModel->formName() . '[papka]', $searchModel->papka,['class' => 'form-control']),
+//                'visible' => !Yii::$app->user->isGuest,
+//            ],
 
 
 //            ['value' => function($data){

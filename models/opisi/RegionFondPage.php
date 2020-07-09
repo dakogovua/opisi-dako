@@ -38,9 +38,9 @@ class RegionFondPage extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['papka', 'nomer_fonda', 'name_fond', 'count_opisi', 'tag_id'], 'required'],
+            [['papka', 'nomer_fonda', 'name_fond', 'count_opisi'], 'required'],
             [['name_fond', 'dates'], 'string'],
-            [['count_opisi', 'fond_id', 'tag_id'], 'integer'],
+            [['count_opisi', 'fond_id'], 'integer'],
             [['papka', 'count_items'], 'string', 'max' => 20],
             [['nomer_fonda'], 'string', 'max' => 100],
             [['nameFond'], 'safe'],
@@ -60,13 +60,18 @@ class RegionFondPage extends \yii\db\ActiveRecord
             'count_items' => 'Кільк. од.зб.',
             'count_opisi' => 'Кільк. описів',
             'dates' => 'Крайні дати',
-            'nameTagsString' => 'Тип установи',
             'nameFondsString' => 'Назва установи',
+            'nameFondsTagString' => 'Тип установи',
+
         ];
     }
 
     public function getNameFonds(){
         return $this->hasOne(RegionFondName::className(), ['id' => 'fond_id']);
+    }
+
+    public function getNameFondsTagString(){
+        return $this->nameFonds->tagsString;
     }
 
     public function getNameTags(){
@@ -78,6 +83,7 @@ class RegionFondPage extends \yii\db\ActiveRecord
     }
 
     public function getNameTagsString(){
+        //optimised
         return $this->nameTags->tag_name;
     }
 }

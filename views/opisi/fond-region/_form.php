@@ -22,7 +22,7 @@ use kartik\select2\Select2;
         'data' =>\yii\helpers\ArrayHelper::map(\app\models\opisi\RegionTagName::find()->all(), 'id', 'tag_name'),
 
 //        'language' => 'de',
-        'options' => ['placeholder' => 'Select a state ...', 'multiple' => true],
+        'options' => ['placeholder' => 'Select a state ...', 'multiple' => false],
         'pluginOptions' => [
             'allowClear' => true,
             'tags' => true,
