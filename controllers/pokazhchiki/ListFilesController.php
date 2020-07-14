@@ -10,21 +10,21 @@ class ListFilesController extends \yii\web\Controller
      * @return string
      * @throws \yii\web\HttpException
      */
-	 
-	   public function beforeAction($action) {
-        $this->enableCsrfValidation = false;
-        return parent::beforeAction($action);
-    }
 
-    public static function allowedDomains() {
+    public static function allowedDomains()
+    {
         return [
             '*',                        // star allows all domains
-            //       'http://test1.example.com',
-            //       'http://test2.example.com',
+            'https://dako.gov.ua',
+            'http://dako.gov.ua',
+//            'http://test1.example.com',
+//            'http://test2.example.com',
+//            'http://localhost:8080'
         ];
     }
 
-    public function behaviors() {
+    public function behaviors()
+    {
         return array_merge(parent::behaviors(), [
 
             // For cross-domain AJAX request
@@ -33,14 +33,23 @@ class ListFilesController extends \yii\web\Controller
                 'cors'  => [
                     // restrict access to domains:
                     'Origin'                           => static::allowedDomains(),
+                    'Access-Control-Allow-Origin'      => static::allowedDomains(),
                     'Access-Control-Request-Method'    => ['POST'],
-                    'Access-Control-Allow-Credentials' => true,
+                    'Access-Control-Allow-Credentials' => false,
                     'Access-Control-Max-Age'           => 3600,                 // Cache (seconds)
                 ],
             ],
 
         ]);
     }
+
+
+	   public function beforeAction($action) {
+        $this->enableCsrfValidation = false;
+        return parent::beforeAction($action);
+    }
+
+
 	 
     public function actionIndex($folder = null, $params = null)
     {

@@ -54,6 +54,7 @@ class PayController extends Controller
 
         ]);
     }
+
     public $enableCsrfValidation = false;
 
     public function beforeAction($action)
