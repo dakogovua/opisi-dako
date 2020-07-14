@@ -111,7 +111,7 @@ $script = <<< JS
 
    $(function() {
 	   console.log('ready');
-     $.ajax({url: "http://catalog.dako.gov.ua/catalog/scripts/sizeopisi.php", success: function(result){
+     $.ajax({url: "https://catalog.dako.gov.ua/catalog/scripts/sizeopisi.php", success: function(result){
      $("#bdsize").html(result);
 	  }});
      
