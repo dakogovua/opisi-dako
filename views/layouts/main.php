@@ -54,7 +54,7 @@ $this->title = Yii::$app->name;
             ],
 
             ['label' => 'Е-архів',
-                'url' => ['site/cfk'],
+                'url' => ['/site/cfk'],
 
             ],
 
