@@ -1,0 +1,91 @@
+123123
+123
+123
+123
+SELECT * FROM `users` WHERE `login` = '123'
+123
+SELECT * FROM `users` WHERE `login` = '123'
+123
+SELECT * FROM `users` WHERE `login` = '123'
+
+123
+SELECT * FROM `users` WHERE `login` = '123'
+
+123
+SELECT * FROM `users` WHERE `login` = '123'
+mysqli_query(SELECT * FROM `users` WHERE `login` = '123')
+123
+SELECT * FROM `users` WHERE `login` = '123'
+mysqli_query(SELECT * FROM `users` WHERE `login` = '123')
+mysql_num_rows()
+123
+SELECT * FROM `users` WHERE `login` = '123'
+mysqli_query(SELECT * FROM `users` WHERE `login` = '123')
+mysql_num_rows()
+123
+SELECT * FROM `users` WHERE `login` = '123'
+mysqli_query(SELECT * FROM `users` WHERE `login` = '123')
+mysql_num_rows()
+123
+SELECT * FROM `users` WHERE `login` = '123'
+mysqli_query(SELECT * FROM `users` WHERE `login` = '123')6
+mysql_num_rows(6)6
+123
+SELECT * FROM `users` WHERE `login` = '123'
+mysqli_query(SELECT * FROM `users` WHERE `login` = '123')6
+mysql_num_rows(6)6
+123
+SELECT * FROM `users` WHERE `login` = '123'
+mysqli_query(SELECT * FROM `users` WHERE `login` = '123')6
+mysql_num_rows(6)6
+123
+SELECT * FROM `users` WHERE `login` = '123'
+mysqli_query(SELECT * FROM `users` WHERE `login` = '123')6
+mysql_num_rows(6)6
+123
+SELECT * FROM `users` WHERE `login` = '123'
+mysqli_query(SELECT * FROM `users` WHERE `login` = '123')4
+mysql_num_rows(4)4
+123
+SELECT * FROM `users` WHERE `login` = '123'
+mysqli_query(SELECT * FROM `users` WHERE `login` = '123')4
+mysql_num_rows(4)4
+SELECT * FROM `users` WHERE `login` = '123'
+SELECT * FROM `users` WHERE `login` = '123'
+SELECT * FROM `users` WHERE `login` = '12341234'
+SELECT * FROM `users` WHERE `login` = '12341234'
+SELECT * FROM `users` WHERE `login` = '123ячсмячсм'
+SELECT * FROM `users` WHERE `login` = '123ячсмячсм'
+SELECT * FROM `users` WHERE `login` = '123ячсмячсм'
+SELECT * FROM `users` WHERE `login` = '123ячсмячсм'
+SELECT * FROM `users` WHERE `login` = ''
+SELECT * FROM `users` WHERE `login` = '123ячсмячсм'
+SELECT * FROM `users` WHERE `login` = '123ячсмячсм'
+SELECT * FROM `users` WHERE `login` = '123ячсмячсм'
+SELECT * FROM `users` WHERE `login` = '123ячсмячсм'
+SELECT * FROM `users` WHERE `login` = '123ячсмячсм'
+SELECT * FROM `users` WHERE `login` = '123ячсмячсм'
+SELECT * FROM `users` WHERE `login` = '123ячсмячсм'
+SELECT * FROM `users` WHERE `login` = '123ячсмячсм'
+SELECT * FROM `users` WHERE `login` = '123ячсмячсм'
+SELECT * FROM `users` WHERE `login` = '123ячсмячсм'
+SELECT * FROM `users` WHERE `login` = '123ячсмячсм'
+SELECT * FROM `users` WHERE `login` = '123ячсмячсм'
+SELECT * FROM `users` WHERE `login` = '123ячсмячсм'
+SELECT * FROM `users` WHERE `login` = ''
+SELECT * FROM `users` WHERE `login` = ''
+SELECT * FROM `users` WHERE `login` = 'admin'
+SELECT * FROM `users` WHERE `login` = 'adminфффф'
+SELECT * FROM `users` WHERE `login` = 'adminфівфів'
+SELECT * FROM `users` WHERE `login` = 'admin'
+SELECT * FROM `users` WHERE `login` = 'fdgdfgdfg'
+SELECT * FROM `users` WHERE `login` = 'dsfsdfsd'
+SELECT * FROM `users` WHERE `login` = 'adminxcvxcv'
+SELECT * FROM `users` WHERE `login` = 'ewsfasdfasdfsadfasdf'
+SELECT * FROM `users` WHERE `login` = 'yuraadmin'
+SELECT * FROM `users` WHERE `login` = 'dasha'
+SELECT * FROM `users` WHERE `login` = 'adminen'
+SELECT * FROM `users` WHERE `login` = 'admin'
+SELECT * FROM `users` WHERE `login` = 'adminadminadmin'
+SELECT * FROM `users` WHERE `login` = 'koss'
+SELECT * FROM `users` WHERE `login` = 'robot'

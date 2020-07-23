@@ -1,0 +1,620 @@
+ /*
+Tutorial Name: How to Create a Registration and Login System Using PHP and mySQL
+Author: Samuel Dalusung
+*/
+
+
+
+/*= GENERAL STYLES
+--------------------------------------------------------*/
+
+
+body {
+	background: #efefef;
+	font-family: 'Open Sans', sans-serif;
+	color: #777;
+}
+
+.kart-print span {
+	color: #f58220;
+}
+
+a {
+	color: #f58220;
+	font-weight: 400;
+}
+
+.contik span {
+	font-weight: 300;
+	color: #087ee6;
+	text-transform: uppercase;
+}
+
+.dataTables span {
+	font-weight: 300;
+	color: #000;
+}
+
+
+.mlogin {
+	margin: 170px auto 0;
+}
+
+.mregister {
+	margin: 80px auto 0;
+}
+
+.error {
+	margin: 40px auto 0;
+	border: 1px solid #777;
+	padding: 3px;
+	color: #fff;
+	text-align: center;
+	width: 650px;
+	background: #f58220;
+}
+
+.regtext {
+	font-size: 13px;
+	margin-top: 26px;
+	color: #777;
+}
+
+/*= CONTAINERS
+--------------------------------------------------------*/
+.contik {
+	padding: 25px 16px 25px 10px;
+	font-weight: 400;
+	height: auto;
+	background: #fff;
+	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,.13);
+	-moz-box-shadow: 0 1px 3px rgba(0,0,0,.13);
+	box-shadow: 0 1px 3px rgba(0,0,0,.13);
+	margin-bottom: 60px;
+}
+
+#welcome {
+/*    width: 500px;
+padding: 30px;*/
+background: #fff;
+margin: 0 auto 0;
+-webkit-box-shadow: 0 1px 3px rgba(0,0,0,.13);
+-moz-box-shadow: 0 1px 3px rgba(0,0,0,.13);
+box-shadow: 0 1px 3px rgba(0,0,0,.13);
+float:right;
+padding: 2px 16px;
+}
+
+#welcome h2 {
+	font-size: 13px;
+}
+.contik h1 {
+	color: #777;
+	text-align: center;
+	font-weight: 300;
+	/*border: 1px dashed #777;*/
+	margin-top: 13px;
+}
+
+.contik label {
+	color: #777;
+	font-size: 14px;
+}
+
+#login {
+	width: 320px;
+	margin: auto;
+	padding-bottom: 15px;
+}
+
+.contik form .input, .contik input[type=text], .contik input[type=password], .contik input[type=e] {
+	background: #fbfbfb;
+	font-size: 24px;
+	line-height: 1;
+	width: 100%;
+	padding: 3px;
+	margin: 0 6px 5px 0;
+	outline: none;
+	border: 1px solid #d9d9d9;
+}
+
+.contik form .input:focus {
+	border: 1px solid #f58220;
+	-webkit-box-shadow: 0 0 3px 0 rgba(245,130,32,0.75);
+	-moz-box-shadow: 0 0 3px 0 rgba(245,130,32,0.75);
+	box-shadow: 0 0 3px 0 rgba(245,130,32,0.75);
+}
+
+
+/*= BUTTONS
+--------------------------------------------------------*/
+
+.button{
+	border: solid 1px #da7c0c;
+	background: #f78d1d;
+	background: -webkit-gradient(linear, left top, left bottom, from(#faa51a), to(#f47a20));
+	background: -moz-linear-gradient(top,  #faa51a,  #f47a20);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#faa51a', endColorstr='#f47a20');
+	color: #fff;
+	padding: 7px 12px;
+	-webkit-border-radius:4px;
+	-moz-border-radius:4px;
+	border-radius:4px;
+	float: right;
+	cursor: pointer;
+}
+
+
+.button:hover{
+	background: #f47c20;
+	background: -webkit-gradient(linear, left top, left bottom, from(#f88e11), to(#f06015));
+	background: -moz-linear-gradient(top,  #f88e11,  #f06015);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#f88e11', endColorstr='#f06015');
+}
+
+
+
+/*= FOOTER
+--------------------------------------------------------*/
+footer {
+	color: #777;
+	font-size: 12px;
+	text-align: center;
+	margin-top: 20px;
+}
+
+
+
+
+/* -------------------------------- 
+
+Primary style
+
+-------------------------------- */
+*, *::after, *::before {
+	box-sizing: border-box;
+}
+
+html {
+	font-size: 62.5%;
+}
+
+body {
+	font-size: 1.6rem;
+	font-family: "PT Sans", sans-serif;
+	color: #242322;
+	background-color: #ffffff;
+}
+
+a {
+	color: #a5c4bc;
+	text-decoration: none;
+}
+
+/* -------------------------------- 
+
+Patterns - reusable parts of our design
+
+-------------------------------- */
+.cd-btn-dako {
+	display: inline-block;
+	padding: 1.6em 2.4em;
+	font-size: 1.4rem;
+	letter-spacing: .15em;
+	color: #ffffff;
+	font-weight: 700;
+	text-transform: uppercase;
+	background-color: #a5c4bc;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-transition: box-shadow 0.3s;
+	-moz-transition: box-shadow 0.3s;
+	transition: box-shadow 0.3s;
+}
+.no-touch .cd-btn-dako:hover {
+	box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* -------------------------------- 
+
+Typography
+
+-------------------------------- */
+h1 {
+	font-size: 2.6rem;
+	line-height: 1;
+	margin-bottom: 1em;
+	/*font-family: "IM Fell Double Pica", serif;*/
+	font-style: italic;
+}
+@media only screen and (min-width: 768px) {
+	h1 {
+		font-size: 3rem;
+	}
+}
+
+/* -------------------------------- 
+
+Main Content
+
+-------------------------------- */
+.cd-main-content-dako {
+	display:none;
+	position: relative;
+	z-index: 1;
+	width: 100%;
+	/*  height: 100vh;*/
+	/* vertically align its content */
+	display: table;
+	background-color: #e4dcca;
+}
+.cd-main-content-dako .center-dako {
+	/* vertically align inside parent element */
+	display: table-cell;
+	vertical-align: middle;
+	text-align: center;
+}
+
+/* -------------------------------- 
+
+Modal window 
+
+-------------------------------- */
+.cd-modal-dako {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 3 ;
+	height: 100%;
+	width: 100%;
+	overflow: hidden ;
+	background: #402f44 url(../img/modal-bg.jpg) no-repeat center center;
+	background-size: cover;
+	opacity: 0;
+	visibility: hidden ;
+	-webkit-transition: opacity 0.3s 0s, visibility 0s 0.3s ;
+	-moz-transition: opacity 0.3s 0s, visibility 0s 0.3s ;
+	transition: opacity 0.3s 0s, visibility 0s 0.3s ;
+}
+.cd-modal-dako .modal-content-dako {
+	height: 100%;
+	overflow-y: auto ;
+	padding: 3em 5% ;
+	color: #e4dcca ;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+.cd-modal-dako h1 {
+	text-align: center;
+}
+.cd-modal-dako h1::after {
+	/* ink/brush separation */
+	content: '' !important;
+	display: block !important;
+	width: 130px;
+	height: 18px;
+	background: url(../img/ink-separation.svg) no-repeat center center !important;
+	margin: .2em auto 0;
+}
+.cd-modal-dako p {
+	line-height: 1.6;
+	margin: 2em auto;
+	max-width: 800px;
+}
+.cd-modal-dako .modal-close-dako {
+	/* 'X' icon */
+	position: absolute;
+	z-index: 1;
+	top: 50px;
+	right: 5%;
+	height: 45px;
+	width: 45px;
+	border-radius: 50%;
+	background: rgba(0, 0, 0, 0.3) url(../img/cd-icon-close.svg) no-repeat center center;
+	/* image replacement */
+	overflow: hidden;
+	text-indent: 100%;
+	white-space: nowrap;
+	visibility: hidden;
+	opacity: 0;
+	-webkit-transform: scale(0);
+	-moz-transform: scale(0);
+	-ms-transform: scale(0);
+	-o-transform: scale(0);
+	transform: scale(0);
+	-webkit-transition: -webkit-transform 0.3s 0s, visibility 0s 0.3s, opacity 0.3s 0s;
+	-moz-transition: -moz-transform 0.3s 0s, visibility 0s 0.3s, opacity 0.3s 0s;
+	transition: transform 0.3s 0s, visibility 0s 0.3s, opacity 0.3s 0s;
+}
+.no-touch .cd-modal-dako .modal-close-dako:hover {
+	background-color: rgba(0, 0, 0, 0.5);
+}
+.cd-modal-dako.visible {
+	opacity: 1;
+	visibility: visible;
+	-webkit-transition: opacity 0.7s, visibility 0s;
+	-moz-transition: opacity 0.7s, visibility 0s;
+	transition: opacity 0.7s, visibility 0s;
+}
+.cd-modal-dako.visible .modal-content-dako {
+	/* this fixes the buggy scrolling on webkit browsers - mobile devices only - when overflow property is applied */
+	-webkit-overflow-scrolling: touch;
+}
+.cd-modal-dako.visible .modal-close-dako {
+	visibility: visible;
+	opacity: 1;
+	-webkit-transition: -webkit-transform 0.3s 0s, visibility 0s 0s, opacity 0.3s 0s;
+	-moz-transition: -moz-transform 0.3s 0s, visibility 0s 0s, opacity 0.3s 0s;
+	transition: transform 0.3s 0s, visibility 0s 0s, opacity 0.3s 0s;
+	-webkit-transform: scale(1);
+	-moz-transform: scale(1);
+	-ms-transform: scale(1);
+	-o-transform: scale(1);
+	transform: scale(1);
+}
+@media only screen and (min-width: 1100px) {
+	.cd-modal-dako .modal-content-dako {
+		padding: 6em 5%;
+	}
+	.cd-modal-dako .modal-close-dako {
+		height: 60px;
+		width: 60px;
+	}
+	.cd-modal-dako p {
+		font-size: 2rem;
+	}
+}
+
+/* -------------------------------- 
+
+Transition Layer 
+
+-------------------------------- */
+.cd-transition-layer-dako {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 2;
+	height: 100%;
+	width: 100%;
+	opacity: 0;
+	visibility: hidden;
+	overflow: hidden;
+}
+.cd-transition-layer-dako .bg-layer-dako {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	-webkit-transform: translateY(-50%) translateX(-2%);
+	-moz-transform: translateY(-50%) translateX(-2%);
+	-ms-transform: translateY(-50%) translateX(-2%);
+	-o-transform: translateY(-50%) translateX(-2%);
+	transform: translateY(-50%) translateX(-2%);
+	/* its dimentions will be overwritten using jQuery to proportionally fit the viewport */
+	height: 100%;
+	/* our sprite is composed of 25 frames */
+	width: 2500%;
+	background: url(../img/ink.png) no-repeat 0 0;
+	background-size: 100% 100%;
+}
+.cd-transition-layer-dako.visible {
+	opacity: 1;
+	visibility: visible;
+}
+.cd-transition-layer-dako.opening .bg-layer-dako {
+	-webkit-animation: cd-sequence 0.8s steps(24);
+	-moz-animation: cd-sequence 0.8s steps(24);
+	animation: cd-sequence 0.8s steps(24);
+	-webkit-animation-fill-mode: forwards;
+	-moz-animation-fill-mode: forwards;
+	animation-fill-mode: forwards;
+}
+.cd-transition-layer-dako.closing .bg-layer-dako {
+	-webkit-animation: cd-sequence-reverse 0.8s steps(24);
+	-moz-animation: cd-sequence-reverse 0.8s steps(24);
+	animation: cd-sequence-reverse 0.8s steps(24);
+	-webkit-animation-fill-mode: forwards;
+	-moz-animation-fill-mode: forwards;
+	animation-fill-mode: forwards;
+}
+.no-cssanimations .cd-transition-layer-dako {
+	display: none;
+}
+
+@-webkit-keyframes cd-sequence {
+	0% {
+		/* translateX(-2%) is used to horizontally center the first frame inside the viewport */
+		-webkit-transform: translateY(-50%) translateX(-2%);
+	}
+	100% {
+		/* translateX(-98%) (2% + 96) is used to horizontally center the last frame inside the viewport  */
+		-webkit-transform: translateY(-50%) translateX(-98%);
+	}
+}
+@-moz-keyframes cd-sequence {
+	0% {
+		/* translateX(-2%) is used to horizontally center the first frame inside the viewport */
+		-moz-transform: translateY(-50%) translateX(-2%);
+	}
+	100% {
+		/* translateX(-98%) (2% + 96) is used to horizontally center the last frame inside the viewport  */
+		-moz-transform: translateY(-50%) translateX(-98%);
+	}
+}
+@keyframes cd-sequence {
+	0% {
+		/* translateX(-2%) is used to horizontally center the first frame inside the viewport */
+		-webkit-transform: translateY(-50%) translateX(-2%);
+		-moz-transform: translateY(-50%) translateX(-2%);
+		-ms-transform: translateY(-50%) translateX(-2%);
+		-o-transform: translateY(-50%) translateX(-2%);
+		transform: translateY(-50%) translateX(-2%);
+	}
+	100% {
+		/* translateX(-98%) (2% + 96) is used to horizontally center the last frame inside the viewport  */
+		-webkit-transform: translateY(-50%) translateX(-98%);
+		-moz-transform: translateY(-50%) translateX(-98%);
+		-ms-transform: translateY(-50%) translateX(-98%);
+		-o-transform: translateY(-50%) translateX(-98%);
+		transform: translateY(-50%) translateX(-98%);
+	}
+}
+@-webkit-keyframes cd-sequence-reverse {
+	0% {
+		-webkit-transform: translateY(-50%) translateX(-98%);
+	}
+	100% {
+		-webkit-transform: translateY(-50%) translateX(-2%);
+	}
+}
+@-moz-keyframes cd-sequence-reverse {
+	0% {
+		-moz-transform: translateY(-50%) translateX(-98%);
+	}
+	100% {
+		-moz-transform: translateY(-50%) translateX(-2%);
+	}
+}
+@keyframes cd-sequence-reverse {
+	0% {
+		-webkit-transform: translateY(-50%) translateX(-98%);
+		-moz-transform: translateY(-50%) translateX(-98%);
+		-ms-transform: translateY(-50%) translateX(-98%);
+		-o-transform: translateY(-50%) translateX(-98%);
+		transform: translateY(-50%) translateX(-98%);
+	}
+	100% {
+		-webkit-transform: translateY(-50%) translateX(-2%);
+		-moz-transform: translateY(-50%) translateX(-2%);
+		-ms-transform: translateY(-50%) translateX(-2%);
+		-o-transform: translateY(-50%) translateX(-2%);
+		transform: translateY(-50%) translateX(-2%);
+	}
+}
+
+/* KOSS STYLES ADDED BELOW*/
+
+
+.muted {
+	background: #FF0000 !important;
+}
+
+.warningz {
+	background: #3c763d !important;
+}
+
+.form-users .form-group {
+	height: 35px;
+}
+
+.form-users .form-group .but-form-users button {
+	width: 200px;
+	margin: 0 auto;
+}
+
+#my-table {
+	width: 90%;
+	margin: 0 auto;
+}
+.form-users h2 {
+	font-size: 24px;
+	text-align: center;
+	margin-top: 80px;
+}
+.kart-print {
+	display: table;
+	border-collapse: separate;
+	border-spacing: 10px;
+	border-color: grey;
+	margin: 0 auto;
+	text-align: left;
+	max-width: 600px;
+}
+.form-row {
+	text-align: center;
+}
+
+.kart-print th {
+	text-align: center;
+}
+.kart-print th strong {
+	font-size: 19px;
+	font-weight: bold;
+}
+.kart-print td p {
+	display: inline-block;
+	margin: 0;
+	font-weight: bold;
+	font-size: 15px;
+}
+.main-flex {
+	vertical-align: top;
+}
+
+@page :first {
+	margin: 0; /* Отступы для первой страницы */ 
+}
+@media print {
+
+	html, body {
+		height: 100%; 
+		margin: 0 !important; 
+		padding: 0 !important;
+		overflow: hidden;
+	}
+
+	.modal-content-dako::-webkit-scrollbar { width: 0 !important }
+	.modal-content-dako{ -ms-overflow-style: none; }
+	.modal-content-dako{ overflow: -moz-scrollbars-none; }
+	.cd-modal-dako.visible {
+		position: absolute;
+	}
+
+	.modal-content-dako h1 {
+		top: 0!important;
+		font-size: 18px;
+		margin: 0;
+	}
+	.modal-content-dako .form-row .form-group {
+		margin: 0;
+		top: 0!important;
+	}
+	.modal-content-dako .form-row #print {
+		display: none;
+	}
+	.none {
+		display: none;
+	}
+
+	.kart-print{
+		border-spacing: 0px;
+		margin-left: 30px;
+		margin-right: -15px;
+	}
+	.kart-print thead th strong{
+		font-size: 15px;
+	}
+	.kart-print tbody tr td p {
+		font-size: 13px;
+		font-weight: normal;
+	}
+	.kart-print tbody tr .main-flex p {
+		font-weight: bold;
+	}
+	.kart-print tbody tr td span {
+		width: 100%;
+		padding: 0 0px;
+		margin: 0px;
+		height: auto;
+		font-size: 13px;
+		border-bottom: 1px solid #000;
+		font-weight: bold;
+		font-style: italic;
+	}
+}
+
+.myinstruc h3, .myinstruc h4{
+	text-align: center;
+}
+
