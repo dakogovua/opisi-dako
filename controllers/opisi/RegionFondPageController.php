@@ -10,6 +10,8 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 
+use app\models\opisi\RegionFondName;
+
 /**
  * RegionFondPageController implements the CRUD actions for RegionFondPage model.
  */
@@ -69,6 +71,7 @@ class RegionFondPageController extends Controller
             'dataProvider' => $dataProvider,
         ]);
     }
+
 
     /**
      * Displays a single RegionFondPage model.

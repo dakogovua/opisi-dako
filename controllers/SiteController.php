@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\opisi\RegionTagName;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -66,7 +67,12 @@ class SiteController extends Controller
 
     public function actionTest()
     {
-        return $this->render('test');
+        $tags = RegionTagName::find()->all();
+
+
+        return $this->render('test',[
+            'tags' => $tags,
+        ]);
     }
 
     /**

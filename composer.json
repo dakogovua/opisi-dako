@@ -31,7 +31,8 @@
         "anmaslov/yii2-autocomplete-widget": "*",
         "aki/yii2-bot-telegram": "*",
         "kartik-v/yii2-widget-select2": "@dev",
-        "kartik-v/yii2-grid": "dev-master"
+        "kartik-v/yii2-grid": "dev-master",
+        "kartik-v/yii2-widget-depdrop": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

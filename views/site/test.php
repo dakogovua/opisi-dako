@@ -9,6 +9,25 @@ TabsAsset::register($this)
 
 
 ?>
+
+
+    <div class="mainDiv">
+        <?php foreach ($tags as $tag): ?>
+        <div class="expandableCollapsibleDiv">
+            <img src="Image/up-arrow.jpg" />
+            <h4><a><?= $tag->tag_name ?></a></h4>
+            <ul>
+                <? foreach ($tag->fonds as $fond):?>
+                <li><a><?= $fond['fond_name'] ?></a></li>
+
+
+                <? endforeach; ?>
+            </ul>
+        </div>
+        <? endforeach; ?>
+    </div>
+
+
     <svg class="hidden">
         <defs>
             <path id="tabshape" d="M80,60C34,53.5,64.417,0,0,0v60H80z"/>
@@ -68,10 +87,28 @@ TabsAsset::register($this)
 
                     </section>
                     <section id="section-shape-2">
-                        <p>
+                        <h2>
                             База фондів архівних установ Київської області
+                        </h2>
+                        <div class="containeroblasti">
+                            <div class="mainDiv">
+                                <?php foreach ($tags as $tag):?>
+                                    <div class="expandableCollapsibleDiv">
+                                        <img src="images/icons8-arrow-100.png" />
+                                        <h4><a><?= $tag->tag_name ?></a></h4>
+                                        <ul>
+                                            <? foreach ($tag->fonds as $fond):?>
+                                                <li><a><?= $fond['fond_name'] ?></a></li>
+                                            <? endforeach; ?>
+                                        </ul>
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
+                        </div>
+                        <p>
+                            <?= Html::a('Перейти до всіх фондів', ['opisi/region-fond-page', ], ['class' => 'btn btn-lg btn-success']) ?>
                         </p>
-                        <?= Html::a('Перейти', ['opisi/region-fond-page', ], ['class' => 'btn btn-lg btn-success']) ?>
+
                         </section>
 
                 </div><!-- /content -->
@@ -182,5 +219,73 @@ $script = <<< JS
 JS;
 //маркер конца строки, обязательно сразу, без пробелов и табуляции
 $this->registerJs($script, yii\web\View::POS_READY);
+
+
+$script = <<< JS
+    // $(document).ready(function () {
+        
+    $(".expandableCollapsibleDiv > img, .expandableCollapsibleDiv > h4").click(function (e) {
+        console.log('click')
+        var showElementDescription =
+            $(this).parents(".expandableCollapsibleDiv").find("ul");
+
+        if ($(showElementDescription).is(":visible")) {
+            showElementDescription.hide("fast", "swing");
+            $(this).attr("src", "images/icons8-arrow-100.png");
+        } else {
+            showElementDescription.show("fast", "swing");
+            $(this).attr("src", "images/icons8-down-arrow-100.png");
+        }
+    });
+// });
+
+JS;
+$this->registerJs($script, yii\web\View::POS_READY);
+
+$css = <<< CSS
+    .mainDiv {
+    font-family: Verdana;
+    font-size: 14px;
+    padding-left: 20px;
+    padding-right: 5px;
+}
+  
+.expandableCollapsibleDiv img {
+    width: 30px;
+    cursor: pointer;
+    margin-right: 10px;
+    margin-top: 5px;
+    padding-left: 10px;
+    float: left;
+}
+  
+.expandableCollapsibleDiv ul {
+    border-bottom: 1px solid #000;
+    clear: both;
+    list-style: outside none none;
+    margin: 0;
+    padding-bottom: 10px;
+    display: none;
+}
+
+.expandableCollapsibleDiv a {
+    cursor: pointer;
+}
+
+.containeroblasti {
+    max-width: 500px;
+    margin: 20px auto 0 auto;
+    background-color: #3a87ad;
+    background-color: rgba(255,255,255,0.5);
+    border: 7px solid #41ad3a;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+CSS;
+
+ $this->registerCss($css);
+
+
 
 ?>

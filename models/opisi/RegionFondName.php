@@ -92,7 +92,7 @@ class RegionFondName extends \yii\db\ActiveRecord
                     {
 
                         $newtag = RegionTagName::find()->where(['id' => $tag])->all();
-                        $idnew;
+                        // $idnew;
                         if (sizeof($newtag) == 0){
 
                             $tagnew = new RegionTagName();
