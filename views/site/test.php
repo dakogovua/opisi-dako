@@ -11,23 +11,6 @@ TabsAsset::register($this)
 ?>
 
 
-    <div class="mainDiv">
-        <?php foreach ($tags as $tag): ?>
-        <div class="expandableCollapsibleDiv">
-            <img src="Image/up-arrow.jpg" />
-            <h4><a><?= $tag->tag_name ?></a></h4>
-            <ul>
-                <? foreach ($tag->fonds as $fond):?>
-                <li><a><?= $fond['fond_name'] ?></a></li>
-
-
-                <? endforeach; ?>
-            </ul>
-        </div>
-        <? endforeach; ?>
-    </div>
-
-
     <svg class="hidden">
         <defs>
             <path id="tabshape" d="M80,60C34,53.5,64.417,0,0,0v60H80z"/>
