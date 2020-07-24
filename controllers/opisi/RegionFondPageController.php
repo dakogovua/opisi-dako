@@ -117,6 +117,9 @@ class RegionFondPageController extends Controller
 
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+//            echo "<pre>";
+//            print_r($model);
+
             return $this->redirect(['view', 'id' => $model->id]);
         }
 

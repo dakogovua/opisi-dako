@@ -43,11 +43,12 @@ use yii\widgets\ActiveForm;
         $tags = \app\models\opisi\RegionTagName::find()->all();
 
         $items = \yii\helpers\ArrayHelper::map($tags,'id','tag_name');
-
+        print_r($items);
         $params = [
             'prompt' => 'Укажите тип'
         ];
-        echo $form->field($model, 'tag_id')->dropDownList($items,$params);
+        echo $form->field($model, 'tag_id')->dropDownList($items, $params);
+
     ?>
 
     <div class="form-group">

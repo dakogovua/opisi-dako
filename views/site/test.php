@@ -81,7 +81,13 @@ TabsAsset::register($this)
                                         <h4><a><?= $tag->tag_name ?></a></h4>
                                         <ul>
                                             <? foreach ($tag->fonds as $fond):?>
-                                                <li><a><?= $fond['fond_name'] ?></a></li>
+                                                <?
+                                                    //$new = str_replace(' ', '%20', $your_string)
+                                                    $namefond = str_replace(' ', '%20', $fond['fond_name']);
+                                                    $nametag = str_replace(' ', '%20', $tag->tag_name);
+                                                    $href = "index.php?&RegionFondPageSearch%5BnameFondsString%5D=".$namefond."&RegionFondPageSearch%5BnameFondsTagString%5D=".$nametag."&r=opisi%2Fregion-fond-page/index";
+                                                ?>
+                                                <li><a href = <?= $href ?>><?= $fond['fond_name'] ?></a></li>
                                             <? endforeach; ?>
                                         </ul>
                                     </div>

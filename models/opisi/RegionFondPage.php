@@ -43,7 +43,7 @@ class RegionFondPage extends \yii\db\ActiveRecord
             [['count_opisi', 'fond_id'], 'integer'],
             [['papka', 'count_items'], 'string', 'max' => 20],
             [['nomer_fonda'], 'string', 'max' => 100],
-            [['nameFond'], 'safe'],
+            [['nameFond', 'tag_id'], 'safe'],
         ];
     }
 

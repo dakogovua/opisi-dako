@@ -46,10 +46,10 @@ class RegionTagName extends \yii\db\ActiveRecord
             ->viaTable(RegionTagLink::tableName(), ['tag_id' => 'id']);
     }
 
-    public function getFondsString()
-    {
-        $arr = \yii\helpers\ArrayHelper::map($this->fonds,'id', 'fond_name');
-        echo implode("</li></a><li><a>", $arr);
-        return implode("</li></a><li><a>", $arr);
-    }
+//    public function getFondsString()
+//    {
+//        $arr = \yii\helpers\ArrayHelper::map($this->fonds,'id', 'fond_name');
+//        echo implode("</li></a><li><a>", $arr);
+//        return implode("</li></a><li><a>", $arr);
+//    }
 }
