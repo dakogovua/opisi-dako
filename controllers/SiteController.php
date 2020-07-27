@@ -62,7 +62,11 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $tags = RegionTagName::find()->all();
+        return $this->render('index',
+            [
+                'tags' => $tags,
+            ]);
     }
 
     public function actionTest()
