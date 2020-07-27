@@ -2,39 +2,109 @@
 
 use yii\helpers\Html;
 
-
+use app\assets\TabsAsset;
+TabsAsset::register($this)
 
 /* @var $this yii\web\View */
 
 
 ?>
+
+
+    <svg class="hidden">
+        <defs>
+            <path id="tabshape" d="M80,60C34,53.5,64.417,0,0,0v60H80z"/>
+        </defs>
+    </svg>
+
+
     <div class="site-index">
 
-        <div class="jumbotron">
-            <h2>База даних оцифрованих описів справ Державного архіву Київської області періоду:</h2>
+
+        <div class="tabs tabs-style-shape">
+            <nav>
+                <ul>
+                    <li>
+                        <a href="#section-shape-1">
+                            <svg viewBox="0 0 80 60" preserveAspectRatio="none"><use xlink:href="#tabshape"></use></svg>
+                            <span>Державний архів Київської області</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#section-shape-2">
+                            <svg viewBox="0 0 80 60" preserveAspectRatio="none"><use xlink:href="#tabshape"></use></svg>
+                            <svg viewBox="0 0 80 60" preserveAspectRatio="none"><use xlink:href="#tabshape"></use></svg>
+                            <span>Архівні установи Київської області</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="content-wrap">
+                <section id="section-shape-1">
+
+                    <div class="jumbotron">
+                        <h2>База даних оцифрованих описів справ Державного архіву Київської області періоду:</h2>
 
 
 
 
 
-            <section id="container">
-                <p>Оберіть період</p>
+                        <div id="container">
+                            <p>Оберіть період test</p>
 
-            <div class="row" >
+                            <div class="row" >
 
-                    <?php
-                        echo Html::dropDownList('cat',null, array('firstpage'=>'До 1917', 'radfirstpage'=>'1917 - 1991'),
-                        array('empty'=>'Select Category', 'class' => 'form-control form-control-lg'));
-                    ?>
+                                <?php
+                                echo Html::dropDownList('cat',null, array('firstpage'=>'До 1917', 'radfirstpage'=>'1917 - 1991'),
+                                    array('empty'=>'Select Category', 'class' => 'form-control form-control-lg'));
+                                ?>
 
 
-            </div>
-            <br>
+                            </div>
+                            <br>
 
-                    <p><a id="kossbtn" class="btn btn-lg btn-success" >Розпочнемо!</a></p>
+                            <p><a id="kossbtn" class="btn btn-lg btn-success" >Розпочнемо!</a></p>
 
-            </section>
-        </div>
+                        </div>
+                    </div>
+
+                </section>
+                <section id="section-shape-2">
+                    <h2>
+                        База фондів архівних установ Київської області
+                    </h2>
+                    <div class="containeroblasti">
+                        <div class="mainDiv">
+                            <?php foreach ($tags as $tag):?>
+                                <div class="expandableCollapsibleDiv">
+                                    <img src="images/icons8-arrow-100.png" />
+                                    <h4><a><?= $tag->tag_name ?></a></h4>
+                                    <ul>
+                                        <? foreach ($tag->fonds as $fond):?>
+                                            <?
+                                            //$new = str_replace(' ', '%20', $your_string)
+                                            $namefond = str_replace(' ', '%20', $fond['fond_name']);
+                                            $nametag = str_replace(' ', '%20', $tag->tag_name);
+                                            $href = "index.php?&RegionFondPageSearch%5BnameFondsString%5D=".$namefond."&RegionFondPageSearch%5BnameFondsTagString%5D=".$nametag."&r=opisi%2Fregion-fond-page/index";
+                                            ?>
+                                            <li><a href = <?= $href ?>><?= $fond['fond_name'] ?></a></li>
+                                        <? endforeach; ?>
+                                    </ul>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+                    <p>
+                        <?= Html::a('Перейти до всіх фондів', ['opisi/region-fond-page', ], ['class' => 'btn btn-lg btn-success']) ?>
+                    </p>
+
+                </section>
+
+            </div><!-- /content -->
+        </div><!-- /tabs -->
+
+
+
 
 
 
@@ -111,7 +181,7 @@ $script = <<< JS
 
    $(function() {
 	   console.log('ready');
-     $.ajax({url: "https://catalog.dako.gov.ua/catalog/scripts/sizeopisi.php", success: function(result){
+     $.ajax({url: "http://catalog.dako.gov.ua/catalog/scripts/sizeopisi.php", success: function(result){
      $("#bdsize").html(result);
 	  }});
      
@@ -124,8 +194,87 @@ $script = <<< JS
      
 });
 
+
+(function() {
+
+				[].slice.call( document.querySelectorAll( '.tabs' ) ).forEach( function( el ) {
+				    // console.log('el', el);
+					new CBPFWTabs( el );
+				});
+
+			})();
+	
+
 JS;
 //маркер конца строки, обязательно сразу, без пробелов и табуляции
 $this->registerJs($script, yii\web\View::POS_READY);
+
+
+$script = <<< JS
+    // $(document).ready(function () {
+        
+    $(".expandableCollapsibleDiv > img, .expandableCollapsibleDiv > h4").click(function (e) {
+        console.log('click')
+        var showElementDescription =
+            $(this).parents(".expandableCollapsibleDiv").find("ul");
+
+        if ($(showElementDescription).is(":visible")) {
+            showElementDescription.hide("fast", "swing");
+            $(this).attr("src", "images/icons8-arrow-100.png");
+        } else {
+            showElementDescription.show("fast", "swing");
+            $(this).attr("src", "images/icons8-down-arrow-100.png");
+        }
+    });
+// });
+
+JS;
+$this->registerJs($script, yii\web\View::POS_READY);
+
+$css = <<< CSS
+    .mainDiv {
+    font-family: Verdana;
+    font-size: 14px;
+    padding-left: 20px;
+    padding-right: 5px;
+}
+  
+.expandableCollapsibleDiv img {
+    width: 30px;
+    cursor: pointer;
+    margin-right: 10px;
+    margin-top: 5px;
+    padding-left: 10px;
+    float: left;
+}
+  
+.expandableCollapsibleDiv ul {
+    border-bottom: 1px solid #000;
+    clear: both;
+    list-style: outside none none;
+    margin: 0;
+    padding-bottom: 10px;
+    display: none;
+}
+
+.expandableCollapsibleDiv a {
+    cursor: pointer;
+}
+
+.containeroblasti {
+    max-width: 500px;
+    margin: 20px auto 0 auto;
+    background-color: #3a87ad;
+    background-color: rgba(255,255,255,0.5);
+    border: 7px solid #41ad3a;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+CSS;
+
+$this->registerCss($css);
+
+
 
 ?>
