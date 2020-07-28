@@ -50,7 +50,7 @@ TabsAsset::register($this)
 
 
                         <div id="container">
-                            <p>Оберіть період test</p>
+                            <p>Оберіть період</p>
 
                             <div class="row" >
 
