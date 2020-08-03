@@ -2,6 +2,8 @@
     use yii\helpers\Html;
     use yii\bootstrap\ActiveForm;
 
+
+
     use app\assets\CabinetAsset;
     CabinetAsset::register($this);
 
@@ -53,6 +55,17 @@
             </div>
 
     <?php endif;?>
+
+    <?php if( Yii::$app->session->hasFlash('warning') ): ?>
+
+        <div class="alert alert-warning alert-dismissible" role="alert">
+
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <?php echo Yii::$app->session->getFlash('warning'); ?>
+        </div>
+
+    <?php endif;?>
+
 </div>
     <div  id="main" class="row">
 
@@ -71,37 +84,30 @@
             </ul>
             <div class="tab-content">
                 <div class="tab-pane active" id="description">
-                    <div class="site-login ">
-                        <h1><?= Html::encode($this->title) ?></h1>
+                    <?php $form = ActiveForm::begin([
+                        'id' => 'login-form',
+                        'layout' => 'horizontal',
+                        'fieldConfig' => [
+                            'template' => "{label}\n<div class=\"col-lg-3\">{input}</div>\n<div class=\"col-lg-8\">{error}</div>",
+                            'labelOptions' => ['class' => 'col-lg-1 control-label'],
+                        ],
+                    ]); ?>
 
-                        <p>Після підтвердження е-мейлу, введіть ваш е-мейл та пароль при реєстрації:</p>
+                    <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
 
-                        <?php $form = ActiveForm::begin([
-                            'id' => 'login-form',
-                            'layout' => 'horizontal',
-                            'fieldConfig' => [
-                                'template' => "{label}\n<div class=\"col-lg-3\">{input}</div>\n<div class=\"col-lg-8\">{error}</div>",
-                                'labelOptions' => ['class' => 'col-lg-1 control-label'],
-                            ],
-                        ]); ?>
+                    <?= $form->field($model, 'password')->passwordInput() ?>
 
-                        <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
+                    <?= $form->field($model, 'rememberMe')->checkbox([
+                        'template' => "<div class=\"col-lg-offset-1 col-lg-3\">{input} {label}</div>\n<div class=\"col-lg-8\">{error}</div>",
+                    ]) ?>
 
-                        <?= $form->field($model, 'password')->passwordInput() ?>
-
-                        <!--                --><?//= $form->field($model, 'rememberMe')->checkbox([
-                        //                    'template' => "<div class=\"col-lg-offset-1 col-lg-3\">{input} {label}</div>\n<div class=\"col-lg-8\">{error}</div>",
-                        //                ]) ?>
-
-                        <div class="form-group">
-                            <div class="col-lg-offset-1 col-lg-11">
-                                <?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
-                            </div>
+                    <div class="form-group">
+                        <div class="col-lg-offset-1 col-lg-11">
+                            <?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
                         </div>
-
-                        <?php ActiveForm::end(); ?>
-
                     </div>
+
+                    <?php ActiveForm::end(); ?>
                 </div>
                 <div class="tab-pane" id="characteristics">
                     Для реєстрації заповніть форму та підтвердіть е-мейл
@@ -146,99 +152,11 @@
 
     </div> <!-- end section-header -->
 
-<!--    <div class="row section-content">-->
-<!---->
-<!--        <div class="six columns">-->
-<!--            <h3>Our Process.</h3>-->
-<!---->
-<!--            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam,-->
-<!--                eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.-->
-<!--            </p>-->
-<!--        </div>-->
-<!---->
-<!--        <div class="six columns">-->
-<!--            <h3>Our Approach.</h3>-->
-<!---->
-<!--            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam,-->
-<!--                eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.-->
-<!--            </p>-->
-<!--        </div>-->
-<!---->
-<!--    </div> <!-- end section-content -->-->
-<!---->
-<!--    <div class="row section-content">-->
-<!---->
-<!--        <div class="six columns">-->
-<!--            <h3>Our Vision.</h3>-->
-<!---->
-<!--            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam,-->
-<!--                eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.-->
-<!--            </p>-->
-<!--        </div>-->
-<!---->
-<!--        <div class="six columns">-->
-<!--            <h3>Our Objective.</h3>-->
-<!---->
-<!--            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam,-->
-<!--                eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.-->
-<!--            </p>-->
-<!--        </div>-->
-<!---->
-<!--    </div> <!-- end section-content -->-->
 
 
 
 </section> <!-- About Section End-->
 
-
-<!-- Location Section
-================================================== -->
-<!--<section id="location">-->
-<!---->
-<!--    <div class="contacts">-->
-<!---->
-<!--        <div class="row contact-details">-->
-<!---->
-<!--            <div class="columns">-->
-<!---->
-<!--                <h3><i class="fa fa-home"></i>Address.</h3>-->
-<!--                <p>5th Avenue, Fort Bonifacio<br>-->
-<!--                    Taguig, Metro Manila <br>-->
-<!--                    Philippines-->
-<!--                </p>-->
-<!---->
-<!--            </div>-->
-<!---->
-<!--            <div class="columns">-->
-<!---->
-<!--                <h3><i class="fa fa-phone"></i>Phone Numbers.</h3>-->
-<!--                <p>Phone: (000) 777 1515<br>-->
-<!--                    Mobile: (000) 777 0100<br>-->
-<!--                    Fax: (000) 777 0101-->
-<!--                </p>-->
-<!---->
-<!--            </div>-->
-<!---->
-<!--            <div class="columns end">-->
-<!---->
-<!--                <h3><i class="fa fa-envelope"></i>Emails.</h3>-->
-<!--                <p>johndoe@zoon.com<br>-->
-<!--                    janedoe@zoon.com <br>-->
-<!--                    juandelacruz@zoon.com-->
-<!--                </p>-->
-<!---->
-<!--            </div>-->
-
-<!--        </div> <!-- end contact-details -->-->
-<!---->
-<!--    </div> <!-- end contacts -->-->
-<!---->
-<!---->
-<!---->
-<!--</section> <!-- end location section -->
-
-<!-- footer -->
-================================================== -->
 <footer>
 
     <div class="row">

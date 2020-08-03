@@ -7,7 +7,7 @@
  */
 
 namespace app\controllers;
-
+use app\models\LoginForm;
 
 use yii\web\Controller;
 use app\models\SignupForm;
@@ -74,6 +74,9 @@ class CabinetController extends Controller
             'auth_key'=>$key,
             'status'=>0,
         ])->one();
+
+
+
         if(!empty($user)){
             $user->status=10;
             $user->save();
@@ -82,7 +85,19 @@ class CabinetController extends Controller
         else{
             Yii::$app->getSession()->setFlash('warning','Failed!');
         }
-        return $this->render('regok',[]);
+        //exit;
+
+        $model = new LoginForm();
+        if ($model->load(Yii::$app->request->post()) && $model->login()) {
+            return $this->goBack();
+        }
+
+        $model->password = '';
+
+
+        return $this->render('regok',[
+            'model' => $model,
+        ]);
         // return $this->goHome();
     }
 
