@@ -15,7 +15,7 @@ Thumbs.db
 # composer vendor dir
 /vendor
 /web/scans
-/config
+#/config
 
 # composer itself is not needed
 composer.phar
